@@ -19,3 +19,4 @@ CREATE PROCEDURE prc_template
     COMMIT;
   END //
 DELIMITER ;
+fff
