@@ -195,7 +195,7 @@ create table workingdistrict
    dirstrictnumber      int not null,
    employeenumber       int not null,
    weeknumber           int not null,
-   primary key (dirstrictnumber, employeenumber, weaknumber),
+   primary key (dirstrictnumber, employeenumber, weeknumber),
    constraint fk_covers_a foreign key (dirstrictnumber)
       references district (dirstrictnumber),
    constraint fk_number_of foreign key (employeenumber)
