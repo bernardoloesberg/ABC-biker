@@ -1,7 +1,7 @@
 <?php
     class ConnectionController{
         private $server     = 'localhost';
-        private $database   = 'dis-autodelen';
+        private $database   = 'abcbiker';
         private $user       = 'root';
         private $password   = 'root';
 
