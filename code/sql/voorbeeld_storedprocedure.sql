@@ -19,4 +19,3 @@ CREATE PROCEDURE prc_template
     COMMIT;
   END //
 DELIMITER ;
-Muziek voor je oma
