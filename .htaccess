@@ -1,0 +1,9 @@
+#Rewriting urls on
+RewriteEngine on
+
+#Redirect to url with www
+#rewriteCond %{HTTP_HOST} ^domein.nl [NC]
+#rewriteRule ^(.*)$ http://www.domein.nl/ [R=301,L]
+
+#Rewrite Website
+RewriteRule ^([-a-zA-Z0-9]+)/?$ index.php?page=$1 [L]
