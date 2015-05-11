@@ -16,3 +16,5 @@
             getContent();
         getFooter();
     closeBootstrap();
+
+//Hoi
