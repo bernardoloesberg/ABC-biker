@@ -110,7 +110,7 @@ create table biker
 (
    employeenumber       int not null,
    express              bool not null,
-   maxdeleveries        int not null,
+   maxdeliveries        int not null,
    primary key (employeenumber),
    constraint fk_is_a2 foreign key (employeenumber)
       references employee (employeenumber)
@@ -194,7 +194,7 @@ create table workingdistrict
 (
    dirstrictnumber      int not null,
    employeenumber       int not null,
-   weaknumber           int not null,
+   weeknumber           int not null,
    primary key (dirstrictnumber, employeenumber, weaknumber),
    constraint fk_covers_a foreign key (dirstrictnumber)
       references district (dirstrictnumber),
