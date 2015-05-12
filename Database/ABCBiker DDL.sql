@@ -2,7 +2,9 @@
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     5/11/2015 12:54:58 PM                        */
 /*==============================================================*/
+CREATE DATABASE abcbikers
 
+USE DATABASE abcbikers
 
 drop table if exists address;
 

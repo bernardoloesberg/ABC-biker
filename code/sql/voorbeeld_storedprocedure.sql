@@ -1,5 +1,5 @@
 /*
- *@Author: Bernardo Loesbergsd
+ *@Author: Bernardo Loesberg
  */
 use `database`;
 
