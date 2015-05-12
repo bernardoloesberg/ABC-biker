@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     5/12/2015 1:33:23 PM                         */
+/* Created on:     5/12/2015 1:42:35 PM                         */
 /*==============================================================*/
 
 
@@ -44,14 +44,14 @@ create table district
 create table address
 (
    addressnumber        int not null,
-   dirstrictnumber      int not null,
+   districtnumber       int not null,
    street               varchar(40) not null,
    zipcode              varchar(6) not null,
    housenumber          int not null,
    city                 varchar(40) not null,
    housenumberaddon     char(1),
    primary key (addressnumber),
-   constraint fk_lies_in foreign key (dirstrictnumber)
+   constraint fk_lies_in foreign key (districtnumber)
       references district (districtnumber)
 );
 
