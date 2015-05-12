@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     5/11/2015 12:54:58 PM                        */
+/* Created on:     5/12/2015 1:08:18 PM                         */
 /*==============================================================*/
 CREATE DATABASE abcbikers
 
@@ -48,9 +48,10 @@ create table address
    addressnumber        int not null,
    dirstrictnumber      int not null,
    street               varchar(40) not null,
-   zip_code             varchar(6) not null,
+   zipcode              varchar(6) not null,
    housenumber          int not null,
    city                 varchar(40) not null,
+   housenumberaddon     char(1),
    primary key (addressnumber),
    constraint fk_lies_in foreign key (dirstrictnumber)
       references district (dirstrictnumber)
@@ -112,7 +113,7 @@ create table biker
 (
    employeenumber       int not null,
    express              bool not null,
-   maxdeliveries        int not null,
+   maxdeleveries        int not null,
    primary key (employeenumber),
    constraint fk_is_a2 foreign key (employeenumber)
       references employee (employeenumber)
@@ -138,7 +139,7 @@ create table consigment
    customernumber       int not null,
    deliveraddressnumber int not null,
    pickupaddressnumber  int not null,
-   consignorname        varchar(40) not null,
+   consignorname        varchar(40),
    primary key (consignmentnumber),
    constraint fk_placed_by foreign key (customernumber)
       references customer (customernumber),
@@ -176,11 +177,14 @@ create table manager
 create table parcel
 (
    consignmentnumber    int not null,
+   parcelnumber         int not null,
    pickupemployeenumber int,
    deliveremployeenumber int,
-   tracking             varchar(20),
-   weightingrams        int,
-   primary key (consignmentnumber),
+   tracking             varchar(20) not null,
+   weightingrams        int not null,
+   pickuptime           datetime,
+   deliverytime         datetime,
+   primary key (consignmentnumber, parcelnumber),
    constraint fk_is_picked_up_by foreign key (pickupemployeenumber)
       references employee (employeenumber),
    constraint fk_is_delivered_by foreign key (deliveremployeenumber)
