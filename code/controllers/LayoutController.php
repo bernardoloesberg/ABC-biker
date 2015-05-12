@@ -4,7 +4,7 @@
      */
 
     // Fix for images and urls when running on localhost.
-    $_SESSION['rooturl'] = '/CleanSiteStart';
+    $_SESSION['rooturl'] = '/ABC-biker';
 
     // Starting the site with bootstrap
     function startBootstrap(){
