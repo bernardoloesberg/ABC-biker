@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     5/12/2015 1:33:23 PM                         */
+/* Created on:     5/12/2015 2:39:52 PM                         */
 /*==============================================================*/
 
 
@@ -44,7 +44,7 @@ create table district
 create table address
 (
    addressnumber        int not null,
-   districtnumber      int not null,
+   districtnumber       int not null,
    street               varchar(40) not null,
    zipcode              varchar(6) not null,
    housenumber          int not null,
@@ -129,7 +129,7 @@ create table bus
 );
 
 /*==============================================================*/
-/* Table: consignment                                            */
+/* Table: consignment                                           */
 /*==============================================================*/
 create table consignment
 (
