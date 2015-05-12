@@ -12,7 +12,7 @@ drop table if exists biker;
 
 drop table if exists bus;
 
-drop table if exists consigment;
+drop table if exists consignment;
 
 drop table if exists customer;
 
@@ -44,14 +44,14 @@ create table district
 create table address
 (
    addressnumber        int not null,
-   dirstrictnumber      int not null,
+   districtnumber      int not null,
    street               varchar(40) not null,
    zipcode              varchar(6) not null,
    housenumber          int not null,
    city                 varchar(40) not null,
    housenumberaddon     char(1),
    primary key (addressnumber),
-   constraint fk_lies_in foreign key (dirstrictnumber)
+   constraint fk_lies_in foreign key (districtnumber)
       references district (districtnumber)
 );
 
@@ -129,9 +129,9 @@ create table bus
 );
 
 /*==============================================================*/
-/* Table: consigment                                            */
+/* Table: consignment                                            */
 /*==============================================================*/
-create table consigment
+create table consignment
 (
    consignmentnumber    int not null,
    customernumber       int not null,
@@ -188,7 +188,7 @@ create table parcel
    constraint fk_is_delivered_by foreign key (deliveremployeenumber)
       references employee (employeenumber),
    constraint fk_has foreign key (consignmentnumber)
-      references consigment (consignmentnumber)
+      references consignment (consignmentnumber)
 );
 
 /*==============================================================*/
