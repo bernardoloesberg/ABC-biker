@@ -152,15 +152,15 @@ create table manager
 /*==============================================================*/
 create table parcel
 (
-   consignmentnumber    int not null,
    parcelnumber         int not null AUTO_INCREMENT,
+   consignmentnumber    int not null,
    pickupemployeenumber int,
    deliveremployeenumber int,
    tracking             varchar(20) not null,
    weightingrams        int not null,
    pickuptime           datetime,
    deliverytime         datetime,
-   primary key (consignmentnumber, parcelnumber)
+   primary key (parcelnumber)
 );
 
 /*==============================================================*/
