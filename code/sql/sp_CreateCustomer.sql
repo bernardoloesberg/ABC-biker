@@ -3,7 +3,7 @@
  */
 use `database`;
 
-DROP procedure IF exists prc_template;
+DROP procedure IF exists ps_CreateCustomer;
 
 DELIMITER //
 CREATE PROCEDURE prc_template

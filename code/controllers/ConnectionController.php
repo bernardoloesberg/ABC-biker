@@ -1,9 +1,9 @@
 <?php
     class ConnectionController{
-        private $server     = 'localhost';
+        private $server     = 'p15.ise.icaprojecten.nl';
         private $database   = 'abcbiker';
-        private $user       = 'root';
-        private $password   = 'root';
+        private $user       = 'ABCBiker';
+        private $password   = 'Hallo!23';
 
         private $connection;
 
