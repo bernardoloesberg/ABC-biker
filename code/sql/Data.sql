@@ -53,4 +53,5 @@ VALUES
 INSERT INTO Parcel
 (cosignmentnumber,parcelnumber,pickupemployeenumber,deliveremployeenumber,tracking,weightingrams,pickuptime,delivertime)
 VALUES
-()
+(1,1,2,2,'q244rfxzf',10,null,null),
+(2,2,1,1,'q244rfxzf',10,1,1)

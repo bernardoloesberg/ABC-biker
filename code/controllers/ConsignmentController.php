@@ -1,7 +1,20 @@
 <?php
-   /**
-    * Created by PhpStorm.
-    * User: Christiaan
-    * Date: 12-5-2015
-    * Time: 11:43
-    */
+   include_once('ConnectionController.php');
+
+   class ConsignmentController{
+      private $connection;
+
+      function __construct(){
+         $server = new ConnectionController();
+         $this->connection = $server->getConnection();
+         unset($server);
+      }
+
+      function getConsignmentList(){
+         $query = "";
+      }
+
+      function __destruct(){
+         $this->connection->close();
+      }
+   }
