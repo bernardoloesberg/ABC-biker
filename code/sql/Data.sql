@@ -23,7 +23,7 @@ VALUES
 (2,2,'Tapirstraat','6532AL', 20, 'Nijmegen',''),
 (3,3,'Troelstrastraat','6882HD', 2, 'Velp',''),
 (4,4,'Groenestraat','6991', 10, 'Rheden',''),
-(5,5,'Zilverakkerweg','6952DX', 66, 'Dieren','')
+(5,5,'Zilverakkerweg','6952DX', 66, 'Dieren',''),
 (6,1,'Ruitenberglaan', '6826CC', 31, 'Arnhem', '')
 
 INSERT INTO addressforcustomer
@@ -47,11 +47,11 @@ VALUES
 INSERT INTO employee
 (employeenumber,addressnumber,employeelastname,employeefirstname,bsn,cellphone,birthday,sex)
 VALUES
-(1,6,'Ruby','Stalenburg','0000000000','0600000000','01-01-1970','V'),
-(2,6,'James','Boris','0000000000','0600000000','01-01-1970','M')
+(1,6,'Ruby','Stalenburg','0000000000','0600000000','1970-01-01','V'),
+(2,6,'James','Boris','0000000000','0600000000','1970-01-01','M')
 
 INSERT INTO Parcel
-(cosignmentnumber,parcelnumber,pickupemployeenumber,deliveremployeenumber,tracking,weightingrams,pickuptime,delivertime)
+(consignmentnumber,parcelnumber,pickupemployeenumber,deliveremployeenumber,tracking,weightingrams,pickuptime,deliverytime)
 VALUES
 (1,1,2,2,'q244rfxzf',10,null,null),
 (2,2,1,1,'q244rfxzf',10,1,1)
