@@ -8,3 +8,4 @@ RewriteEngine on
 #Rewrite Website
 RewriteRule ^([-a-zA-Z0-9]+)/?$ index.php?page=$1 [L]
 RewriteRule ^consignmentchange/([-a-zA-Z0-9]+)/?$ index.php?page=consignmentchange&id=$1 [L]
+RewriteRule ^employeechange/([-a-zA-Z0-9]+)/?$ index.php?page=employeechange&id=$1 [L]
