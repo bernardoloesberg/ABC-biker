@@ -51,21 +51,27 @@ INSERT INTO employee
 (addressnumber,employeelastname,employeefirstname,bsn,cellphone,birthday,sex)
 VALUES
 (6,'Ruby','Stalenburg','0000000000','0600000000','1970-01-01','V'),
-(7,'James','Boris','0000000000','0600000000','1970-02-01','M')
+(7,'James','Boris','0000000000','0600000000','1970-02-01','M'),
 (8,'Ronald','Reagan','0000000000','0600000000','1991-03-01','M'),
-(9,'Max','Albarttus','0000000000','0600000000','1989-04-01','M')
+(9,'Max','Albarttus','0000000000','0600000000','1989-04-01','M'),
+(8,'Jan','Snot','0000000000','0600000000','1991-03-01','M'),
+(9,'Piet','Alleman','0000000000','0600000000','1989-04-01','M')
 
 INSERT INTO biker
 (employeenumber, express, maxdeliveries)
 VALUES
-(1, 1, 20),
-(2, 0, 10)
+  (1, 1, 20),
+  (2, 0, 10),
+  (5, 1, 25),
+  (6, 0, 25)
 
 INSERT INTO workingDistrict
 (districtnumber, employeenumber, weeknumber)
 VALUES
-(1, 3, 20),
-(2, 4, 20)
+  (1, 1, 20),
+  (2, 2, 20),
+  (1, 5, 20),
+  (2, 6, 20)
 
 INSERT INTO District
 (districtnumber, districtname)
