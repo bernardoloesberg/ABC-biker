@@ -1,5 +1,5 @@
 /*
- *@Author: Bernardo Loesbergsd
+ *@Author: Bernardo Loesberg
  */
 use `database`;
 
@@ -19,4 +19,3 @@ CREATE PROCEDURE prc_template
     COMMIT;
   END //
 DELIMITER ;
-//y//o;
