@@ -15,38 +15,37 @@ CREATE PROCEDURE sp_CreateCustomer
       ROLLBACK;
     END;
     START TRANSACTION;
-   /* Email validation businessRule on Customer insert */
-    IF (email REGEXP '[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}')
+/* Email validation businessRule on Customer insert
+    IF (email REGEXP '')
     THEN
       RESIGNAL SQLSTATE '45001'
       SET MESSAGE_TEXT = 'Geen geldig emailadres!';
-      ROLLBACK;
+    ROLLBACK;
 /* Name businessRule  if special characters are used */
-    ELSEIF (customerlastname REGEXP '[^a-zA-ZÀ-ÖØ-ʯ ]' || customerfirstname REGEXP '[^a-zA-ZÀ-ÖØ-ʯ ]')
+    /*ELSE*/IF (customerlastname REGEXP '[^a-zA-ZÀ-ÖØ-ʯ ]' || customerfirstname REGEXP '[^a-zA-ZÀ-ÖØ-ʯ ]')
     THEN
-     SIGNAL SQLSTATE '45001'
-      SET MESSAGE_TEXT = 'De naam van de klant bevat niet toegestane tekens!';
+     SIGNAL SQLSTATE '45002'
+     SET MESSAGE_TEXT = 'De naam van de klant bevat niet toegestane tekens!';
   ROLLBACK;
 /*sex businessRule can only be m or v */
     ELSEIF (sex REGEXP '[^mvMV]')
       THEN
-        SIGNAL SQLSTATE '45002'
+        SIGNAL SQLSTATE '45003'
         SET MESSAGE_TEXT = 'Geen geldig geslacht!';
-        ROLLBACK;
+    ROLLBACK;
     /*Name businessRule  if special characters are used*/
     ELSEIF (contactlastname REGEXP '[^a-zA-ZÀ-ÖØ-ʯ ]' || contactfirstname REGEXP '[^a-zA-ZÀ-ÖØ-ʯ ]')
       THEN
         SIGNAL SQLSTATE '45003'
         SET MESSAGE_TEXT = 'De naam van de contactpersoon bevat niet toegestane tekens!';
-        ROLLBACK;
+    ROLLBACK;
     ELSE
       INSERT INTO customer (customerlastname, customerfirstname, phonenumber, sex, companyname, contactlastname, contactfirstname, email)
       VALUES (customerlastname, customerfirstname, phonenumber, sex, companyname, contactlastname, contactfirstname, email);
       COMMIT;
     END IF;
-  END;
+  END //
 DELIMITER ;
-
 
 /* EXECUTE */
 
