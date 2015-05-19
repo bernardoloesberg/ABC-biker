@@ -37,7 +37,7 @@ class EmployeeController{
      * Get a single consignment by a employeenumber.
      */
     function getEmployee($employeenumber){
-        $query = "SELECT * FROM vw_getemployeelist WHERE employeenumber = " . $employeenumber;
+        $query = "SELECT * FROM vw_getemployeelist WHERE employeenumber = " . mysqli_real_escape_string($this->connection, $employeenumber);
         $employee = array();
 
         if($result = $this->connection->query($query)){

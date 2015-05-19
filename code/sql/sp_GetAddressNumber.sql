@@ -1,5 +1,5 @@
 /*
- *@Author: Bernardo Loesberg
+ *@Author: Christiaan ten Voorde
  */
 use 'abcbiker';
 
@@ -16,19 +16,17 @@ CREATE PROCEDURE sp_GetAddressNumber(
   OUT p_addressnumber int
 )
   BEGIN
-    IF Select * FROM Address WHERE p_zipcode = zipcode AND p_housenumber = housenumber AND p_housenumberaddon = housenumberaddon = null THEN
-    INSERT INTO Address(districtnumber, street, zipcode, housenumber, city, housenumberaddon)
-    VALUES (p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
-    END IF;
-    SET p_addressnumber = Select addressnumber FROM Address WHERE p_zipcode = zipcode AND p_housenumber = housenumber AND p_housenumberaddon = housenumberaddon;
-
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
       RESIGNAL SQLSTATE '45000';
       ROLLBACK;
     END;
     START TRANSACTION;
-
+      IF (Select * FROM Address WHERE p_zipcode = zipcode AND p_housenumber = housenumber AND p_housenumberaddon = housenumberaddon) = NULL THEN
+      INSERT INTO Address(districtnumber, street, zipcode, housenumber, city, housenumberaddon)
+      VALUES (p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
+      END IF;
+      SET p_addressnumber = Select addressnumber FROM Address WHERE p_zipcode = zipcode AND p_housenumber = housenumber AND p_housenumberaddon = housenumberaddon;
     COMMIT;
   END //
 DELIMITER ;

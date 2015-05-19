@@ -21,18 +21,16 @@ CREATE PROCEDURE sp_CreateEmployee(
   IN p_sex char(1),
 )
   BEGIN
-    DECLARE p_addressnumber int;
-    SET p_addressnumber = sp_GetAddressNumber(p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
-    INSERT INTO Employee(addressnumber, employeelastname, employeefirstname, bsn, cellphone, birthday, sex)
-    VALUES (p_addressnumber, p_employeelastname, p_employeefirstname, p_bsn, p_cellphone, p_birthday, p_sex)
-
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
       RESIGNAL SQLSTATE '45000';
       ROLLBACK;
     END;
     START TRANSACTION;
-
+      DECLARE p_addressnumber int;
+      SET p_addressnumber = sp_GetAddressNumber(p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
+      INSERT INTO Employee(addressnumber, employeelastname, employeefirstname, bsn, cellphone, birthday, sex)
+      VALUES (p_addressnumber, p_employeelastname, p_employeefirstname, p_bsn, p_cellphone, p_birthday, p_sex)
     COMMIT;
   END //
 DELIMITER ;
