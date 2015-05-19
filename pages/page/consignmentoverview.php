@@ -30,8 +30,8 @@
                  <td>'.$consignment['deliverstreet']. ' ' . $consignment['deliverhousenumber'].'</td>
                  <td>'.$consignment['pickupstreet']. ' ' . $consignment['pickuphousenumber'].'</td>
                  <td>'.$consignment['consignorname'].'</td>
-                 <td><a href="'.$_SESSION['rooturl'].'/consignmentchange/'.$consignment['consignmentnumber'].'">Bewerken</a></td>
-                 <td><a href="'.$_SESSION['rooturl'].'/consignmentdelete/'.$consignment['consignmentnumber'].'">Verwijderen</a></td>
+                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/consignmentchange/'.$consignment['consignmentnumber'].'">Bewerken</a></td>
+                 <td><button class="btn btn-danger deleteConsignment" value="'.$consignment['consignmentnumber'].'">Verwijderen</button></td>
              </tr>';
     }
 
@@ -39,3 +39,5 @@
                     </table>
                 </div>
           </div>';
+
+    loadscript('code/js/consignment.js');
