@@ -51,7 +51,7 @@
         * Delete a consignment.
         */
       function deleteConsignment($consignmentnumber){
-         $query = "CALL sp_DeleteConsignment(".mysqli_real_escape_string($this->connection,$consignmentnumber.")";
+         $query = "CALL sp_DeleteConsignment(".mysqli_real_escape_string($this->connection,$consignmentnumber).")";
 
          if($result = $this->connection->query($query)){
             return $result;
