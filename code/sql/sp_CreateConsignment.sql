@@ -16,7 +16,7 @@ CREATE PROCEDURE sp_CreateConsignment
     IN p_pickupstreet        VARCHAR(40),
     IN p_pickuphousenumber   INT,
     IN p_pickupzipcode       VARCHAR(6),
-    IN p_pickupcity         VARCHAR(40),
+    IN p_pickupcity          VARCHAR(40),
     IN p_pickuphousenumberaddon char(1),
     IN p_consignorname       VARCHAR(40))
   BEGIN
@@ -26,12 +26,36 @@ CREATE PROCEDURE sp_CreateConsignment
       ROLLBACK;
     END;
     START TRANSACTION;
-      IF NOT EXISTS (SELECT 1 FROM address
-                      WHERE street = p_deliverstreet
-                      AND zipcode = p_deliverzipcode
-                      AND housenumber = p_deliverhousenumber)
-        BEGIN
-        END
+      IF NOT EXISTS(SELECT 1 FROM customer WHERE customernumber = p_customernumber)
+        THEN
+          RESIGNAL SQLSTATE '45011';
+          /*SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';*/
+          ROLLBACK;
+      END IF;
+
+      IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon)
+        THEN
+          INSERT INTO address
+          (districtnumber, street, zipcode, housenumber, city, housenumberaddon)
+          VALUES
+          (0, p_deliverstreet, p_deliverzipcode, p_deliverhousenumber, p_delivercity, p_deliverhousenumberaddon);
+      END IF;
+
+      IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon)
+      THEN
+        INSERT INTO address
+        (districtnumber, street, zipcode, housenumber, city, housenumberaddon)
+        VALUES
+          (0, p_pickupstreet, p_pickupzipcode, p_pickuphousenumber, p_pickupcity, p_pickuphousenumberaddon);
+      END IF;
+
+      INSERT INTO consignment
+      (customernumber,pickupaddressnumber,deliveraddressnumber,consignorname)
+      VALUES
+      (p_customernumber, (SELECT addressnumber FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon),(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon), p_consignorname);
     COMMIT;
   END //
 DELIMITER ;
+
+CALL sp_CreateConsignment
+(1,'Eeshofstraat','2','6825BV','Arnhem','','Goudensteinstraat','32','6825CS','Arnhem','','Bernardo Loesberg');

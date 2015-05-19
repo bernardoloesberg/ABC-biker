@@ -37,7 +37,7 @@
         * Get a single consignment by a consignmentnumber.
         */
       function getConsignment($consignmentnumber){
-         $query = "SELECT * FROM vw_getconsignmentlist WHERE consignmentnumber = " . $consignmentnumber;
+         $query = "SELECT * FROM vw_getconsignmentlist WHERE consignmentnumber = " . mysqli_real_escape_string($this->connection,$consignmentnumber);
          $consignment = array();
 
          if($result = $this->connection->query($query)){
@@ -45,6 +45,13 @@
          }
 
          return $consignment;
+      }
+
+      /**
+        * Delete a consignment.
+        */
+      function deleteConsignment($id){
+
       }
 
       /**
