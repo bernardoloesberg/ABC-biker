@@ -1,7 +1,7 @@
 /*
  *@Author: Christiaan ten Voorde
  */
-use 'abcbiker';
+use `abcbiker`;
 
 DROP procedure IF exists sp_CreateEmployee;
 

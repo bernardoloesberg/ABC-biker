@@ -1,7 +1,7 @@
 /*
  *@Author: Christiaan ten Voorde
  */
-use 'abcbiker';
+use `abcbiker`;
 
 DROP procedure IF exists sp_GetAddressNumber;
 
@@ -22,11 +22,11 @@ CREATE PROCEDURE sp_GetAddressNumber(
       ROLLBACK;
     END;
     START TRANSACTION;
-      IF (Select * FROM Address WHERE p_zipcode = zipcode AND p_housenumber = housenumber AND p_housenumberaddon = housenumberaddon) = NULL THEN
+      IF (Select * FROM address WHERE zipcode = p_zipcode AND housenumber = p_housenumber AND housenumberaddon = p_housenumberaddon) = NULL THEN
       INSERT INTO Address(districtnumber, street, zipcode, housenumber, city, housenumberaddon)
       VALUES (p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
       END IF;
-      SET p_addressnumber = Select addressnumber FROM Address WHERE p_zipcode = zipcode AND p_housenumber = housenumber AND p_housenumberaddon = housenumberaddon;
+      SET p_addressnumber = Select addressnumber FROM address WHERE (zipcode = p_zipcode AND housenumber = p_housenumber AND housenumberaddon = p_housenumberaddon) LIMIT 1;
     COMMIT;
   END //
 DELIMITER ;
