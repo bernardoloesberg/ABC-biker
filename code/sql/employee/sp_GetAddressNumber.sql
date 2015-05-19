@@ -26,7 +26,7 @@ CREATE PROCEDURE sp_GetAddressNumber(
       INSERT INTO Address(districtnumber, street, zipcode, housenumber, city, housenumberaddon)
       VALUES (p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
       END IF;
-      SET p_addressnumber = Select addressnumber FROM address WHERE (zipcode = p_zipcode AND housenumber = p_housenumber AND housenumberaddon = p_housenumberaddon) LIMIT 1;
+      SET p_addressnumber = (Select addressnumber FROM address WHERE zipcode = p_zipcode AND housenumber = p_housenumber AND housenumberaddon = p_housenumberaddon);
     COMMIT;
   END //
 DELIMITER ;

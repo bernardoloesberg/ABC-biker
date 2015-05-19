@@ -50,8 +50,10 @@ class EmployeeController{
     /**
      * Create an employee.
      */
-    function createEmployee($employee){
-
+    function createEmployee(){
+            $query = "sp_CreateEmployee(0, 'Dorpsstraat', '3927BB', 43, 'Renswoude, 'A' , 'Ten Voorde', 'Christiaan', 012345678, 0612345678, 29-12-1989, 'M')";
+            $this->connection->query($query);
+        echo "hier ook";
     }
 
     /**

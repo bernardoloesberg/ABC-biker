@@ -19,10 +19,6 @@ echo '<div class="row">
                 $employee = $employeeController->getEmployee($_GET['id']);
                 $birthparts = explode("-",$employee['birthday']);
 
-                print_r($birthparts);
-
-                print_r($employee);
-
 
                 echo '        <form>
                             <div class="form-group">
@@ -56,8 +52,8 @@ echo '<div class="row">
                           <div class="form-group">
                             <label for="geslacht">Geslacht</label>
                             <select class="form-control" name="sex">
-                                <option value="'.$employee['sex'].'">'.$employee['sex'].'</option>
-                                <option value="'.($employee['sex'] == 'V' ? 'M' : 'V').'">'.($employee['sex'] == 'V' ? 'M' : 'V').'</option>
+                                <option value="'.($employee['sex'] == 'V' ? 'M' : 'V').'">'.($employee['sex'] == 'V' ? 'Vrouw' : 'Man').'</option>
+                                <option value="'.($employee['sex'] == 'V' ? 'M' : 'V').'">'.($employee['sex'] == 'V' ? 'Man' : 'Vrouw').'</option>
                             </select>
                           </div>
                           <div class="form-group">
