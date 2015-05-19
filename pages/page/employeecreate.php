@@ -10,8 +10,10 @@ include_once('code/controllers/EmployeeController.php');
 $employeeController = new EmployeeController();
 
 if(isset($_POST['submit'])){
-    echo 'submit';
+    createEmployee();
+    echo "hij komt hier";
 }
+echo "hij komt hier";
 
 echo '<div class="row">
             <div class="col-md-4">
@@ -50,8 +52,8 @@ echo '<div class="row">
                           <div class="form-group">
                             <label for="geslacht">Geslacht</label>
                             <select class="form-control" name="sex">
-                                <option value="m">M</option>
-                                <option value="v">V</option>
+                                <option value="m">Man</option>
+                                <option value="v">Vrouw</option>
                             </select>
                           </div>
                           <div class="form-group">
