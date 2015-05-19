@@ -50,15 +50,34 @@
       /**
         * Delete a consignment.
         */
-      function deleteConsignment($id){
+      function deleteConsignment($consignmentnumber){
+         $query = "CALL sp_DeleteConsignment(".mysqli_real_escape_string($this->connection,$consignmentnumber.")";
 
+         if($result = $this->connection->query($query)){
+            return $result;
+         }
       }
 
       /**
         * Create a consignment.
         */
       function createConsignment($consignment){
+         $query = "CALL sp_CreateConsignment(".mysqli_real_escape_string($this->connection,$consignment['customernumber']).",
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['deliverstreet'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['deliverhousenumber'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['deliverzipcode'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['delivercity'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['deliverhousenumberaddon'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['pickupstreet'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['pickuphousenumber'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['pickupzipcode'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['pickupcity'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['pickuphousenumberaddon'])."',
+                                                      '".mysqli_real_escape_string($this->connection,$consignment['consignorname'])."');";
 
+         if($result = $this->connection->query($query)){
+            return $result;
+         }
       }
 
       /**

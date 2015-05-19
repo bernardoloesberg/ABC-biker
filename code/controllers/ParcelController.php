@@ -10,6 +10,8 @@
             unset($server);
         }
 
+
+
         function getParcelList(){
             $query = 'SELECT * FROM vw_ParcelList';
             $parcelList = array();
@@ -24,7 +26,7 @@
         }
 
         function getParcel($id){
-            $query = 'SELECT * FROM vw_ParcelList WHERE id = '. $id;
+            $query = 'SELECT * FROM vw_ParcelList WHERE id = '. mysqli_real_escape_string($this->connection,$id);
         }
 
         function __destruct(){

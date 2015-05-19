@@ -52,7 +52,7 @@ CREATE PROCEDURE sp_CreateConsignment
       INSERT INTO consignment
       (customernumber,pickupaddressnumber,deliveraddressnumber,consignorname)
       VALUES
-      (p_customernumber, (SELECT addressnumber FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon),(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon), p_consignorname);
+      (p_customernumber, (SELECT addressnumber FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon),(SELECT addressnumber FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon), p_consignorname);
     COMMIT;
   END //
 DELIMITER ;

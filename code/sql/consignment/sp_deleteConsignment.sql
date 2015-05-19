@@ -15,6 +15,9 @@ CREATE PROCEDURE sp_DeleteConsignment
       ROLLBACK;
     END;
     START TRANSACTION;
+      IF EXISTS()
+      THEN
+      END IF;
       IF NOT EXISTS(SELECT 1 FROM consignment WHERE consignmentnumber = p_consignmentnumber)
       THEN
         RESIGNAL SQLSTATE '45010'

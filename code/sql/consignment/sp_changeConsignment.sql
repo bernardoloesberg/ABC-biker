@@ -32,7 +32,7 @@ CREATE PROCEDURE sp_ChangeConsignment
         /*SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';*/
         ROLLBACK;
       END IF;
-     /* Check if the deliveradres is in address */
+      /* Check if the deliveradres is in address */
       IF EXISTS(SELECT 1 FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon)
       THEN
         INSERT INTO address
@@ -52,8 +52,8 @@ CREATE PROCEDURE sp_ChangeConsignment
 
        UPDATE consignment
          SET customernumber = p_customernumber,
-             deliveraddressnumber = (SELECT addressnumber FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon LIMIT 1),
-             pickupaddressnumber = (SELECT addressnumber FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon LIMIT 1),
+             deliveraddressnumber = (SELECT addressnumber FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon),
+             pickupaddressnumber = (SELECT addressnumber FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon),
              consignorname = p_consignorname
          WHERE consignmentnumber = p_consignmentnumber;
     COMMIT;
