@@ -35,18 +35,14 @@ CREATE PROCEDURE sp_ChangeConsignment
       /* Check if the deliveradres is in address */
       IF EXISTS(SELECT 1 FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon)
       THEN
-        INSERT INTO address
-        (districtnumber,street,zipcode,housenumber,city,housenumberaddon)
-        VALUES
+        CALL sp_CreateAddress
         (p_districtnumber ,p_deliverstreet,p_deliverzipcode,p_deliverhousenumber,p_delivercity,p_deliverhousenumberaddon);
       END IF;
 
       /* Check if the pickup is in address */
       IF EXISTS(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon)
       THEN
-        INSERT INTO address
-        (districtnumber,street,zipcode,housenumber,city,housenumberaddon)
-        VALUES
+        CALL sp_CreateAddress
         (p_districtnumber ,p_pickupstreet,p_pickupzipcode,p_pickuphousenumber,p_pickupcity,p_pickuphousenumberaddon);
       END IF;
 
