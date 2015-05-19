@@ -30,6 +30,14 @@
           return $customerList;
       }
 
+      function getCustomer ($id) {
+          $query = "SELECT * FROM vw_CustomerList WHERE customernumber = $id";
+
+          if($result = $this->connection->query($query)) {
+              print_r($result);
+          }
+      }
+
       function createCustomer ($customerlastname, $customerfirstname, $phonenumber, $sex, $companyname, $contactlastname, $contactfirstname, $email) {
            $query = "CALL sp_CreateCustomer( $customerlastname, $customerfirstname, $phonenumber, $sex, $companyname, $contactlastname, $contactfirstname, $email)";
 

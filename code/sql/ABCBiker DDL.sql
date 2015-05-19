@@ -1,7 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     5/13/2015 1:09:06 PM                         */
-/* Created by:     Tom Kooiman                                  */
+/* Created on:     5/19/2015 9:28:40 AM                         */
 /*==============================================================*/
 
 
@@ -61,7 +60,7 @@ create table biker
 (
    employeenumber       int not null,
    express              bool not null,
-   maxdeleveries        int not null,
+   maxdeliveries        int not null,
    primary key (employeenumber)
 );
 
@@ -84,6 +83,7 @@ create table consignment
    deliveraddressnumber int not null,
    pickupaddressnumber  int not null,
    consignorname        varchar(40),
+   completed            bool,
    primary key (consignmentnumber)
 );
 
