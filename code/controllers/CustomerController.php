@@ -17,6 +17,10 @@
          unset($server);
       }
 
+       /**
+        * Returns a full list of all the customers.
+        * @return array
+        */
       function getCustomerList () {
           $query = "SELECT * FROM vw_CustomerList";
           $customerList = array();
@@ -34,15 +38,27 @@
           $query = "SELECT * FROM vw_CustomerList WHERE customernumber = $id";
 
           if($result = $this->connection->query($query)) {
-              print_r($result);
+              return $result;
           }
       }
 
+       /**
+        * Stored procedure for creating a customer.
+        * @param $customerlastname
+        * @param $customerfirstname
+        * @param $phonenumber
+        * @param $sex
+        * @param $companyname
+        * @param $contactlastname
+        * @param $contactfirstname
+        * @param $email
+        * @return bool|mysqli_result
+        */
       function createCustomer ($customerlastname, $customerfirstname, $phonenumber, $sex, $companyname, $contactlastname, $contactfirstname, $email) {
-           $query = "CALL sp_CreateCustomer( $customerlastname, $customerfirstname, $phonenumber, $sex, $companyname, $contactlastname, $contactfirstname, $email)";
-
+           $query = "CALL sp_CreateCustomer('$customerlastname','$customerfirstname','$phonenumber','$sex','$companyname','$contactlastname','$contactfirstname','$email')";
+          echo $query;
            if($result = $this->connection->query($query)) {
-               print_r($result);
+               return $result;
            }
       }
 

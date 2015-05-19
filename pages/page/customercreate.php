@@ -4,7 +4,10 @@
     $customerController = new CustomerController();
 
     if(isset($_POST['submit'])){
-        $customerController->createCustomer($_POST['achternaam'],$_POST['voornaam'],$_POST['telefoonnummer'],$_POST['geslacht'], $_POST['bedrijfsnaam'],$_POST['contactachternaam'], $_POST['contactvoornaam'], $_POST['emailadres']);
+        $result = $customerController->createCustomer($_POST['achternaam'],$_POST['voornaam'],$_POST['telefoonnummner'],$_POST['geslacht'], $_POST['bedrijfsnaam'],$_POST['contactachternaam'], $_POST['contactvoornaam'], $_POST['emailadres']);
+        print_r($result);
+        print_r($_POST);
+
     }
 
     echo '<div class="row">
@@ -27,7 +30,10 @@
                               </div>
                               <div class="form-group">
                                 <label for="geslacht">Geslacht</label>
-                                <input type="text" class="form-control" id="geslacht" name="geslacht" value="">
+                                <select class="form-control" name="geslacht">
+                                    <option value="m">man</option>
+                                    <option value="v">vrouw</option>
+                                </select>
                               </div>
                               <div class="form-group">
                                 <label for="bedrijfsnaam">Bedrijfsnaam</label>
@@ -46,7 +52,7 @@
                                 <input type="text" class="form-control" id="emailadres" name="emailadres" value="">
                               </div>
 
-                              <button type="submit" class="btn btn-default">Create</button>
-                            </form>
+                              <button type="submit" name="submit" id="submit" class="btn btn-default">Volgende</button>
+                        </form>
                     </div>
               </div>';
