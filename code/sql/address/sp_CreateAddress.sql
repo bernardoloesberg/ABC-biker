@@ -9,8 +9,8 @@ DELIMITER //
 CREATE PROCEDURE sp_createAddress
   (IN p_districtnumber INT,
     IN p_street       VARCHAR(40),
-    IN p_housenumber  INT,
     IN p_zipcode      VARCHAR(6),
+    IN p_housenumber  INT,
     IN p_city         VARCHAR(40),
     IN p_housenumberaddon char(1))
   BEGIN
