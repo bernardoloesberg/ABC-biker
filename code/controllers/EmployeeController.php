@@ -50,10 +50,26 @@ class EmployeeController{
     /**
      * Create an employee.
      */
-    function createEmployee(){
-            $query = "sp_CreateEmployee(0, 'Dorpsstraat', '3927BB', 43, 'Renswoude, 'A' , 'Ten Voorde', 'Christiaan', 012345678, 0612345678, 29-12-1989, 'M')";
-            $this->connection->query($query);
-        echo "hier ook";
+    function createEmployee($employee){
+        $query = "CALL sp_CreateEmployee(0,
+                                    '".mysqli_real_escape_string($this->connection,$employee['street'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['zipcode'])."',
+                                    ".mysqli_real_escape_string($this->connection,$employee['housenumber']).",
+                                    '".mysqli_real_escape_string($this->connection,$employee['city'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['housenumberaddon'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['employeeFirstName'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['employeeLastName'])."',
+                                    ".mysqli_real_escape_string($this->connection,$employee['bsn']).",
+                                    ".mysqli_real_escape_string($this->connection,$employee['cellphone']).",
+                                    STR_TO_DATE('".mysqli_real_escape_string($this->connection,$employee['birthday']).",
+                                    ".mysqli_real_escape_string($this->connection,$employee['birthmonth']).",
+                                    ".mysqli_real_escape_string($this->connection,$employee['birthyear'])."' , '%d,%m,%Y'),
+                                    '".mysqli_real_escape_string($this->connection,$employee['sex'])."');";
+        echo $query;
+        if($result = $this->connection->query($query)){
+            return $result;
+        }
+
     }
 
     /**

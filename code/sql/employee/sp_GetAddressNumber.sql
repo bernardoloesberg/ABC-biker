@@ -3,10 +3,10 @@
  */
 use `abcbiker`;
 
-DROP procedure IF exists sp_GetAddressNumber;
+DROP procedure IF exists sp_CreateEmployee;
 
 DELIMITER //
-CREATE PROCEDURE sp_GetAddressNumber(
+CREATE PROCEDURE sp_CreateEmployee(
   IN p_districtnumber int,
   IN p_street varchar(40),
   IN p_zipcode varchar(6),
@@ -21,12 +21,10 @@ CREATE PROCEDURE sp_GetAddressNumber(
       RESIGNAL SQLSTATE '45000';
       ROLLBACK;
     END;
-    START TRANSACTION;
-      IF (Select * FROM address WHERE zipcode = p_zipcode AND housenumber = p_housenumber AND housenumberaddon = p_housenumberaddon) = NULL THEN
-      INSERT INTO Address(districtnumber, street, zipcode, housenumber, city, housenumberaddon)
+      IF NOT EXISTS(Select * FROM address WHERE zipcode = p_zipcode AND housenumber = p_housenumber AND housenumberaddon = p_housenumberaddon)THEN
+      INSERT INTO address(districtnumber, street, zipcode, housenumber, city, housenumberaddon)
       VALUES (p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
       END IF;
-      SET p_addressnumber = (Select addressnumber FROM address WHERE zipcode = p_zipcode AND housenumber = p_housenumber AND housenumberaddon = p_housenumberaddon);
-    COMMIT;
+      Select addressnumber INTO p_addressnumber FROM address WHERE zipcode = p_zipcode AND housenumber = p_housenumber AND housenumberaddon = p_housenumberaddon;
   END //
 DELIMITER ;

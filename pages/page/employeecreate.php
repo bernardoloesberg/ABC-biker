@@ -10,10 +10,18 @@ include_once('code/controllers/EmployeeController.php');
 $employeeController = new EmployeeController();
 
 if(isset($_POST['submit'])){
-    createEmployee();
-    echo "hij komt hier";
+    $employeeController->createEmployee();
 }
-echo "hij komt hier";
+
+if(isset($_POST['createEmployee'])){
+    $result = $employeeController->createEmployee($_POST);
+
+    if($result){
+        showMessage('succes', 'U heeft een nieuwe consignment toegevoegd!');
+    }else{
+        showMessage('danger', 'Het toevoegen van een nieuwe consignment is mislukt!');
+    }
+}
 
 echo '<div class="row">
             <div class="col-md-4">
@@ -76,7 +84,7 @@ echo '<div class="row">
                             <label for="Plaats">Plaats</label>
                             <input type="text" class="form-control" id="city" name="city" value="">
                           </div>
-                          <button type="submit" class="btn btn-default">Create</button>
+                          <button type="submit" name="createEmployee" class="btn btn-default">Create</button>
                         </form>
                 </div>
           </div>';
