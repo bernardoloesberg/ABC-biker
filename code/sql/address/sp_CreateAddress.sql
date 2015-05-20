@@ -25,7 +25,7 @@ CREATE PROCEDURE sp_createAddress
           INSERT INTO address
           (districtnumber, street, zipcode, housenumber, city, housenumberaddon)
           VALUES
-          (0, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
+          (p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
       END IF;
       COMMIT;
   END //
