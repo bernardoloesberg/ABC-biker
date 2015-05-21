@@ -16,8 +16,8 @@ function getMenu(){
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li class="active"><a href="#">Over ons</a></li>
+                         <li><a href="#">Home</a></li>
+                          <li><a href="#">Over ons</a></li>
 
 						<li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consignment <b class="caret"></b></a>
@@ -31,6 +31,14 @@ function getMenu(){
                           <ul class="dropdown-menu">
                         <li><a href="'.$_SESSION['rooturl'].'/consignmentoverview">Nog aan te passen</a></li>
                         <li><a href="'.$_SESSION['rooturl'].'/consignmentcreate">Nog aan te passen</a></li>
+                          </ul>
+                        </li>
+
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Costumer <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                        <li><a href="'.$_SESSION['rooturl'].'/customercreate">Costumer Create</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/customeroverview">Costumer Overview</a></li>
                           </ul>
                         </li>
 
