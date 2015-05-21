@@ -1,11 +1,11 @@
 INSERT INTO customer
-(customerlastname,customerfirstname,phonenumber,sex,companyname,contactlastname,contactfirstname,email)
+(customerlastname,customerfirstname,phonenumber,sex,companyname,email)
 VALUES
-('Bernardo','Loesberg','0600000000','M','Hogeschool van Arnhem en Nijmegen','Bram','Geurts','bram.geurts@outlook.com'),
-('Tom','Kooiman','0600000000','M','Hogeschool van Arnhem en Nijmegen','Bram','Geurts','bram.geurts@outlook.com'),
-('Christaan','ten Voorde','0600000000','M','Hogeschool van Arnhem en Nijmegen','Bram','Geurts','bram.geurts@outlook.com'),
-('Ruben','van der Horst','0600000000','M','Hogeschool van Arnhem en Nijmegen','Bram','Geurts','bram.geurts@outlook.com'),
-('Bram','Geurts','0600000000','M','Hogeschool van Arnhem en Nijmegen','Bram','Geurts','bram.geurts@outlook.com');
+('Bernardo','Loesberg','0600000000','M','Hogeschool van Arnhem en Nijmegen','bram.geurts@outlook.com'),
+('Tom','Kooiman','0600000000','M','Hogeschool van Arnhem en Nijmegen','bram.geurts@outlook.com'),
+('Christaan','ten Voorde','0600000000','M','Hogeschool van Arnhem en Nijmegen','bram.geurts@outlook.com'),
+('Ruben','van der Horst','0600000000','M','Hogeschool van Arnhem en Nijmegen','bram.geurts@outlook.com'),
+('Bram','Geurts','0600000000','M','Hogeschool van Arnhem en Nijmegen','bram.geurts@outlook.com');
 
 INSERT INTO district (districtname)
 VALUES
