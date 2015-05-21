@@ -1,11 +1,9 @@
-/*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     5/21/2015 11:00:31 AM                        */
-/* Created By:     Tom Kooiman                                  */
-/* Version:        3.0                                          */
-/*==============================================================*/
-
-
+/*=====================================================================*/
+/* DBMS name:      MySQL 5.0                                           */
+/* Created on:     5/21/2015 11:46:17 AM                               */
+/* Created By:     Tom Kooiman                                         */
+/* Version:        3.0.1    build 1 - parcel employee numbers changed  */
+/*=====================================================================*/
 drop table if exists address;
 
 drop table if exists addressforcustomer;
@@ -107,7 +105,7 @@ create table customer
    customernumber       int not null,
    customerlastname     varchar(40) not null,
    customerfirstname    varchar(40) not null,
-   phonenumber          numeric(14,0) not null,
+   phonenumber          varchar(14) not null,
    sex                  char(1) not null,
    companyname          varchar(40),
    email                varchar(50),
@@ -124,7 +122,7 @@ create table customercontact
    customernumber       int not null,
    contactlastname      varchar(40) not null,
    contactfirstname     varchar(40) not null,
-   contactphonenumber   numeric(14,0) not null,
+   contactphonenumber   varchar(14) not null,
    contactemail         varchar(50),
    contactdepartment    varchar(40),
    primary key (contactnumber)
@@ -150,7 +148,7 @@ create table employee
    employeelastname     varchar(40) not null,
    employeefirstname    varchar(40) not null,
    bsn                  int not null,
-   cellphone            numeric(14,0) not null,
+   cellphone            varchar(14) not null,
    birthday             date not null,
    sex                  char(1) not null,
    password             varchar(24) not null,
@@ -164,8 +162,8 @@ create table parcel
 (
    consignmentnumber    int not null,
    parcelnumber         int not null,
-   employeenumber       int,
-   emp_employeenumber   int,
+   pickupemployeenumber int,
+   deliveremployeenumber int,
    addressnumber        int not null,
    weightingrams        int not null,
    pickup               datetime,
@@ -251,10 +249,10 @@ alter table parcel add constraint fk_deliveraddress foreign key (addressnumber)
 alter table parcel add constraint fk_has foreign key (consignmentnumber)
       references consignment (consignmentnumber);
 
-alter table parcel add constraint fk_is_delivered_by foreign key (emp_employeenumber)
+alter table parcel add constraint fk_is_delivered_by foreign key (deliveremployeenumber)
       references employee (employeenumber);
 
-alter table parcel add constraint fk_is_picked_up_by foreign key (employeenumber)
+alter table parcel add constraint fk_is_picked_up_by foreign key (pickupemployeenumber)
       references employee (employeenumber);
 
 alter table rolesperemployee add constraint fk_is_a foreign key (rolename)
