@@ -1,6 +1,6 @@
 <?php
-    function getMenu(){
-        echo '<nav class="navbar navbar-default" role="navigation">
+function getMenu(){
+    echo '<nav class="navbar navbar-default" role="navigation">
                   <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -10,15 +10,30 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="#">Clean site start</a>
+                      <a class="navbar-brand" href="#">ABC-Bikers</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="#">Over ons</a></li>
+
+						<li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consignment <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
                         <li><a href="'.$_SESSION['rooturl'].'/consignmentoverview">Consignment lijst</a></li>
                         <li><a href="'.$_SESSION['rooturl'].'/consignmentcreate">Consignment toevoegen</a></li>
+                          </ul>
+                        </li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employee <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                        <li><a href="'.$_SESSION['rooturl'].'/consignmentoverview">Nog aan te passen</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/consignmentcreate">Nog aan te passen</a></li>
+                          </ul>
+                        </li>
+
                       </ul>
 
                       <ul class="nav navbar-nav navbar-right">
@@ -35,21 +50,21 @@
                     </div><!-- /.navbar-collapse -->
                   </div><!-- /.container-fluid -->
               </nav>';
-    }
+}
 
-    function getContent(){
-        if(isset($_GET['page'])){
-            if(file_exists('pages/page/'.$_GET['page'].'.php')){
-                include_once 'page/'.$_GET['page'].'.php';
-            }
-            else{
-                include_once 'page/404.php';
-            }
-        }else{
-            include_once 'page/home.php';
+function getContent(){
+    if(isset($_GET['page'])){
+        if(file_exists('pages/page/'.$_GET['page'].'.php')){
+            include_once 'page/'.$_GET['page'].'.php';
         }
+        else{
+            include_once 'page/404.php';
+        }
+    }else{
+        include_once 'page/home.php';
     }
+}
 
-    function getFooter(){
-        // TODO: Create footer
-    }
+function getFooter(){
+    // TODO: Create footer
+}
