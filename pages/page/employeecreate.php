@@ -24,6 +24,8 @@ echo '<div class="row">
                 Menu
             </div>
             <div class="col-md-8">
+
+
                            <form action="#" method="post">
                            <div class="form-group">
                             <label for="Voornaam">Voornaam</label>
@@ -84,3 +86,4 @@ echo '<div class="row">
                         </form>
                 </div>
           </div>';
+

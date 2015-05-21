@@ -23,6 +23,9 @@ echo '<div class="row">
                 <div class="col-md-8">
                     <a class="btn btn-info" href="'.$_SESSION['rooturl'].'/employeecreate">Nieuwe employee</a></td>
                     <form action="#" method="post">
+                    <div class="input-group"> <span class="input-group-addon">Filter</span>
+                         <input id="filter" type="text" class="form-control" placeholder="Type here...">
+                    </div>
                     <table class="table">
                         <thead>
                             <th>number</th>
@@ -33,7 +36,7 @@ echo '<div class="row">
                             <th>Bewerken</th>
                             <th>Verwijderen</th>
                         </thead>
-                        <tbody>';
+                        <tbody class="searchable">';
 
 foreach($employeeList as $employee){
     echo '<tr>
@@ -52,3 +55,5 @@ echo                '</tbody>
                     </form>
                 </div>
           </div>';
+
+loadscript('code/js/employee.js');
