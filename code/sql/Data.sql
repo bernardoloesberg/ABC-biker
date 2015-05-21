@@ -92,3 +92,18 @@ INSERT INTO Parcel
 VALUES
 (1,2,2,'q244rfxzf',10,null,null),
 (2,1,1,'q244rfxzf',10,1,1);
+
+/*Nieuwe inserts*/
+INSERT INTO customer
+(customerlastname,customerfirstname,phonenumber,sex,companyname,email,password)
+VALUES
+('Loesberg', 'Bernardo', '0600000000', 'M', 'Hogeschool van Arnhem en Nijmegen','test@live.nl',''),
+('Kooiman', 'Tom', '0600000000', 'M', 'Hogeschool van Arnhem en Nijmegen','test@live.nl',''),
+('ten Voorde', 'Christiaan', '0600000000', 'M', 'Hogeschool van Arnhem en Nijmegen','test@live.nl',''),
+('Geurts', 'Bram', '0600000000', 'M', 'Hogeschool van Arnhem en Nijmegen','test@live.nl',''),
+('van der Horst', 'Ruben', '0600000000', 'M', 'Hogeschool van Arnhem en Nijmegen','test@live.nl','')
+
+INSERT INTO employee
+(addressnumber,employeelastname,employeefirstname,bsn,cellphone,birthday,sex)
+VALUES
+(1,'Ruby','Stalenburg','0000000000','0600000000','1970-01-01','V', '')

@@ -37,7 +37,7 @@ drop table if exists workingdistrict;
 /*==============================================================*/
 create table address
 (
-   addressnumber        int not null,
+   addressnumber        int not null AUTO_INCREMENT,
    districtnumber       int not null,
    street               varchar(40) not null,
    zipcode              varchar(6) not null,
@@ -73,7 +73,7 @@ create table biker
 /*==============================================================*/
 create table consignment
 (
-   consignmentnumber    int not null,
+   consignmentnumber    int not null AUTO_INCREMENT,
    customernumber       int not null,
    addressnumber        int not null,
    consignorname        varchar(40),
@@ -90,7 +90,7 @@ create table consignment
 /*==============================================================*/
 create table consignmenthistory
 (
-   historynumber        int not null,
+   historynumber        int not null AUTO_INCREMENT,
    consignmentnumber    int not null,
    employeenumber       int not null,
    comment              text not null,
@@ -102,7 +102,7 @@ create table consignmenthistory
 /*==============================================================*/
 create table customer
 (
-   customernumber       int not null,
+   customernumber       int not null AUTO_INCREMENT,
    customerlastname     varchar(40) not null,
    customerfirstname    varchar(40) not null,
    phonenumber          varchar(14) not null,
@@ -118,7 +118,7 @@ create table customer
 /*==============================================================*/
 create table customercontact
 (
-   contactnumber        int not null,
+   contactnumber        int not null AUTO_INCREMENT,
    customernumber       int not null,
    contactlastname      varchar(40) not null,
    contactfirstname     varchar(40) not null,
@@ -133,7 +133,7 @@ create table customercontact
 /*==============================================================*/
 create table district
 (
-   districtnumber       int not null,
+   districtnumber       int not null AUTO_INCREMENT,
    districtname         varchar(40) not null,
    primary key (districtnumber)
 );
@@ -143,7 +143,7 @@ create table district
 /*==============================================================*/
 create table employee
 (
-   employeenumber       int not null,
+   employeenumber       int not null AUTO_INCREMENT,
    addressnumber        int not null,
    employeelastname     varchar(40) not null,
    employeefirstname    varchar(40) not null,
@@ -161,7 +161,7 @@ create table employee
 create table parcel
 (
    consignmentnumber    int not null,
-   parcelnumber         int not null,
+   parcelnumber         int not null AUTO_INCREMENT,
    pickupemployeenumber int,
    deliveremployeenumber int,
    addressnumber        int not null,
@@ -171,7 +171,7 @@ create table parcel
    hqarrival            datetime,
    hqdeparture          datetime,
    comment              text,
-   primary key (consignmentnumber, parcelnumber)
+   primary key (parcelnumber)
 );
 
 /*==============================================================*/
