@@ -47,6 +47,14 @@ class EmployeeController{
         return $employee;
     }
 
+    function deleteEmployee($employee){
+        $query = "CALL sp_DeleteEmployee(".mysqli_real_escape_string($this->connection,$employee['deleteEmployee']).")";
+
+        if($result = $this->connection->query($query)){
+            return $result;
+        }
+    }
+
     /**
      * Create an employee.
      */

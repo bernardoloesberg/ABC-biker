@@ -9,6 +9,11 @@ include_once('code/controllers/EmployeeController.php');
 
 $employeeController = new EmployeeController();
 
+if(isset($_POST['changeEmployee'])){
+    print_r($_POST);
+
+}
+
 echo '<div class="row">
             <div class="col-md-4">
                 Menu
@@ -76,7 +81,7 @@ echo '<div class="row">
                             <label for="Plaats">Plaats</label>
                             <input type="text" class="form-control" id="city" name="city" value="'.$employee['city'].'">
                           </div>
-                          <button type="submit" class="btn btn-default">Create</button>
+                          <button type="submit" class="btn btn-primary" name="changeEmployee">Create</button>
                         </form>';
             }
             else{
