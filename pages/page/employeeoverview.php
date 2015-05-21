@@ -29,6 +29,7 @@ echo '<div class="row">
                             <th>name</th>
                             <th>bsn</th>
                             <th>cellphone</th>
+                            <th>Details</th>
                             <th>Bewerken</th>
                             <th>Verwijderen</th>
                         </thead>
@@ -40,6 +41,7 @@ foreach($employeeList as $employee){
                  <td>'.$employee['employeefirstname'] . ' ' . $employee['employeelastname'].'</td>
                  <td>'.$employee['bsn']. '</td>
                  <td>'.$employee['cellphone']. '</td>
+                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/employeedetails/'.$employee['employeenumber'].'">Details</a></td>
                  <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/employeechange/'.$employee['employeenumber'].'">Bewerken</a></td>
                 <td><button class="btn btn-danger deleteConsignment" name="deleteEmployee" value="'.$employee['employeenumber'].'">Verwijderen</button></td>
              </tr>';

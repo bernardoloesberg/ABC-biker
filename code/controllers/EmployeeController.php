@@ -80,6 +80,29 @@ class EmployeeController{
 
     }
 
+    function changeEmployee($employee){
+        $query = "CALL sp_ChangeEmployee(".mysqli_real_escape_string($this->connection,$employee['employeenumber']).",
+                                    0,
+                                    '".mysqli_real_escape_string($this->connection,$employee['street'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['zipcode'])."',
+                                    ".mysqli_real_escape_string($this->connection,$employee['housenumber']).",
+                                    '".mysqli_real_escape_string($this->connection,$employee['city'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['housenumberaddon'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['employeeFirstName'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['employeeLastName'])."',
+                                    ".mysqli_real_escape_string($this->connection,$employee['bsn']).",
+                                    ".mysqli_real_escape_string($this->connection,$employee['cellphone']).",
+                                    STR_TO_DATE('".mysqli_real_escape_string($this->connection,$employee['birthday']).",
+                                    ".mysqli_real_escape_string($this->connection,$employee['birthmonth']).",
+                                    ".mysqli_real_escape_string($this->connection,$employee['birthyear'])."' , '%d,%m,%Y'),
+                                    '".mysqli_real_escape_string($this->connection,$employee['sex'])."');";
+        echo $query;
+        if($result = $this->connection->query($query)){
+            return $result;
+        }
+
+    }
+
     /**
      * When the class isn't used anymore the connection will be closed.
      */

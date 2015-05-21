@@ -3,10 +3,11 @@
  */
 use `abcbiker`;
 
-DROP procedure IF exists sp_CreateEmployee;
+DROP procedure IF exists sp_ChangeEmployee;
 
 DELIMITER //
-CREATE PROCEDURE sp_CreateEmployee(
+CREATE PROCEDURE sp_ChangeEmployee(
+  IN p_employeenumber int,
   IN p_districtnumber int,
   IN p_street varchar(40),
   IN p_zipcode varchar(6),
@@ -30,8 +31,14 @@ CREATE PROCEDURE sp_CreateEmployee(
     START TRANSACTION;
       CALL sp_GetAddressNumber(p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon, @p_addressnumber);
 	  SET p_addressnumber = @p_addressnumber;
-      INSERT INTO Employee(addressnumber, employeelastname, employeefirstname, bsn, cellphone, birthday, sex)
-      VALUES (p_addressnumber, p_employeelastname, p_employeefirstname, p_bsn, p_cellphone, p_birthday, p_sex);
+	  UPDATE Employee SET addressnumber=p_addressnumber,
+	                      employeelastname = p_employeelastname,
+	                      employeefirstname=p_employeefirstname,
+	                      bsn = p_bsn,
+	                      cellphone = p_cellphone,
+	                      birthday = p_birthday,
+	                      sex = p_sex
+                    WHERE employeenumber = p_employeenumber;
     COMMIT;
   END //
 DELIMITER ;

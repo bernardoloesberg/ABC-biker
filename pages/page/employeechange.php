@@ -10,8 +10,13 @@ include_once('code/controllers/EmployeeController.php');
 $employeeController = new EmployeeController();
 
 if(isset($_POST['changeEmployee'])){
-    print_r($_POST);
+    $result = $employeeController->changeEmployee($_POST);
 
+    if($result){
+        showMessage('succes', 'U heeft een employee gewijzigd!');
+    }else{
+        showMessage('danger', 'Het wijzigen van een employee is mislukt!');
+    }
 }
 
 echo '<div class="row">
@@ -25,8 +30,12 @@ echo '<div class="row">
                 $birthparts = explode("-",$employee['birthday']);
 
 
-                echo '        <form>
-                            <div class="form-group">
+                echo '    <form action="#" method="post">
+                          <div class="form-group">
+                            <label for="Employeenumber">Employeenumber</label>
+                            <input type="text" class="form-control" id="employeenumber" name="employeenumber" value="'.$employee['employeenumber'].'" readonly="readonly">
+                          </div>
+                          <div class="form-group">
                             <label for="Voornaam">Voornaam</label>
                             <input type="text" class="form-control" id="employeeLastname" name="employeeFirstName" value="'.$employee['employeefirstname'].'">
                           </div>
@@ -44,7 +53,7 @@ echo '<div class="row">
                           </div>
                           <div class="form-group">
                             <label for="Geboortedag">Geboortedag</label>
-                            <input type="text" class="form-control" id="birthday" name="birthday" value="'.$birthparts['0'].'">
+                            <input type="text" class="form-control" id="birthday" name="birthday" value="'.$birthparts['2'].'">
                           </div>
                           <div class="form-group">
                             <label for="Geboortemaand">Geboortemaand</label>
@@ -52,7 +61,7 @@ echo '<div class="row">
                           </div>
                           <div class="form-group">
                             <label for="Geboortejaar">Geboortejaar</label>
-                            <input type="text" class="form-control" id="birthyear" name="birthyear" value="'.$birthparts['2'].'">
+                            <input type="text" class="form-control" id="birthyear" name="birthyear" value="'.$birthparts['0'].'">
                           </div>
                           <div class="form-group">
                             <label for="geslacht">Geslacht</label>
@@ -81,7 +90,7 @@ echo '<div class="row">
                             <label for="Plaats">Plaats</label>
                             <input type="text" class="form-control" id="city" name="city" value="'.$employee['city'].'">
                           </div>
-                          <button type="submit" class="btn btn-primary" name="changeEmployee">Create</button>
+                          <button type="submit" class="btn btn-success" name="changeEmployee">Sla verandering op</button>
                         </form>';
             }
             else{
