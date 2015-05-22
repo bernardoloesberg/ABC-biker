@@ -9,12 +9,12 @@
     // Starting the site with bootstrap
     function startBootstrap(){
         echo '<!DOCTYPE html>
-                    <html lang="en">
+                    <html lang="nl">
                     <head>
                         <meta charset="utf-8">
                         <meta http-equiv="X-UA-Compatible" content="IE=edge">
                         <meta name="viewport" content="width=device-width, initial-scale=1">
-                        <title>Website</title>
+                        <title>ABCBiker</title>
 
                         <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
                         <script src="'.$_SESSION['rooturl'].'/code/js/jQuery.js"></script>

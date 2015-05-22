@@ -3,10 +3,10 @@
  */
 use `database`;
 
-DROP procedure IF exists sp_createAddress;
+DROP procedure IF exists sp_CreateAddress;
 
 DELIMITER //
-CREATE PROCEDURE sp_createAddress
+CREATE PROCEDURE sp_CreateAddress
   (IN p_districtnumber INT,
     IN p_street       VARCHAR(40),
     IN p_zipcode      VARCHAR(6),
@@ -31,5 +31,5 @@ CREATE PROCEDURE sp_createAddress
   END //
 DELIMITER ;
 
-CALL sp_createAddress
+CALL sp_CreateAddress
 ('Eeshofstraat','2','6825BV','Arnhem','');
