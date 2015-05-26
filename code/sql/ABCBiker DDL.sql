@@ -92,6 +92,7 @@ create table consignmenthistory
 (
    historynumber        int not null AUTO_INCREMENT,
    consignmentnumber    int not null,
+   parcelnumber         int null,
    employeenumber       int not null,
    comment              text not null,
    primary key (historynumber)
@@ -236,6 +237,9 @@ alter table consignmenthistory add constraint fk_edited_by foreign key (employee
 
 alter table consignmenthistory add constraint fk_history_of foreign key (consignmentnumber)
       references consignment (consignmentnumber);
+
+alter table consignmenthistory add constraint fk_history_of_parcel foreign key (consignmentnumber)
+references parcel (parcelnumber);
 
 alter table customercontact add constraint fk_contact_from foreign key (customernumber)
       references customer (customernumber);

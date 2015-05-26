@@ -1,7 +1,21 @@
 <?php
+    include_once('code/controllers/ConsignmentController.php');
+
     /**
      * TODO: NEXT STEP ON CONSIGNMENT
      */
+    if(isset($_POST['createConsignment'])){
+        $consignmentController = new ConsignmentController();
+        $result = $consignmentController->createConsignment($_POST);
+
+        if($result){
+            showMessage('success', 'U heeft een nieuwe consignment toegevoegd!');
+        }else{
+            showMessage('danger', 'Het toevoegen van een nieuwe consignment is mislukt!');
+        }
+        print_r($_POST);
+    }
+
     echo '<div class="row">
             <div class="col-md-2">
                 Menu

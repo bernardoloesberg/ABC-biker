@@ -11,22 +11,12 @@
 
     $customers = $customerController->getCustomerList();
 
-    if(isset($_POST['createConsignment'])){
-        $result = $consignmentController->createConsignment($_POST);
-
-        if($result){
-            showMessage('success', 'U heeft een nieuwe consignment toegevoegd!');
-        }else{
-            showMessage('danger', 'Het toevoegen van een nieuwe consignment is mislukt!');
-        }
-    }
-
     echo '<div class="row">
                 <div class="col-md-2">
                     Menu
                 </div>
                 <div class="col-md-10">
-                        <form action="#" method="post">
+                        <form action="'.$_SESSION['rooturl'].'/parcelcreate" method="post">
                               <div class="form-group">
                                 <label for="customer">Klant</label>
                                 <select class="form-control" name="customernumber">';
