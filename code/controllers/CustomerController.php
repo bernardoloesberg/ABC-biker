@@ -5,7 +5,7 @@
      * Class CustomerController
      * Author: Tom Kooiman
      */
-   class CustomerController{
+   class CustomerController {
       private $connection;
 
       /**
@@ -30,7 +30,6 @@
                   $customerList[] = $customer;
               }
           }
-
           return $customerList;
       }
 
@@ -52,47 +51,60 @@
         * @param $customer an array of POST data
         * @return bool|mysqli_result
         */
-      function createCustomer ($customer) {
-           $query1 = "CALL sp_CreateCustomer('".mysqli_real_escape_string($this->connection,$customer['lastname'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['firstname'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['phonenumber'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['sex'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['companyname'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['email'])."')";
+      function createCustomer ($customer)
+      {
 
-           if($result = $this->connection->query($query1)) {
-                if($result == 1) {
-                    $query2 = "CALL sp_CreateAddress('".mysqli_real_escape_string($this->connection,$customer['districtnumber'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['street'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['zipcode'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['housenumber'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['city'])."',
-                                            '".mysqli_real_escape_string($this->connection,$customer['housenumberaddon'])."')";
+          if (preg_match('[^a-zA-ZÀ-ÖØ-ʯ ]', $customer['lastname'])) {
+              showMessage('danger', 'De achternaam mag alleen letters bevatten');
+          } elseif (preg_match('[^a-zA-ZÀ-ÖØ-ʯ ]', $customer['firstname'])) {
+              showMessage('danger', 'De voornaam mag alleen letters bevatten');
+          } elseif (preg_match('[^0-9]', $customer['phonenumber'])) {
+              showMessage('danger', 'Het telefoonnummer mag alleen getallen bevatten');
+          } elseif (preg_match('[^mv]', $customer['sex'])) {
+              showMessage('danger', 'Ongeldig Geslacht!');
+          } else {
 
-                    if($result = $this->connection->query($query2)) {
-                        if($result == 1) {
+              $query1 = "CALL sp_CreateCustomer('" . mysqli_real_escape_string($this->connection, $customer['lastname']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['firstname']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['sex']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['companyname']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['email']) . "')";
 
-                            $query3 = "SELECT addressnumber FROM address WHERE street = '".mysqli_real_escape_string($this->connection,$customer['street'])."' AND zipcode = '".mysqli_real_escape_string($this->connection,$customer['zipcode'])."' AND housenumber = '".mysqli_real_escape_string($this->connection,$customer['housenumber'])."'";
-                            $query4 = "SELECT customernumber FROM customer WHERE customerlastname = '".mysqli_real_escape_string($this->connection,$customer['lastname'])."' AND customerfirstname = '".mysqli_real_escape_string($this->connection,$customer['firstname'])."' AND phonenumber = '".mysqli_real_escape_string($this->connection,$customer['phonenumber'])."'";
+              if ($result = $this->connection->query($query1)) {
+                  if ($result == 1) {
+                      $query2 = "CALL sp_CreateAddress('" . mysqli_real_escape_string($this->connection, $customer['districtnumber']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['street']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['zipcode']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['housenumber']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['city']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['housenumberaddon']) . "')";
+
+                      if ($result = $this->connection->query($query2)) {
+                          if ($result == 1) {
+
+                              $query3 = "SELECT addressnumber FROM address WHERE street = '" . mysqli_real_escape_string($this->connection, $customer['street']) . "' AND zipcode = '" . mysqli_real_escape_string($this->connection, $customer['zipcode']) . "' AND housenumber = '" . mysqli_real_escape_string($this->connection, $customer['housenumber']) . "'";
+                              $query4 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $customer['lastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $customer['firstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "'";
 
 
-                            if($result = $this->connection->query($query4)) {
-                                $customernumber = $result->fetch_array();
-                            }
+                              if ($result = $this->connection->query($query4)) {
+                                  $customernumber = $result->fetch_array();
+                              }
 
-                            if($result = $this->connection->query($query3)) {
-                                $addressnumber = $result->fetch_array();
-                            }
+                              if ($result = $this->connection->query($query3)) {
+                                  $addressnumber = $result->fetch_array();
+                              }
 
-                            $query5 = "CALL sp_AddAddressToCustomer(".$addressnumber[0].",".$customernumber[0].")";
+                              $query5 = "CALL sp_AddAddressToCustomer(" . $addressnumber[0] . "," . $customernumber[0] . ")";
 
-                            if($result = $this->connection->query($query5)) {
+                              if ($result = $this->connection->query($query5)) {
 
-                            }
-                        }
-                    }
-                }
-           }
+                              }
+                          }
+                      }
+                  }
+              }
+          }
       }
 
       function __destruct(){

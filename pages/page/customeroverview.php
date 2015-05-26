@@ -21,7 +21,7 @@
                         </thead>
                         <tbody>';
 
-    foreach($CustomerList as $customer){
+    foreach($CustomerList as $customer) {
         echo '<tr>
                  <td>'.$customer['customernumber'].'</td>
                  <td>'.$customer['customerfirstname'] . ' ' . $customer['customerlastname'].'</td>
