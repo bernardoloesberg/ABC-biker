@@ -99,10 +99,10 @@
                                                     '".mysqli_real_escape_string($this->connection,$consignment['scheduleddelivery'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['price'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['totalprice'])."',
-                                                    ".mysqli_real_escape_string($this->connection,8).",
+                                                    ".mysqli_real_escape_string($this->connection,1).",
                                                     '".mysqli_real_escape_string($this->connection,$consignment['comment'])."');";
 
-        //echo $query;
+        echo $query;
 
          if($result = $this->connection->query($query)){
             return $result;
