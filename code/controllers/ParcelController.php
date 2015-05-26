@@ -1,6 +1,10 @@
 <?php
     include_once('ConnectionController.php');
 
+    /**
+     * Class ParcelController
+     * @author: Bernardo Loesberg
+     */
     class ParcelController{
         private $connection;
 
@@ -11,9 +15,8 @@
         }
 
 
-
-        function getParcelList(){
-            $query = 'SELECT * FROM vw_ParcelList';
+        function getParcelList($id){
+            $query = 'SELECT * FROM vw_getParcelList WHERE consignmentnumber = '. mysqli_real_escape_string($this->connection,$id);
             $parcelList = array();
 
             if($result = $this->connection->query($query)){
@@ -26,7 +29,7 @@
         }
 
         function getParcel($id){
-            $query = 'SELECT * FROM vw_ParcelList WHERE id = '. mysqli_real_escape_string($this->connection,$id);
+            $query = 'SELECT * FROM vw_getParcelList WHERE parcelnumber = '. mysqli_real_escape_string($this->connection,$id);
         }
 
         function __destruct(){

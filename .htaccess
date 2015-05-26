@@ -7,7 +7,12 @@ RewriteEngine on
 
 #Rewrite Website
 RewriteRule ^([-a-zA-Z0-9]+)/?$ index.php?page=$1 [L]
+RewriteRule ^consignmentdetail/([-a-zA-Z0-9]+)/?$ index.php?page=consignmentdetail&id=$1 [L]
 RewriteRule ^consignmentchange/([-a-zA-Z0-9]+)/?$ index.php?page=consignmentchange&id=$1 [L]
+RewriteRule ^consignmentdelete/([-a-zA-Z0-9]+)/?$ index.php?page=consignmentdelete&id=$1 [L]
 RewriteRule ^employeechange/([-a-zA-Z0-9]+)/?$ index.php?page=employeechange&id=$1 [L]
 RewriteRule ^customerchange/([-a-zA-Z0-9]+)/?$ index.php?page=customerchange&id=$1 [L]
 RewriteRule ^employeedetails/([-a-zA-Z0-9]+)/?$ index.php?page=employeedetails&id=$1 [L]
+RewriteRule ^parceldetail/([-a-zA-Z0-9]+)/?$ index.php?page=parceldetail&id=$1 [L]
+RewriteRule ^parcelchange/([-a-zA-Z0-9]+)/?$ index.php?page=parcelchange&id=$1 [L]
+RewriteRule ^parceldelete/([-a-zA-Z0-9]+)/?$ index.php?page=parceldelete&id=$1 [L]

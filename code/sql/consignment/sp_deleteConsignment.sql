@@ -1,12 +1,12 @@
 /*
  *@Author: Bernardo Loesberg
  */
-use `database`;
+use `abcbiker`;
 
-DROP procedure IF exists sp_DeleteConsignment;
+DROP procedure IF exists sp_deleteConsignment;
 
 DELIMITER //
-CREATE PROCEDURE sp_DeleteConsignment
+CREATE PROCEDURE sp_deleteConsignment
   (IN p_consignmentnumber       INT)
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -15,18 +15,25 @@ CREATE PROCEDURE sp_DeleteConsignment
       ROLLBACK;
     END;
     START TRANSACTION;
-      IF EXISTS()
-      THEN
-      END IF;
-      IF NOT EXISTS(SELECT 1 FROM consignment WHERE consignmentnumber = p_consignmentnumber)
-      THEN
-        RESIGNAL SQLSTATE '45010'
-        SET MESSAGE_TEXT = 'Er geen consignments gevonden';
-        ROLLBACK;
-      ELSE
-        DELETE FROM parcel WHERE consignmentnumber = p_consignmentnumber;
-        DELETE FROM consignment WHERE consignmentnumber = p_consignmentnumber;
-      END IF;
+    /*Check if the consignment exists*/
+    IF NOT EXISTS(SELECT 1 FROM consignment WHERE consignmentnumber = p_consignmentnumber)
+    THEN
+      RESIGNAL SQLSTATE '45018'
+      SET MESSAGE_TEXT = 'Er geen consignments gevonden';
+      ROLLBACK;
+    END IF;
+
+    /*Check if the consignment has parcels*/
+    IF EXISTS(SELECT 1 FROM parcel WHERE consignmentnumber = p_consignmentnumber)
+    THEN
+      RESIGNAL SQLSTATE '45015'
+      SET MESSAGE_TEXT = 'Er geen consignments gevonden';
+      ROLLBACK;
+    END IF;
+
+    /*Delete consignment*/
+    DELETE FROM consignment WHERE consignmentnumber = p_consignmentnumber;
+
     COMMIT;
   END //
 DELIMITER ;
