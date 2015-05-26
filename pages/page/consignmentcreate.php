@@ -31,10 +31,10 @@
                                 <label for="customer">Klant</label>
                                 <select class="form-control" name="customernumber">';
 
-    foreach($customers as $customer){
-        echo '<option value="'.$customer['customernumber'].'">'.$customer['customerfirstname']. ' ' .$customer['customerlastname'].'</option>';
-    }
 
+foreach($customers as $customer){
+    echo '<option value="'.$customer['customernumber'].'">'.$customer['customerfirstname']. ' ' .$customer['customerlastname'].'</option>';
+}
     echo '                      </select>
                               </div>
                               <div class="form-group">

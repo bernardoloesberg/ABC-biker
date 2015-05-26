@@ -7,7 +7,7 @@ DROP procedure IF exists sp_CreateCustomer;
 
 DELIMITER //
 CREATE PROCEDURE sp_CreateCustomer
-  (customerlastname VARCHAR(40), customerfirstname VARCHAR(40), phonenumber DECIMAL(14,0), sex CHAR(1), companyname VARCHAR(40), email VARCHAR(50))
+  (IN customerlastname VARCHAR(40),IN customerfirstname VARCHAR(40),IN phonenumber DECIMAL(14,0),IN sex CHAR(1),IN companyname VARCHAR(40),IN email VARCHAR(50))
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN

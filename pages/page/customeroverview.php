@@ -4,7 +4,7 @@
     $CustomerController = new CustomerController();
     $CustomerList = $CustomerController->getCustomerList();
 
-    print_r($CustomerList);
+    //print_r($CustomerList);
 
     echo '<div class="row">
                 <div class="col-md-4">

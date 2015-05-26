@@ -1,13 +1,20 @@
 <?php
+    include_once('code/controllers/AddressController.php');
     include_once('code/controllers/CustomerController.php');
 
+    $AddressController = new AddressController();
     $customerController = new CustomerController();
 
     if(isset($_POST['submit'])){
-        $result = $customerController->createCustomer($_POST['achternaam'],$_POST['voornaam'],$_POST['telefoonnummner'],$_POST['geslacht'], $_POST['bedrijfsnaam'],$_POST['contactachternaam'], $_POST['contactvoornaam'], $_POST['emailadres']);
+        $result = $customerController->createCustomer($_POST);
+        $result = $AddressController->createAddress($_POST);
         print_r($result);
-        print_r($_POST);
 
+        if($result) {
+
+        } else {
+            print_r($_POST);
+        }
     }
 
     echo '<div class="row">
@@ -17,42 +24,63 @@
                 <div class="col-md-8">
                         <form action="#" method="post">
                               <div class="form-group">
-                                <label for="achternaam">Achternaam</label>
-                                <input type="text" class="form-control" id="achternaam" name="achternaam" value="">
+                                <label for="lastname">Achternaam</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname" value="" required>
                               </div>
                               <div class="form-group">
-                                <label for="voornaam">Voornaam</label>
-                                <input type="text" class="form-control" id="voornaam" name="voornaam" value="">
+                                <label for="firstname">Voornaam</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname" value="" required>
                               </div>
                               <div class="form-group">
-                                <label for="telefoonnummner">Telefoonnummner</label>
-                                <input type="text" class="form-control" id="telefoonnummner" name="telefoonnummner" value="">
+                                <label for="phonenumber">Telefoonnummner</label>
+                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="" required>
                               </div>
                               <div class="form-group">
-                                <label for="geslacht">Geslacht</label>
-                                <select class="form-control" name="geslacht">
+                                <label for="sex">Geslacht</label>
+                                <select class="form-control" name="sex" required>
                                     <option value="m">man</option>
                                     <option value="v">vrouw</option>
                                 </select>
                               </div>
                               <div class="form-group">
-                                <label for="bedrijfsnaam">Bedrijfsnaam</label>
-                                <input type="text" class="form-control" id="bedrijfsnaam" name="bedrijfsnaam" value="">
+                                <label for="companyname">Bedrijfsnaam</label>
+                                <input type="text" class="form-control" id="companyname" name="companyname" value="">
                               </div>
                               <div class="form-group">
-                                <label for="contactachternaam">Contact Achternaam</label>
-                                <input type="text" class="form-control" id="contactachternaam" name="contactachternaam" value="">
-                              </div>
-                              <div class="form-group">
-                                <label for="contactvoornaam">Contact Voornaam</label>
-                                <input type="text" class="form-control" id="contactvoornaam" name="contactvoornaam" value="">
-                              </div>
-                              <div class="form-group">
-                                <label for="emailadres">Emailadres</label>
-                                <input type="text" class="form-control" id="emailadres" name="emailadres" value="">
+                                <label for="email">Emailadres</label>
+                                <input type="text" class="form-control" id="email" name="email" value="">
                               </div>
 
-                              <button type="submit" name="submit" id="submit" class="btn btn-default">Volgende</button>
+                              <div class="form-group">
+                                <label for="districtnumber">District</label>
+                                <select name="districtnumber" class="form-control">
+
+                                    <option value="1">1 | Arnhem</option> ';// TODO: Feed this select with the district table.
+                                    echo '
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="street">Straat</label>
+                                <input type="text" class="form-control" id="street" name="street" value="">
+                              </div>
+                              <div class="form-group">
+                                <label for="zipcode">Postcode</label>
+                                <input type="text" class="form-control" id="zipcode" name="zipcode" value="">
+                              </div>
+                              <div class="form-group">
+                                <label for="housenumber">Huisnummner</label>
+                                <input type="number" class="form-control" id="housenumber" name="housenumber" value="">
+                              </div>
+                              <div class="form-group">
+                                <label for="city">Woonplaats</label>
+                                <input type="text" class="form-control" id="city" name="city" value="">
+                              </div>
+                              <div class="form-group">
+                                <label for="housenumberaddon">huisnummer toevoeging</label>
+                                <input type="text" class="form-control" id="housenumberaddon" name="housenumberaddon" value="">
+                              </div>
+
+                              <button type="submit" name="submit" id="submit" class="btn btn-default">Opslaan</button>
                         </form>
                     </div>
               </div>';
