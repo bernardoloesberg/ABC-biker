@@ -34,12 +34,6 @@ if (isset($_GET['id'])) {
 
                     <tbody>
                         <tr>
-                            <td><label for="Employeenumber">Employeenumber</label></td>
-                            <td>' . $employee['employeenumber'] . '</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
                              <td><label for="Persoonsgegevens">Persoongegevens</label></td>
                              <td></td>
                              <td><label for="Adresgegevens">Adresgegevens</label></td>
@@ -54,30 +48,30 @@ if (isset($_GET['id'])) {
                         <tr>
                             <td>Achternaam</td>
                             <td>' . $employee['employeelastname'] . '</td>
-                            <td>huisnummer</td>
+                            <td>Huisnummer</td>
                             <td>' . $employee['housenumber'] . '</td>
                         </tr>
                         <tr>
-                            <td>bsn-nummer</td>
+                            <td>Bsn-nummer</td>
                             <td>' . $employee['bsn'] . '</td>
-                            <td>toevoeging</td>
-                            <td>' . $employee['housenumberaddon'] . '</td>
+                            <td>Toevoeging</td>
+                            <td>' . ($employee['housenumberaddon'] == null ? '-' : $employee['housenumberaddon']) . '</td>
                         </tr>
                         <tr>
-                            <td>mobiele telefoonnummer</td>
+                            <td>Mobiel telefoonnummer</td>
                             <td>' . $employee['cellphone'] . '</td>
-                            <td>postcode</td>
+                            <td>Postcode</td>
                             <td>' . $employee['zipcode'] . '</td>
                         </tr>
                         <tr>
-                            <td>geboortedatum</td>
+                            <td>Geboortedatum</td>
                             <td>' . $birthparts['2'] . '-' . $birthparts['1'] . '-' . $birthparts['0'] . '</td>
-                            <td>plaats</td>
+                            <td>Plaats</td>
                             <td>' . $employee['city'] . '</td>
                         </tr>
                         <tr>
                             <td>Geslacht</td>
-                            <td>' . $employee['sex'] . '</td>
+                            <td>' .($employee['sex'] == 'V' ? 'Vrouw' : 'Man'). '</td>
                             <td></td>
                             <td></td>
                         </tr>

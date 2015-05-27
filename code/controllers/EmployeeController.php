@@ -72,7 +72,8 @@ class EmployeeController{
                                     STR_TO_DATE('".mysqli_real_escape_string($this->connection,$employee['birthday']).",
                                     ".mysqli_real_escape_string($this->connection,$employee['birthmonth']).",
                                     ".mysqli_real_escape_string($this->connection,$employee['birthyear'])."' , '%d,%m,%Y'),
-                                    '".mysqli_real_escape_string($this->connection,$employee['sex'])."');";
+                                    '".mysqli_real_escape_string($this->connection,$employee['sex'])."',
+                                    'Hallo');";
         echo $query;
         if($result = $this->connection->query($query)){
             return $result;

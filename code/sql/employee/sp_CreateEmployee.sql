@@ -18,7 +18,8 @@ CREATE PROCEDURE sp_CreateEmployee(
   IN p_bsn int,
   IN p_cellphone numeric(14,0),
   IN p_birthday date,
-  IN p_sex char(1)
+  IN p_sex char(1),
+  IN p_password varchar(24)
 )
   BEGIN
     DECLARE p_addressnumber int;
@@ -30,8 +31,8 @@ CREATE PROCEDURE sp_CreateEmployee(
     START TRANSACTION;
       CALL sp_GetAddressNumber(p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon, @p_addressnumber);
 	  SET p_addressnumber = @p_addressnumber;
-      INSERT INTO Employee(addressnumber, employeelastname, employeefirstname, bsn, cellphone, birthday, sex)
-      VALUES (p_addressnumber, p_employeelastname, p_employeefirstname, p_bsn, p_cellphone, p_birthday, p_sex);
+      INSERT INTO Employee(addressnumber, employeelastname, employeefirstname, bsn, cellphone, birthday, sex, password)
+      VALUES (p_addressnumber, p_employeelastname, p_employeefirstname, p_bsn, p_cellphone, p_birthday, p_sex, p_password);
     COMMIT;
   END //
 DELIMITER ;

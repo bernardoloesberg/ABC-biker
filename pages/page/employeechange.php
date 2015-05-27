@@ -32,10 +32,6 @@ echo '<div class="row">
 
                 echo '    <form action="#" method="post">
                           <div class="form-group">
-                            <label for="Employeenumber">Employeenumber</label>
-                            <input type="text" class="form-control" id="employeenumber" name="employeenumber" value="'.$employee['employeenumber'].'" readonly="readonly">
-                          </div>
-                          <div class="form-group">
                             <label for="Voornaam">Voornaam</label>
                             <input type="text" class="form-control" id="employeeLastname" name="employeeFirstName" value="'.$employee['employeefirstname'].'">
                           </div>

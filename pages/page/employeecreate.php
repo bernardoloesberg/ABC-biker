@@ -58,8 +58,8 @@ echo '<div class="row">
                           <div class="form-group">
                             <label for="geslacht">Geslacht</label>
                             <select class="form-control" name="sex">
-                                <option value="m">Man</option>
-                                <option value="v">Vrouw</option>
+                                <option value="M">Man</option>
+                                <option value="V">Vrouw</option>
                             </select>
                           </div>
                           <div class="form-group">
@@ -81,6 +81,28 @@ echo '<div class="row">
                           <div class="form-group">
                             <label for="Plaats">Plaats</label>
                             <input type="text" class="form-control" id="city" name="city" value="">
+                          </div>
+                          <div class="form-group" style="display: none;">
+                              <label for="biker">Biker</label>
+                              <span class="input-group-addon">
+                                <input type="checkbox" class="biker" name="biker" value="true">
+                              </span>
+                          </div>
+                          <div class="form-group" style="display: none;">
+                              <label for="bus">Bus</label>
+                              <span class="input-group-addon">
+                                <input type="checkbox" class="bus" name="bus" value="true">
+                              </span>
+                          </div>
+                          <div class="form-group hiddenFields" style="display: none;">
+                              <label for="express">Express</label>
+                              <span class="input-group-addon">
+                                <input type="checkbox" class="express" name="express" value="true">
+                              </span>
+                          </div>
+                          <div class="form-group hiddenFields" style="display: none;">
+                            <label for="max">max</label>
+                            <input type="text" class="form-control" id="max" name="max" value="">
                           </div>
                           <button type="submit" name="createEmployee" class="btn btn-primary">Create</button>
                         </form>
