@@ -1,7 +1,7 @@
 <?php
     /**
      * Class ConnectionController
-     * Author: Bernardo Loesberg
+     * @Author: Bernardo Loesberg
      */
     class ConnectionController{
         private $server     = 'localhost';

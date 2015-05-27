@@ -32,4 +32,4 @@ CREATE PROCEDURE sp_CreateAddress
 DELIMITER ;
 
 CALL sp_CreateAddress
-('Eeshofstraat','2','6825BV','Arnhem','');
+(1,'Eeshofstraat','2','6825BV','Arnhem','');

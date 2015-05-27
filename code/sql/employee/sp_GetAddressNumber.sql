@@ -3,10 +3,10 @@
  */
 use `abcbiker`;
 
-DROP procedure IF exists sp_CreateEmployee;
+DROP procedure IF exists sp_GetAddressNumber;
 
 DELIMITER //
-CREATE PROCEDURE sp_CreateEmployee(
+CREATE PROCEDURE sp_GetAddressNumber(
   IN p_districtnumber int,
   IN p_street varchar(40),
   IN p_zipcode varchar(6),

@@ -31,3 +31,18 @@ $('.deleteCustomer').on('click', function(){
         $(this).closest('tr').remove();
     }
 });
+
+$('.deleteEmployee').on('click', function(){
+    if (confirm("Weet u zeker dat u een klant wilt verwijderen?") == true) {
+        $.ajax({
+            url: '/ABC-biker/ajaxdelete',
+            type: 'POST',
+            data: {employeenumber: $(this).val()},
+            success: function(data){
+                // Success eventueel een message weergeven
+            }
+        });
+
+        $(this).closest('tr').remove();
+    }
+});

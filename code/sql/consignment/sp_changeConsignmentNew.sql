@@ -30,7 +30,6 @@ CREATE PROCEDURE sp_changeConsignment
       ROLLBACK;
     END;
     START TRANSACTION;
-
     /*Check if the employee exists*/
     IF NOT EXISTS(SELECT 1 FROM employee WHERE employeenumber = p_employeenumber)
     THEN

@@ -1,4 +1,7 @@
 <?php
+    /**
+     * @author: Bernardo Loesberg
+     */
     if(isset($_SESSION['user'])){
         $inactive_time = 1200; // 20 minutes
 
