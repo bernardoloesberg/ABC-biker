@@ -46,19 +46,19 @@
 
         <div class="row">
             <div class="col-sm-8">
-                <h2>What We Do</h2>
-                <p>Introduce the visitor to the business using clear, informative text. Use well-targeted keywords within your sentences to make sure search engines can find the business.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae similique eligendi reiciendis sunt distinctio odit? Quia, neque, ipsa, adipisci quisquam ullam deserunt accusantium illo iste exercitationem nemo voluptates asperiores.</p>
-                <p>
-                    <a class="btn btn-default btn-lg" href="#">Call to Action &raquo;</a>
+                <h2>Over ons</h2>
+                <p>ABC Bikers werd opgericht in 2002 in Arnhem vanuit bevlogenheid en met toewijding. Nog steeds essentiële waarden binnen ons bedrijf. Wij vinden ideaal ondernemen belangrijk: duurzaam en met oog voor mens en maatschappij. Net als helder en integer communiceren, en dat alles zie je terug in het DNA en de werkwijze van ABC Bikers.</p>
+				<p>ABC Bikers Fietskoeriers is de meest schone oplossing voor het uitvoeren van uw logistieke diensten in de stad. Onze energieke fietskoeriers zijn snel en servicegericht.</p>
+                <p></p>
+                    <a class="btn btn-default btn-lg" href="#">Verzend uw pakket &raquo;</a>
                 </p>
             </div>
             <div class="col-sm-4">
-                <h2>Contact Us</h2>
+                <h2>Contact</h2>
                 <address>
-                    <strong>Start Bootstrap</strong>
-                    <br>3481 Melrose Place
-                    <br>Beverly Hills, CA 90210
+                    <strong>Hoofdkantoor</strong>
+                    <br>Rijnstraat 20
+                    <br>Arnhem, 6828BD
                     <br>
                 </address>
                 <address>
@@ -74,19 +74,19 @@
 
         <div class="row">
             <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #1</h2>
-                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+                <img class="img-circle img-responsive img-center" src="img/mark.gif" alt="">
+                <h2>Manager Mark</h2>
+                <p>Wij werken met mensen uit de Sociale werkvoorziening. Echt en eerlijk werk verzetten levert voldoening op voor onze mensen. Dat is ons speerpunt. Daarnaast hechten we veel waarde aan een goede en inspirerende werksfeer. Zo creëren we een gezonde bedrijfstak waar met plezier wordt gewerkt.</p>
             </div>
             <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #2</h2>
-                <p>The images are set to be circular and responsive. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                <img class="img-circle img-responsive img-center" src="img/bram.gif" alt="">
+                <h2>Biker Bram</h2>
+                <p>De sportieve sfeer binnen ons koeriersteam zorgt ervoor dat schijnbaar onmogelijk oplosbare logistieke vraagstukken met veel betrouwbaarheid, continuïteit & snelheid worden uitgevoerd. Van vaste zendingen met groot volume tot spoedzendingen die binnen 30 minuten worden afgeleverd. Bij ABC Bikers kan het allemaal.</p>
             </div>
             <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="http://placehold.it/300x300" alt="">
-                <h2>Marketing Box #3</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+                <img class="img-circle img-responsive img-center" src="img/robin.gif" alt="">
+                <h2>Dispatcher Robin</h2>
+                <p>Je, kent, hem, vast, nog, wel, van, bassie, en, adriaan. Tegen, woordig, werkt, hij, bij, ons.</p>
             </div>
         </div>
         <!-- /.row -->
@@ -97,7 +97,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; ABC Bikers 2015</p>
                 </div>
             </div>
             <!-- /.row -->
