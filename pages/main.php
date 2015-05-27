@@ -29,8 +29,8 @@ function getMenu(){
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Werknemer <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                        <li><a href="'.$_SESSION['rooturl'].'/consignmentoverview">Werknemer overzicht</a></li>
-                        <li><a href="'.$_SESSION['rooturl'].'/consignmentcreate">Werknemer aanmaken</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/employeeoverview">Werknemer overzicht</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/employeecreate">Werknemer aanmaken</a></li>
                           </ul>
                         </li>
 
