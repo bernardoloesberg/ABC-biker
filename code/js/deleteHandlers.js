@@ -3,11 +3,26 @@
  * @author: Bernardo Loesberg
  */
 $('.deleteConsignment').on('click', function(){
-    if (confirm("Weet u zeker dat u een consignment wilt verwijderen?") == true) {
+    if (confirm("Weet u zeker dat u een zending wilt verwijderen?") == true) {
         $.ajax({
             url: '/ABC-biker/ajaxdelete',
             type: 'POST',
             data: {consignmentnumber: $(this).val()},
+            success: function(data){
+                // Success eventueel een message weergeven
+            }
+        });
+
+        $(this).closest('tr').remove();
+    }
+});
+
+$('.deleteCustomer').on('click', function(){
+    if (confirm("Weet u zeker dat u een klant wilt verwijderen?") == true) {
+        $.ajax({
+            url: '/ABC-biker/ajaxdelete',
+            type: 'POST',
+            data: {customernumber: $(this).val()},
             success: function(data){
                 // Success eventueel een message weergeven
             }
