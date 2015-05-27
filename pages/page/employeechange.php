@@ -13,7 +13,7 @@ if(isset($_POST['changeEmployee'])){
     $result = $employeeController->changeEmployee($_POST);
 
     if($result){
-        showMessage('succes', 'U heeft een employee gewijzigd!');
+        showMessage('success', 'U heeft een employee gewijzigd!');
     }else{
         showMessage('danger', 'Het wijzigen van een employee is mislukt!');
     }
