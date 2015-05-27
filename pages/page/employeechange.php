@@ -11,6 +11,7 @@ $employeeController = new EmployeeController();
 
 if(isset($_POST['changeEmployee'])){
     $result = $employeeController->changeEmployee($_POST);
+    print_r($_POST);
 
     if($result){
         showMessage('success', 'U heeft een employee gewijzigd!');
@@ -31,6 +32,10 @@ echo '<div class="row">
 
 
                 echo '    <form action="#" method="post">
+                          <div class="form-group" style="display: none;">
+                            <label for="employeenumber">Voornaam</label>
+                            <input type="text" class="form-control" id="employeeNumber" name="employeeNumber" value="'.$employee['employeenumber'].'">
+                          </div>
                           <div class="form-group">
                             <label for="Voornaam">Voornaam</label>
                             <input type="text" class="form-control" id="employeeLastname" name="employeeFirstName" value="'.$employee['employeefirstname'].'">
