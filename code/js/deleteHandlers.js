@@ -33,7 +33,7 @@ $('.deleteCustomer').on('click', function(){
 });
 
 $('.deleteEmployee').on('click', function(){
-    if (confirm("Weet u zeker dat u een klant wilt verwijderen?") == true) {
+    if (confirm("Weet u zeker dat u een werknemer wilt verwijderen?") == true) {
         $.ajax({
             url: '/ABC-biker/ajaxdelete',
             type: 'POST',

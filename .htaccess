@@ -12,6 +12,7 @@ RewriteRule ^consignmentchange/([-a-zA-Z0-9]+)/?$ index.php?page=consignmentchan
 RewriteRule ^consignmentdelete/([-a-zA-Z0-9]+)/?$ index.php?page=consignmentdelete&id=$1 [L]
 RewriteRule ^employeechange/([-a-zA-Z0-9]+)/?$ index.php?page=employeechange&id=$1 [L]
 RewriteRule ^employeedetails/([-a-zA-Z0-9]+)/?$ index.php?page=employeedetails&id=$1 [L]
+RewriteRule ^employeedelete/([-a-zA-Z0-9]+)/?$ index.php?page=employeedelete&id=$1 [L]
 RewriteRule ^parcelcreate/([-a-zA-Z0-9]+)/?$ index.php?page=parcelcreate&id=$1 [L]
 RewriteRule ^parceldetail/([-a-zA-Z0-9]+)/?$ index.php?page=parceldetail&id=$1 [L]
 RewriteRule ^parcelchange/([-a-zA-Z0-9]+)/?$ index.php?page=parcelchange&id=$1 [L]
