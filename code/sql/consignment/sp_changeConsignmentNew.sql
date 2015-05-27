@@ -53,11 +53,7 @@ CREATE PROCEDURE sp_changeConsignment
       (1, p_pickupstreet, p_pickupzipcode, p_pickuphousenumberaddon, p_pickupcity, p_pickuphousenumberaddon);
     END IF;
 
-    /*Insert a new row to history to see what has been changed*/
-    INSERT INTO consignmenthistory
-    (consignmentnumber,employeenumber,`comment`)
-    VALUES
-    (p_consignmentnumber,p_employeenumber,p_comment);
+
 
     /*This is needed because cant update foreign keys*/
     SET FOREIGN_KEY_CHECKS=0;
@@ -80,4 +76,4 @@ CREATE PROCEDURE sp_changeConsignment
 DELIMITER ;
 
 CALL sp_changeConsignment
-(1,1,'Eeshofstraat','6825BV','2','Arnhem','','Bernardo Loesberg',1, NOW(), NOW(), 120, 100, 8, 'De prijs moest verhoogd worden.');
+(1,1,'Eeshofstraat','6825BV','2','Arnhem','','Bernardo Loesberg',1, NOW(), NOW(), 120, 100, 1, 'De prijs moest verhoogd worden.');
