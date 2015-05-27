@@ -16,6 +16,7 @@
                             <th>Klantnummner</th>
                             <th>Klantnaam</th>
                             <th>Bedrijfsnaam</th>
+                            <th>Bekijken</th>
                             <th>Bewerken</th>
                             <th>Verwijderen</th>
                         </thead>
@@ -26,8 +27,9 @@
                  <td>'.$customer['customernumber'].'</td>
                  <td>'.$customer['customerfirstname'] . ' ' . $customer['customerlastname'].'</td>
                  <td>'.$customer['companyname']. '</td>
+                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/customerdetail/'.$customer['customernumber'].'">Bekijken</a></td>
                  <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/customerchange/'.$customer['customernumber'].'">Bewerken</a></td>
-                 <td><button class="btn btn-danger deleteConsignment" value="'.$customer['customernumber'].'">Verwijderen</button></td>
+                 <td><button class="btn btn-danger deleteCustomer" value="'.$customer['customernumber'].'">Verwijderen</button></td>
              </tr>';
     }
 
@@ -36,4 +38,4 @@
                 </div>
           </div>';
 
-    //loadscript('code/js/consignment.js');
+loadscript('code/js/deleteHandlers.js');

@@ -33,16 +33,10 @@
           return $customerList;
       }
 
-       /**
-        * returns a specific customer on the customernumber
-        * @param $id
-        * @return bool|mysqli_result
-        */
       function getCustomer ($id) {
           $query = "SELECT * FROM vw_CustomerList WHERE customernumber = $id";
-
           if($result = $this->connection->query($query)) {
-              return $result;
+              return $result->fetch_array();
           }
       }
 
@@ -51,8 +45,7 @@
         * @param $customer an array of POST data
         * @return bool|mysqli_result
         */
-      function createCustomer ($customer)
-      {
+      function createCustomer ($customer){
 
           if (preg_match('[^a-zA-ZÀ-ÖØ-ʯ ]', $customer['lastname'])) {
               showMessage('danger', 'De achternaam mag alleen letters bevatten');
@@ -106,6 +99,18 @@
               }
           }
       }
+
+       function deleteCustomer($id) {
+           $query = "CALL sp_deleteCustomer(".mysqli_real_escape_string($this->connection,$id).")";
+
+           if($result = $this->connection->query($query)){
+               return $result;
+           }
+       }
+
+       function changeCustomer ($customer) {
+
+       }
 
       function __destruct(){
          $this->connection->close();
