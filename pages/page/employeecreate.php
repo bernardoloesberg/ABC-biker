@@ -13,7 +13,7 @@ if(isset($_POST['createEmployee'])){
     $result = $employeeController->createEmployee($_POST);
 
     if($result){
-        showMessage('succes', 'U heeft een nieuwe employee toegevoegd!');
+        showMessage('success', 'U heeft een nieuwe employee toegevoegd!');
     }else{
         showMessage('danger', 'Het toevoegen van een nieuwe employee is mislukt!');
     }

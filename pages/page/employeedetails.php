@@ -13,7 +13,7 @@ if(isset($_POST['deleteEmployee'])){
     $result = $employeeController->deleteEmployee($_POST);
 
     if($result){
-        showMessage('succes', 'U heeft een nieuwe employee verwijderd!');
+        showMessage('success', 'U heeft een nieuwe employee verwijderd!');
     }else{
         showMessage('danger', 'Het verwijderen van een nieuwe employee is mislukt!');
     }
