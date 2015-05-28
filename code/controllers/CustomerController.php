@@ -102,6 +102,7 @@
 
        function deleteCustomer($id) {
            $query = "CALL sp_deleteCustomer(".mysqli_real_escape_string($this->connection,$id).")";
+            echo $query;
 
            if($result = $this->connection->query($query)){
                return $result;
