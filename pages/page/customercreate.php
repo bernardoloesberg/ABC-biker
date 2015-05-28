@@ -12,10 +12,10 @@
         echo '<br>';
         print_r($_POST);
 
-        if($result = 1) {
+        if($result == 'success') {
             showMessage('success','De klant is succesvol aangemaakt!');
         } else {
-
+            showMessage('danger',$result);
         }
     }
 

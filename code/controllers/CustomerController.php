@@ -82,14 +82,17 @@
                            * End stage if this is TRUE then the entire procedure has passed
                            */
                           if ($result2 = $this->connection->query($query5)) {
-                                return $result2;
+
+                                if($result2->num_rows > 1) {
+                                    return 'success';
+                                }
                           }
                       }
                   }
               }
           }
 
-          return $this->connection;
+          return $this->connection->error;
       }
 
        function deleteCustomer($id) {
