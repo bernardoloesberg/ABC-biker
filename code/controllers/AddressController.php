@@ -69,6 +69,19 @@
            }
        }
 
+       function changeAddress ($address) {
+           $query = "CALL sp_ChangeAddress(".mysqli_real_escape_string($this->connection,$address['districtnumber']).",
+                                           '".mysqli_real_escape_string($this->connection,$address['street'])."',
+                                           '".mysqli_real_escape_string($this->connection,$address['zipcode'])."',
+                                           ".mysqli_real_escape_string($this->connection,$address['housenumber']).",
+                                           '".mysqli_real_escape_string($this->connection,$address['city'])."',
+                                           '".mysqli_real_escape_string($this->connection,$address['housenumberaddon'])."')";
+           echo $query;
+           if($result = $this->connection->query($query)) {
+               return $result;
+           }
+       }
+
       function __destruct(){
          $this->connection->close();
       }
