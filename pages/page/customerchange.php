@@ -1,8 +1,7 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: Tom kooiman
-     */
+/**
+ * @author: Tom Kooiman
+ */
     include_once('code/controllers/CustomerController.php');
 
     $customerController = new CustomerController();
@@ -10,12 +9,10 @@
     if(isset($_POST['changeCustomer'])){
         $result = $customerController->changeCustomer($_POST);
 
-        print_r($result);
-
-        if($result){
+        if($result == 'success'){
             showMessage('success', 'De klant is bijgewerkt!');
         }else{
-            showMessage('danger', 'De klant kon niet worden bijgewerkt!');
+            showMessage('danger', $result);
         }
     }
 

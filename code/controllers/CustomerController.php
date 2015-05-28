@@ -83,7 +83,7 @@
                            */
                           if ($result2 = $this->connection->query($query5)) {
 
-                                if($result2->num_rows > 1) {
+                                if($result2) {
                                     return 'success';
                                 }
                           }
@@ -114,8 +114,9 @@
                                             '" . mysqli_real_escape_string($this->connection, $customer['email']) . "')";
 
            if($result = $this->connection->query($query)){
-               return $result;
+               return 'success';
            }
+           return $this->connection->error;
        }
 
        /**

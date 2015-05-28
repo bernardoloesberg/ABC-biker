@@ -1,16 +1,10 @@
 <?php
-    //include_once('code/controllers/AddressController.php');
     include_once('code/controllers/CustomerController.php');
 
-    //$AddressController = new AddressController();
     $customerController = new CustomerController();
 
     if(isset($_POST['submit'])){
         $result = $customerController->createCustomer($_POST);
-        //$result = $AddressController->createAddress($_POST);
-        print_r($result);
-        echo '<br>';
-        print_r($_POST);
 
         if($result == 'success') {
             showMessage('success','De klant is succesvol aangemaakt!');
@@ -35,7 +29,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="phonenumber">Telefoonnummner</label>
-                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="" required>
+                                <input type="number" class="form-control" id="phonenumber" name="phonenumber" value="" required>
                               </div>
                               <div class="form-group">
                                 <label for="sex">Geslacht</label>
@@ -63,19 +57,19 @@
                               </div>
                               <div class="form-group">
                                 <label for="street">Straat</label>
-                                <input type="text" class="form-control" id="street" name="street" value="">
+                                <input type="text" class="form-control" id="street" name="street" value="" required>
                               </div>
                               <div class="form-group">
                                 <label for="zipcode">Postcode</label>
-                                <input type="text" class="form-control" id="zipcode" name="zipcode" value="">
+                                <input type="text" class="form-control" id="zipcode" name="zipcode" value="" required>
                               </div>
                               <div class="form-group">
                                 <label for="housenumber">Huisnummner</label>
-                                <input type="number" class="form-control" id="housenumber" name="housenumber" value="">
+                                <input type="number" class="form-control" id="housenumber" name="housenumber" value="" required>
                               </div>
                               <div class="form-group">
                                 <label for="city">Woonplaats</label>
-                                <input type="text" class="form-control" id="city" name="city" value="">
+                                <input type="text" class="form-control" id="city" name="city" value="" required>
                               </div>
                               <div class="form-group">
                                 <label for="housenumberaddon">huisnummer toevoeging</label>
