@@ -33,6 +33,18 @@
           return $addressList;
       }
 
+       function getAddressDistrictList () {
+           $query = "SELECT * FROM vw_AddressListDistrictName";
+           $addressList = array();
+
+           if($result = $this->connection->query($query)){
+               foreach($result as $address){
+                   $addressList[] = $address;
+               }
+           }
+           return $addressList;
+       }
+
        /**
         * get A specific address
         * @param $id
@@ -70,7 +82,7 @@
        }
 
        function changeAddress ($address) {
-           $query = "CALL sp_ChangeAddress(".mysqli_real_escape_string($this->connection,$address['districtnumber']).",
+           $query = "CALL sp_ChangeAddress(".mysqli_real_escape_string($this->connection,$address['districtname']).",
                                            '".mysqli_real_escape_string($this->connection,$address['street'])."',
                                            '".mysqli_real_escape_string($this->connection,$address['zipcode'])."',
                                            ".mysqli_real_escape_string($this->connection,$address['housenumber']).",

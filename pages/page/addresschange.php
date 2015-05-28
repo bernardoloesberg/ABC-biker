@@ -30,8 +30,8 @@ echo '<div class="row">
             <div class="col-md-8">
                 <form action="#" method="post">
                         <div class="form-group">
-                            <label for="districtnummer">Districtnummer</label>
-                            <input type="text" class="form-control" id="districtnumber" name="districtnumber">
+                            <label for="districtname">Districtnummer</label>
+                            <input type="text" class="form-control" id="districtname" name="districtname">
                           </div>
                           <div class="form-group">
                             <label for="straat">Straat</label>
