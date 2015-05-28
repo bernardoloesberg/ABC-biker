@@ -123,6 +123,19 @@
            }
        }
 
+       /**
+        * Get a address of a customer
+        * @param $id
+        * @return mixed
+        */
+       function getCustomerAddress($id){
+           $query = "SELECT * FROM vw_getAddressFromCustomer WHERE customernumber =". mysqli_real_escape_string($this->connection, $id);
+
+           if($result = $this->connection->query($query)){
+               return $result->fetch_array();
+           }
+       }
+
       function __destruct(){
          $this->connection->close();
       }
