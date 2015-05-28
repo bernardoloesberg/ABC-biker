@@ -34,7 +34,7 @@ echo '<div class="row">
                 echo '    <form action="#" method="post">
                           <div class="form-group" style="display: none;">
                             <label for="employeenumber">Voornaam</label>
-                            <input type="text" class="form-control" id="employeeNumber" name="employeeNumber" value="'.$employee['employeenumber'].'">
+                            <input type="text" class="form-control" id="employeenumber" name="employeenumber" value="'.$employee['employeenumber'].'">
                           </div>
                           <div class="form-group">
                             <label for="Voornaam">Voornaam</label>
