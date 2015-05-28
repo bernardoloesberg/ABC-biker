@@ -57,8 +57,8 @@
               showMessage('danger', 'Ongeldig Geslacht!');
           } else {
 
-              $query1 = "CALL sp_CreateCustomer('" . mysqli_real_escape_string($this->connection, $customer['lastname']) . "',
-                                            '" . mysqli_real_escape_string($this->connection, $customer['firstname']) . "',
+              $query1 = "CALL sp_CreateCustomer('" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "',
                                             '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "',
                                             '" . mysqli_real_escape_string($this->connection, $customer['sex']) . "',
                                             '" . mysqli_real_escape_string($this->connection, $customer['companyname']) . "',
@@ -109,7 +109,17 @@
        }
 
        function changeCustomer ($customer) {
+           $query = "CALL sp_changeCustomer('" . mysqli_real_escape_string($this->connection, $customer['customernumber']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['sex']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['companyname']) . "',
+                                            '" . mysqli_real_escape_string($this->connection, $customer['email']) . "')";
 
+           if($result = $this->connection->query($query)){
+               return $result;
+           }
        }
 
       function __destruct(){

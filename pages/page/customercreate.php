@@ -24,12 +24,12 @@
                 <div class="col-md-8">
                         <form action="#" method="post">
                               <div class="form-group">
-                                <label for="lastname">Achternaam</label>
-                                <input type="text" class="form-control" id="lastname" name="lastname" value="" required>
+                                <label for="customerlastname">Achternaam</label>
+                                <input type="text" class="form-control" id="customerlastname" name="customerlastname" value="" required>
                               </div>
                               <div class="form-group">
-                                <label for="firstname">Voornaam</label>
-                                <input type="text" class="form-control" id="firstname" name="firstname" value="" required>
+                                <label for="customerfirstname">Voornaam</label>
+                                <input type="text" class="form-control" id="customerfirstname" name="customerfirstname" value="" required>
                               </div>
                               <div class="form-group">
                                 <label for="phonenumber">Telefoonnummner</label>
