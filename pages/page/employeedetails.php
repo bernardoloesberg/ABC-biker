@@ -83,7 +83,6 @@ if (isset($_GET['id'])) {
             </table>
 
      <a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/employeechange/'.$employee['employeenumber'].'">Bewerken</a>
-     <button class="btn btn-danger deleteEmployee" name="deleteEmployee" value="'.$employee['employeenumber'].'">Verwijderen</button>
     ';
 }
 

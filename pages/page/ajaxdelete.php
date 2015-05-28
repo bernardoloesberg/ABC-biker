@@ -20,7 +20,6 @@
     }
 
     if(isset($_POST['employeenumber'])) {
-        echo 'test';
         echo $result = $employeeController->deleteEmployee($_POST['employeenumber']);
     } else {
         echo 'There is no employeenumber to delete.';
