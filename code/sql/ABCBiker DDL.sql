@@ -1,9 +1,9 @@
-/*=====================================================================*/
-/* DBMS name:      MySQL 5.0                                           */
-/* Created on:     5/21/2015 11:46:17 AM                               */
-/* Created By:     Tom Kooiman                                         */
-/* Version:        3.0.1    build 1 - parcel employee numbers changed  */
-/*=====================================================================*/
+/*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     5/28/2015 1:11:37 PM                         */
+/*==============================================================*/
+
+
 drop table if exists address;
 
 drop table if exists addressforcustomer;
@@ -92,8 +92,8 @@ create table consignmenthistory
 (
    historynumber        int not null AUTO_INCREMENT,
    consignmentnumber    int not null,
-   parcelnumber         int null,
    employeenumber       int not null,
+   alterdate            datetime not null,
    comment              text not null,
    primary key (historynumber)
 );
@@ -172,7 +172,7 @@ create table parcel
    hqarrival            datetime,
    hqdeparture          datetime,
    comment              text,
-   primary key (parcelnumber)
+   primary key (consignmentnumber, parcelnumber)
 );
 
 /*==============================================================*/
@@ -180,8 +180,10 @@ create table parcel
 /*==============================================================*/
 create table price
 (
+   startdate            date not null DEFAULT NOW(),
    pricepergram         float(6,2) not null,
-   primary key (pricepergram)
+   priceperkilometer    float(6,2) not null,
+   primary key (startdate)
 );
 
 /*==============================================================*/
@@ -215,59 +217,56 @@ create table workingdistrict
 );
 
 alter table address add constraint fk_lies_in foreign key (districtnumber)
-      references district (districtnumber);
+      references district (districtnumber) on delete cascade on update cascade;
 
 alter table addressforcustomer add constraint fk_addressforcustomer foreign key (addressnumber)
-      references address (addressnumber);
+      references address (addressnumber) on delete restrict on update cascade;
 
 alter table addressforcustomer add constraint fk_addressforcustomer2 foreign key (customernumber)
-      references customer (customernumber);
+      references customer (customernumber) on delete cascade on update cascade;
 
 alter table biker add constraint fk_as foreign key (employeenumber)
-      references employee (employeenumber);
+      references employee (employeenumber) on delete cascade on update cascade;
 
 alter table consignment add constraint fk_pickupaddress foreign key (addressnumber)
-      references address (addressnumber);
+      references address (addressnumber) on delete restrict on update cascade;
 
 alter table consignment add constraint fk_placed_by foreign key (customernumber)
-      references customer (customernumber);
+      references customer (customernumber) on delete restrict on update cascade;
 
 alter table consignmenthistory add constraint fk_edited_by foreign key (employeenumber)
-      references employee (employeenumber);
+      references employee (employeenumber) on delete restrict on update restrict;
 
 alter table consignmenthistory add constraint fk_history_of foreign key (consignmentnumber)
-      references consignment (consignmentnumber);
-
-alter table consignmenthistory add constraint fk_history_of_parcel foreign key (consignmentnumber)
-references parcel (parcelnumber);
+      references consignment (consignmentnumber) on delete restrict on update restrict;
 
 alter table customercontact add constraint fk_contact_from foreign key (customernumber)
-      references customer (customernumber);
+      references customer (customernumber) on delete cascade on update cascade;
 
 alter table employee add constraint fk_lives_at foreign key (addressnumber)
-      references address (addressnumber);
+      references address (addressnumber) on delete restrict on update cascade;
 
 alter table parcel add constraint fk_deliveraddress foreign key (addressnumber)
-      references address (addressnumber);
+      references address (addressnumber) on delete restrict on update cascade;
 
 alter table parcel add constraint fk_has foreign key (consignmentnumber)
-      references consignment (consignmentnumber);
+      references consignment (consignmentnumber) on delete restrict on update cascade;
 
 alter table parcel add constraint fk_is_delivered_by foreign key (deliveremployeenumber)
-      references employee (employeenumber);
+      references employee (employeenumber) on delete restrict on update cascade;
 
 alter table parcel add constraint fk_is_picked_up_by foreign key (pickupemployeenumber)
-      references employee (employeenumber);
+      references employee (employeenumber) on delete restrict on update cascade;
 
 alter table rolesperemployee add constraint fk_is_a foreign key (rolename)
-      references role (rolename);
+      references role (rolename) on delete restrict on update cascade;
 
 alter table rolesperemployee add constraint fk_is_a2 foreign key (employeenumber)
-      references employee (employeenumber);
+      references employee (employeenumber) on delete cascade on update cascade;
 
 alter table workingdistrict add constraint fk_covers_a foreign key (districtnumber)
-      references district (districtnumber);
+      references district (districtnumber) on delete restrict on update cascade;
 
 alter table workingdistrict add constraint fk_number_of foreign key (employeenumber)
-      references employee (employeenumber);
+      references employee (employeenumber) on delete cascade on update cascade;
 
