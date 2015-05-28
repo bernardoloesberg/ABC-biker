@@ -24,13 +24,13 @@ CREATE PROCEDURE sp_CreateCustomer
     ROLLBACK;
 
 /* Name businessRule  if special characters are used */
-    /*ELSE*/IF (customerlastname REGEXP '[^a-zA-ZÀ-ÖØ-ʯ ]' || customerfirstname REGEXP '[^a-zA-ZÀ-ÖØ-ʯ ]')
+    /*ELSE*/IF (customerlastname REGEXP '[^a-zA-Z ]' || customerfirstname REGEXP '[^a-zA-Z ]')
     THEN
      SIGNAL SQLSTATE '45002'
-     SET MESSAGE_TEXT = 'De naam van de klant bevat niet toegestane tekens!';
+     SET MESSAGE_TEXT = 'De naam mag alleen uit letters bestaan';
   ROLLBACK;
 /*sex businessRule can only be m or v */
-    ELSEIF (sex REGEXP '[^mvMV]')
+    ELSEIF (sex REGEXP '[^mv]')
       THEN
         SIGNAL SQLSTATE '45003'
         SET MESSAGE_TEXT = 'Geen geldig geslacht!';
@@ -50,3 +50,4 @@ CREATE PROCEDURE sp_CreateCustomer
 DELIMITER ;
 
 /* EXECUTE */
+

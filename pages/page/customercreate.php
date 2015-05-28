@@ -1,19 +1,21 @@
 <?php
-    include_once('code/controllers/AddressController.php');
+    //include_once('code/controllers/AddressController.php');
     include_once('code/controllers/CustomerController.php');
 
-    $AddressController = new AddressController();
+    //$AddressController = new AddressController();
     $customerController = new CustomerController();
 
     if(isset($_POST['submit'])){
         $result = $customerController->createCustomer($_POST);
-        $result = $AddressController->createAddress($_POST);
+        //$result = $AddressController->createAddress($_POST);
         print_r($result);
+        echo '<br>';
+        print_r($_POST);
 
-        if($result) {
-
+        if($result = 1) {
+            showMessage('success','De klant is succesvol aangemaakt!');
         } else {
-            print_r($_POST);
+
         }
     }
 
