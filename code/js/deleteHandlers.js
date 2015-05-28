@@ -39,10 +39,9 @@ $('.deleteEmployee').on('click', function(){
             type: 'POST',
             data: {employeenumber: $(this).val()},
             success: function(data){
-                // Success eventueel een message weergeven
+
             }
         });
-
         $(this).closest('tr').remove();
     }
 });
