@@ -11,4 +11,5 @@ SELECT em.employeenumber, em.addressnumber, em.employeelastname, em.employeefirs
 FROM employee em
 INNER JOIN address ad
 ON em.addressnumber = ad.addressnumber
+ORDER BY em.employeelastname ASC
 
