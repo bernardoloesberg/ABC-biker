@@ -1,6 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     5/28/2015 1:11:37 PM                         */
+/* Created on:     5/29/2015 9:44:19 AM                         */
+/* Created by:     Tom Kooiman                                  */
+/* Version:        3.1                                          */
 /*==============================================================*/
 
 
@@ -38,7 +40,7 @@ drop table if exists workingdistrict;
 create table address
 (
    addressnumber        int not null AUTO_INCREMENT,
-   districtnumber       int not null,
+   districtnumber       int,
    street               varchar(40) not null,
    zipcode              varchar(6) not null,
    housenumber          int not null,
@@ -90,7 +92,7 @@ create table consignment
 /*==============================================================*/
 create table consignmenthistory
 (
-   historynumber        int not null AUTO_INCREMENT,
+   historynumber        int not null,
    consignmentnumber    int not null,
    employeenumber       int not null,
    alterdate            datetime not null,
@@ -180,7 +182,7 @@ create table parcel
 /*==============================================================*/
 create table price
 (
-   startdate            date not null DEFAULT NOW(),
+   startdate            date not null,
    pricepergram         float(6,2) not null,
    priceperkilometer    float(6,2) not null,
    primary key (startdate)
@@ -217,7 +219,7 @@ create table workingdistrict
 );
 
 alter table address add constraint fk_lies_in foreign key (districtnumber)
-      references district (districtnumber) on delete cascade on update cascade;
+      references district (districtnumber) on delete set null on update cascade;
 
 alter table addressforcustomer add constraint fk_addressforcustomer foreign key (addressnumber)
       references address (addressnumber) on delete restrict on update cascade;
@@ -265,7 +267,7 @@ alter table rolesperemployee add constraint fk_is_a2 foreign key (employeenumber
       references employee (employeenumber) on delete cascade on update cascade;
 
 alter table workingdistrict add constraint fk_covers_a foreign key (districtnumber)
-      references district (districtnumber) on delete restrict on update cascade;
+      references district (districtnumber) on delete cascade on update cascade;
 
 alter table workingdistrict add constraint fk_number_of foreign key (employeenumber)
       references employee (employeenumber) on delete cascade on update cascade;
