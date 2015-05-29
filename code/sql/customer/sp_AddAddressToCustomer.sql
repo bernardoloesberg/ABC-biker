@@ -20,15 +20,17 @@ CREATE PROCEDURE sp_AddAddressToCustomer
       RESIGNAL SQLSTATE '45005'
         SET MESSAGE_TEXT = 'Adres bestaat niet!';
         ROLLBACK ;
-    ELSEIF NOT EXISTS (SELECT '' FROM address WHERE customernumber = customer)
+    ELSEIF NOT EXISTS (SELECT '' FROM customer WHERE customernumber = customer)
       THEN
       RESIGNAL SQLSTATE '45006'
         SET MESSAGE_TEXT = 'klant bestaat niet!';
       ROLLBACK ;
     ELSE
+      SET FOREIGN_KEY_CHECKS=0;
       INSERT INTO AddressForCustomer
-          VALUES (addressnumber, customernumber);
+          VALUES (address, customer);
       COMMIT;
+      SET FOREIGN_KEY_CHECKS=1;
   END IF;
   END //
 DELIMITER ;

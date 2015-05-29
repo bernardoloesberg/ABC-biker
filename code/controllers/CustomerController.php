@@ -82,7 +82,6 @@
                            * End stage if this is TRUE then the entire procedure has passed
                            */
                           if ($result2 = $this->connection->query($query5)) {
-
                                 if($result2) {
                                     return 'success';
                                 }
@@ -91,6 +90,22 @@
                   }
               }
           }
+            /*
+          print_r($query1);
+          echo '<br><br>';
+          print_r($query2);
+          echo '<br><br>';
+          print_r($query3);
+          echo '<br><br>';
+          print_r($query4);
+          echo '<br><br>';
+          print_r($query5);
+          echo '<br><br>';
+            print_r($this->connection);
+
+            */
+
+
 
           return $this->connection->error;
       }

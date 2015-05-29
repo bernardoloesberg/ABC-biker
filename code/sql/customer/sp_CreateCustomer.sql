@@ -42,10 +42,12 @@ CREATE PROCEDURE sp_CreateCustomer
           SET MESSAGE_TEXT = 'Geen geldig Telefoonummner!';
     ROLLBACK;
     ELSE
+
       INSERT INTO customer (customerlastname, customerfirstname, phonenumber, sex, companyname,email)
       VALUES (customerlastname, customerfirstname, phonenumber, sex, companyname, email);
       COMMIT;
     END IF;
+
   END //
 DELIMITER ;
 
