@@ -174,7 +174,7 @@ create table parcel
    hqarrival            datetime,
    hqdeparture          datetime,
    comment              text,
-   primary key (consignmentnumber, parcelnumber)
+   primary key (parcelnumber)
 );
 
 /*==============================================================*/
