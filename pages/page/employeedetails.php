@@ -73,12 +73,6 @@ if (isset($_GET['id'])) {
                             <td></td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
                     </tbody>
             </table>
 
