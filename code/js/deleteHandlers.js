@@ -45,3 +45,17 @@ $('.deleteEmployee').on('click', function(){
         $(this).closest('tr').remove();
     }
 });
+
+$('.deleteAddress').on('click', function(){
+
+    if (confirm("Weet u zeker dat u een adres wilt verwijderen?") == true) {
+        $.ajax({
+            url: '/ABC-biker/ajaxdelete',
+            type: 'POST',
+            data: {addressnumber: $(this).val()},
+            success: function(data){
+            }
+        });
+        $(this).closest('tr').remove();
+    }
+});

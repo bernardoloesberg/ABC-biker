@@ -11,7 +11,6 @@ include_once('code/controllers/AddressController.php');
 $addressController = new AddressController();
 $addressList = $addressController->getAddressDistrictList();
 
-//print_r($addressList);
 
 echo '<div class="row">
                 <div class="col-md-4">
@@ -48,4 +47,5 @@ echo                '</tbody>
                 </div>
           </div>';
 
+loadscript('code/js/deleteHandlers.js');
 loadscript('code/js/filter.js');

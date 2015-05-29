@@ -51,11 +51,15 @@
         * @return bool|mysqli_result
         */
       function getAddress ($id) {
-          $query = "SELECT * FROM vw_CustomerList WHERE customernumber = $id";
+          $query = "SELECT * FROM vw_AddressListDistrictName WHERE addressnumber = $id";
 
-          if($result = $this->connection->query($query)) {
-              return $result;
+          $address = array();
+
+          if($result = $this->connection->query($query)){
+              $address = $result->fetch_assoc();
           }
+
+          return $address;
       }
 
        /**
@@ -82,7 +86,7 @@
        }
 
        function changeAddress ($address) {
-           $query = "CALL sp_ChangeAddress(".mysqli_real_escape_string($this->connection,$address['districtname']).",
+           $query = "CALL sp_ChangeAddress('".mysqli_real_escape_string($this->connection,$address['districtname'])."',
                                            '".mysqli_real_escape_string($this->connection,$address['street'])."',
                                            '".mysqli_real_escape_string($this->connection,$address['zipcode'])."',
                                            ".mysqli_real_escape_string($this->connection,$address['housenumber']).",
@@ -90,6 +94,27 @@
                                            '".mysqli_real_escape_string($this->connection,$address['housenumberaddon'])."')";
            echo $query;
            if($result = $this->connection->query($query)) {
+               return $result;
+           }
+       }
+
+       function getDistricts () {
+           $query = "SELECT * FROM vw_Districts";
+
+           $districts = array();
+
+           if($result = $this->connection->query($query)){
+               foreach($result as $district){
+                   $districts[] = $district;
+               }
+           }
+           return $districts;
+       }
+
+       function deleteAddress($address){
+
+           $query = "CALL sp_DeleteAddress(".mysqli_real_escape_string($this->connection,$address).")";
+           if($result = $this->connection->query($query)){
                return $result;
            }
        }

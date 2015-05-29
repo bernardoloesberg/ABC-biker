@@ -37,16 +37,16 @@ echo '
                             <td>' . $address['zipcode'] . '</td>
                         </tr>
                         <tr>
-                            <td>Achternaam</td>
-                            <td>' . $address['housenumber'] . '</td>
                             <td>Huisnummer</td>
+                            <td>' . $address['housenumber'] . '</td>
+                            <td>Plaats</td>
                             <td>' . $address['city'] . '</td>
                         </tr>
                         <tr>
-                            <td>Bsn-nummer</td>
-                            <td>' . ($address['housenumberaddon'] == null ? '-' : $address['housenumberaddon']) . '</td>
                             <td>Toevoeging</td>
-                            <td>' . ($address['districtname'].'</td>
+                            <td>' . ($address['housenumberaddon'] == null ? '-' : $address['housenumberaddon']) . '</td>
+                            <td>District</td>
+                            <td>' . $address['districtname'].'</td>
                         </tr>
                     </tbody>
             </table>
