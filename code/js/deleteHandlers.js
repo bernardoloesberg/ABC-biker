@@ -59,3 +59,19 @@ $('.deleteAddress').on('click', function(){
         $(this).closest('tr').remove();
     }
 });
+
+
+$('.deleteParcel').on('click', function(){
+    if (confirm("Weet u zeker dat u een pakket wilt verwijderen?") == true) {
+        $.ajax({
+            url: '/ABC-biker/ajaxdelete',
+            type: 'POST',
+            data: {parcelnumber: $(this).val()},
+            success: function(data){
+                // Success eventueel een message weergeven
+            }
+        });
+
+        $(this).closest('tr').remove();
+    }
+});
