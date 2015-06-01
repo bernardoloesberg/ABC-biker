@@ -10,6 +10,9 @@
 
     if(isset($_GET['id'])) {
         $customer = $customerController->getCustomer($_GET['id']);
+        $addressList = $customerController->getCustomerAddress($_GET['id']);
+
+        //print_r($addressList);
 
         echo '<div class="row">
             <div class="col-md-2">
@@ -36,11 +39,33 @@
                             <td>' . $customer['email'] . '</td></tr>
                     </tbody>
                 </table>
-            </div>
-          </div>';
+                    <table class="table">
+                        <thead>
+                            <th>Postcode</th>
+                            <th>Huisnummer</th>
+                            <th>District</th>
+                            <th>Bekijken</th>
+                            <th>Bewerken</th>
+                            <th>Verwijderen</th>
+                        </thead>
+                        <tbody class="searchable">';
 
-        echo '</tbody>
+        foreach($addressList as $address){
+            echo '<tr>
+                 <td>'.$address['zipcode'].'</td>
+                 <td>'.$address['housenumber'].' '.$address['housenumberaddon'].'</td>
+                 <td>'.$address['districtname']. '</td>
+                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/addressdetails/'.$address['addressnumber'].'">Bekijken</a></td>
+                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/addresschange/'.$address['addressnumber'].'">Bewerken</a></td>
+                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="'.$address['addressnumber'].'">Verwijderen</button></td>
+             </tr>';
+        }
+
+        echo                '</tbody>
                     </table>
                 </div>
+          </div>
+            </div>
           </div>';
     }
+

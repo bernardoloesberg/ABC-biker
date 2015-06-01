@@ -143,9 +143,12 @@
            $query = "SELECT * FROM vw_getAddressFromCustomer WHERE customernumber =". mysqli_real_escape_string($this->connection, $id);
 
            if($result = $this->connection->query($query)){
-               return $result->fetch_array();
+                   foreach($result as $customerAddress){
+                       $customerAddressList[] = $customerAddress;
+                   }
+               }
+               return $customerAddressList;
            }
-       }
 
       function __destruct(){
          $this->connection->close();
