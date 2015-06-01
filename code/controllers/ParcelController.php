@@ -36,19 +36,47 @@
         }
 
         /**
-         * Get a single parcel.
+         * Get Parcel.
          * @param $id
+         * @return array
          */
         function getParcel($id){
             $query = 'SELECT * FROM vw_getParcelList WHERE parcelnumber = '. mysqli_real_escape_string($this->connection,$id);
+
+            $parcel = array();
+
+            if($result = $this->connection->query($query)){
+                $parcel = $result->fetch_assoc();
+            }
+
+            return $parcel;
         }
 
         /**
-         * Create a parcel.
+         * Create parcel
          * @param $parcel
+         * @return bool|mysqli_result
          */
         function createParcel($parcel){
+            $query = "CALL sp_createParcel(".mysqli_real_escape_string($this->connection,$parcel['consignmentnumber']).",
+                                            ".mysqli_real_escape_string($this->connection,$parcel['pickupemployeenumber']).",
+                                            ".mysqli_real_escape_string($this->connection,$parcel['deliveremployeenumber']).",
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickupstreet'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickupzipcode'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickuphousenumber'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickupcity'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickuphousenumberaddon'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['weigthingrams'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickup'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['delivery'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['hqarrival'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['hqdeparture'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['comment'])."')";
+            echo $query;
 
+            if($result = $this->connection->query($query)){
+                return $result;
+            }
         }
 
         /**
@@ -56,15 +84,38 @@
          * @param $parcel
          */
         function changeParcel($parcel){
+            $query = "CALL sp_changeParcel(".mysqli_real_escape_string($this->connection,$parcel['parcelnumber']).",
+                                            ".mysqli_real_escape_string($this->connection,$parcel['consignmentnumber']).",
+                                            ".mysqli_real_escape_string($this->connection,$parcel['pickupemployeenumber']).",
+                                            ".mysqli_real_escape_string($this->connection,$parcel['deliveremployeenumber']).",
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickupstreet'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickupzipcode'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickuphousenumber'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickupcity'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickuphousenumberaddon'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['weigthingrams'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['pickup'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['delivery'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['hqarrival'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['hqdeparture'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['comment'])."')";
+            echo $query;
 
+            if($result = $this->connection->query($query)){
+                return $result;
+            }
         }
 
         /**
          * Delete a parcel.
-         * @param $id
+         * @param $parcelnumber
          */
-        function deleteParcel($id){
+        function deleteParcel($parcelnumber){
+            $query = "CALL sp_deleteParcel(".mysqli_real_escape_string($this->connection,$parcelnumber).")";
 
+            if($result = $this->connection->query($query)){
+                return $result;
+            }
         }
 
         /**

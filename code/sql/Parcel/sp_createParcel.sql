@@ -26,14 +26,18 @@ CREATE PROCEDURE sp_createParcel
       ROLLBACK;
     END;
     START TRANSACTION;
-      IF EXISTS(SELECT 1 FROM address WHERE addressnumber = p_addressnumber)
-      THEN
-        CALL sp_CreateAddress
-        (1,p_street,p_housenumber,p_zipcode,p_city,p_housenumberaddon);
-      END IF;
+
+    CALL sp_CreateAddress
+    (1,p_street,p_housenumber,p_zipcode,p_city,p_housenumberaddon);
+
+    INSERT INTO parcel
+    (consignmentnumber,pickupemployeenumber,deliveremployeenumber,addressnumber,weightingrams,pickup,delivery,hqarrival,hqdeparture,`comment`)
+    VALUES
+    (p_consignmentnumber,p_pickupemployeenumber,p_deliveremployeenumber,(SELECT addressnumber FROM address WHERE street = p_street AND zipcode = p_zipcode AND housenumber = p_housenumber AND city = p_city AND housenumberaddon = p_housenumberaddon), p_weightingrams,p_pickup,p_deliver,p_hqarrival,p_hqdeparmenture,p_comment);
+
     COMMIT;
   END //
 DELIMITER ;
 
-CALL sp_ChangeConsignment
-(2,1,'Eeshofstraat', '6825BV', 2, 'Arnhem', '','Zilverakkerweg', '6952DX', 59, 'Arnhem','', 1, 'Tom Kooiman')
+CALL sp_createParcel
+(6,2,2,'Twikkel straat', '6825BV', 1, 'Arnhem', '',1000,'2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','test')

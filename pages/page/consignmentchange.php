@@ -40,7 +40,9 @@
                                     <option value="'.$consignment['customernumber'].'">'.$consignment['customerfirstname']. ' ' .$consignment['customerlastname'].'</option>';
 
                 foreach($customers as $customer){
-                    echo '<option value="'.$customer['customernumber'].'">'.$customer['customerfirstname']. ' ' .$customer['customerlastname'].'</option>';
+                    if($consignment['customernumber'] != $customer['customernumber']) {
+                        echo '<option value="' . $customer['customernumber'] . '">' . $customer['customerfirstname'] . ' ' . $customer['customerlastname'] . '</option>';
+                    }
                 }
 
                 echo '                      </select>

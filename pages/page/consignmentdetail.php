@@ -69,12 +69,11 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td colspan="7"><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/parcelcreate">Nieuw pakket</a></td>
+                                <td colspan="7"><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/parcelcreate/'.$_GET['id'].'">Nieuw pakket</a></td>
                             </tr>
                             <tr>
                                 <th>Zendingnr</th>
                                 <th>Pakketnr</th>
-                                <th>Klant</th>
                                 <th>Opgehaald</th>
                                 <th>Geleverd</th>
                                 <th>Bekijken</th>
@@ -88,9 +87,8 @@
                 echo '<tr>
                  <td>' . $parcel['consignmentnumber'] . '</td>
                  <td>' . $parcel['parcelnumber'] . '</td>
-                 <td>' . $parcel['addressnumber'] .'</td>
-                 <td>' . $parcel['pickupemployeenumber'] . '</td>
-                 <td>' . $parcel['deliveremployeenumber'] . '</td>
+                 <td>' . $parcel['pickupemployeefirstname'] . ' '. $parcel['pickupemployeelastname'] .'</td>
+                 <td>' . $parcel['deliveremployeefirstname'] . ' '. $parcel['deliveremployeelastname'] .'</td>
                  <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/parceldetail/' . $parcel['parcelnumber'] . '">Bekijken</a></td>
                  <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/parcelchange/' . $parcel['parcelnumber'] . '">Bewerken</a></td>
                  <td><button class="btn btn-danger deleteParcel" value="' . $parcel['parcelnumber'] . '">Verwijderen</button></td>
@@ -107,3 +105,6 @@
     }else{
         echo 'Er is geen consignment nummer opgegeven';
     }
+
+
+    loadscript($_SESSION['rooturl'] . '/code/js/deleteHandlers.js');

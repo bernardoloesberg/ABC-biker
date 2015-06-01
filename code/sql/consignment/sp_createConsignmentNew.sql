@@ -18,7 +18,8 @@ CREATE PROCEDURE sp_createConsignment
     IN p_scheduledpickup     DATETIME,
     IN p_scheduleddelivery   DATETIME,
     IN p_price               FLOAT(6,2),
-    IN p_totalprice          FLOAT(6,2))
+    IN p_totalprice          FLOAT(6,2),
+    OUT p_consignmentnumber      INT)
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -43,7 +44,9 @@ CREATE PROCEDURE sp_createConsignment
     INSERT INTO consignment
     (customernumber,addressnumber,consignorname,completed,scheduledpickup,scheduleddelivery,price,totalprice)
     VALUES
-      (p_customernumber,(SELECT addressnumber FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon),p_consignorname,p_completed,p_scheduledpickup,p_scheduleddelivery,p_price,p_totalprice);
+    (p_customernumber,(SELECT addressnumber FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon),p_consignorname,p_completed,p_scheduledpickup,p_scheduleddelivery,p_price,p_totalprice);
+
+    SET p_consignmentnumber = LAST_INSERT_ID();
     COMMIT;
   END //
 DELIMITER ;

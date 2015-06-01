@@ -1,5 +1,6 @@
 /*
  *@Author: Bernardo Loesberg
+ * IF THERE IS AN ERROR CHECK ON THE ID CONSIGNMENT AND EMPLOYEE
  */
 use `abcbiker`;
 
@@ -46,21 +47,23 @@ CREATE PROCEDURE sp_changeConsignment
     END IF;
 
     /*Check if there is a pickup addres*/
-    IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumberaddon AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon)
+    IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon)
     THEN
       CALL sp_createAddress
-      (1, p_pickupstreet, p_pickupzipcode, p_pickuphousenumberaddon, p_pickupcity, p_pickuphousenumberaddon);
+      (1, p_pickupstreet, p_pickupzipcode, p_pickuphousenumber, p_pickupcity, p_pickuphousenumberaddon);
     END IF;
-
-
 
     /*This is needed because cant update foreign keys*/
     SET FOREIGN_KEY_CHECKS=0;
 
+    /* Create the history */
+
+    CALL sp_createConsignmentHistory(p_consignmentnumber,p_employeenumber,p_comment);
+
     /*Update the consignment*/
     UPDATE consignment
     SET customernumber = p_customernumber,
-        addressnumber = (SELECT addressnumber FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumberaddon AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon),
+        addressnumber = (SELECT addressnumber FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon),
         consignorname = p_consignorname,
         completed = p_completed,
         scheduledpickup = p_scheduledpickup,
@@ -74,5 +77,6 @@ CREATE PROCEDURE sp_changeConsignment
   END //
 DELIMITER ;
 
+/* ALS ER EEN ERROR GEGEVEN WORDT DAT DE HANDLER NIET ACTIEF IS DAN BESTAAT CONSIGNMENT / EMPLOYEE NIET !*/
 CALL sp_changeConsignment
 (1,1,'Eeshofstraat','6825BV','2','Arnhem','','Bernardo Loesberg',1, NOW(), NOW(), 120, 100, 1, 'De prijs moest verhoogd worden.');

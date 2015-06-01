@@ -68,20 +68,27 @@
          $query = "CALL sp_createConsignment(".mysqli_real_escape_string($this->connection,$consignment['customernumber']).",
                                                     '".mysqli_real_escape_string($this->connection,$consignment['pickupstreet'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['pickupzipcode'])."',
-                                                    '".mysqli_real_escape_string($this->connection,$consignment['pickuphousenumber'])."',
+                                                    ".mysqli_real_escape_string($this->connection,$consignment['pickuphousenumber']).",
                                                     '".mysqli_real_escape_string($this->connection,$consignment['pickupcity'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['pickuphousenumberaddon'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['consignorname'])."',
-                                                    ".mysqli_real_escape_string($this->connection,$consignment['completed']).",
+                                                    0,
                                                     '".mysqli_real_escape_string($this->connection,$consignment['scheduledpickup'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['scheduleddelivery'])."',
-                                                    '".mysqli_real_escape_string($this->connection,$consignment['price'])."',
-                                                    '".mysqli_real_escape_string($this->connection,$consignment['totalprice'])."');";
+                                                    0,
+                                                    '".mysqli_real_escape_string($this->connection,$consignment['totalprice'])."',
+                                                    @p_consignmentnumber);";
 
          //echo $query;
 
          if($result = $this->connection->query($query)){
-            return $result;
+            $result = $this->connection->query('SELECT @p_consignmentnumber');
+
+            $id = 0;
+            while($row = $result->fetch_row()){
+                $id = $row;
+            }
+            return $id[0];
          }
       }
 
@@ -93,8 +100,8 @@
          $query = "CALL sp_changeConsignment(".mysqli_real_escape_string($this->connection,$consignment['consignmentnumber']).",
                                                     ".mysqli_real_escape_string($this->connection,$consignment['customernumber']).",
                                                     '".mysqli_real_escape_string($this->connection,$consignment['pickupstreet'])."',
-                                                    '".mysqli_real_escape_string($this->connection,$consignment['pickupzipcode']).",
-                                                    ".mysqli_real_escape_string($this->connection,$consignment['pickuphousenumber'])."',
+                                                    '".mysqli_real_escape_string($this->connection,$consignment['pickupzipcode'])."',
+                                                    ".mysqli_real_escape_string($this->connection,$consignment['pickuphousenumber']).",
                                                     '".mysqli_real_escape_string($this->connection,$consignment['pickupcity'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['pickuphousenumberaddon'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['consignorname'])."',
@@ -103,10 +110,10 @@
                                                     '".mysqli_real_escape_string($this->connection,$consignment['scheduleddelivery'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['price'])."',
                                                     '".mysqli_real_escape_string($this->connection,$consignment['totalprice'])."',
-                                                    ".mysqli_real_escape_string($this->connection,2).",
+                                                    ".mysqli_real_escape_string($this->connection,1).",
                                                     '".mysqli_real_escape_string($this->connection,$consignment['comment'])."');";
 
-        echo $query;
+         //echo $query;
 
          if($result = $this->connection->query($query)){
             return $result;

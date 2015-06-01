@@ -60,13 +60,11 @@ foreach($customers as $customer){
                               </div>
                               <div class="form-group">
                                 <div class="col-md-4">
-                                    <label for="completedlabel">Afgerond</label><br/>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="completed" id="completed1" value="1"> Ja
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="completed" id="completed2" value="0"> Nee
-                                    </label>
+                                    <label for="consignorname">Prijs</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">&euro;</span>
+                                        <input type="text" class="form-control" id="price" name="price" value="0" disabled>
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="consignorname">Ophaaltijd</label>
@@ -78,13 +76,6 @@ foreach($customers as $customer){
                                 </div>
                               </div>
                               <div class="form-group">
-                                <div class="col-md-6">
-                                    <label for="consignorname">Prijs</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">&euro;</span>
-                                        <input type="text" class="form-control" id="price" name="price" value="">
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <label for="consignorname">Totaal prijs</label>
                                     <div class="input-group">

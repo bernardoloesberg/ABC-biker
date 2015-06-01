@@ -1,11 +1,13 @@
 /*
- * Author: Bernardo Loesberg
+ *@Author: Bernardo Loesberg
  */
+use `abcbiker`;
+
 DROP procedure IF exists sp_deleteParcel;
 
 DELIMITER //
 CREATE PROCEDURE sp_deleteParcel
-  (IN p_parcelNumber     INT)
+  (IN p_parcelnumber       INT)
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -13,10 +15,20 @@ CREATE PROCEDURE sp_deleteParcel
       ROLLBACK;
     END;
     START TRANSACTION;
+    /*Check if the consignment has parcels*/
+    IF NOT EXISTS(SELECT 1 FROM parcel WHERE parcelnumber = p_parcelnumber)
+    THEN
+      RESIGNAL SQLSTATE '45015'
+      SET MESSAGE_TEXT = 'Er geen consignments gevonden';
+      ROLLBACK;
+    END IF;
+
+    /*Delete Parcel*/
+    DELETE FROM parcel WHERE parcelnumber = p_parcelnumber;
 
     COMMIT;
   END //
 DELIMITER ;
 
-CALL sp_ChangeConsignment
-(2,1,'Eeshofstraat', '6825BV', 2, 'Arnhem', '','Zilverakkerweg', '6952DX', 59, 'Arnhem','', 1, 'Tom Kooiman')
+CALL sp_deleteParcel
+(1);
