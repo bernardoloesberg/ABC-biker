@@ -22,23 +22,23 @@ function getMenu(){
 						<li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Zending <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                        <li><a href="/consignmentoverview">Zending overzicht</a></li>
-                        <li><a href="/consignmentcreate">Zending aammaken</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/consignmentoverview">Zending overzicht</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/consignmentcreate">Zending aammaken</a></li>
                           </ul>
                         </li>
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Werknemer <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                        <li><a href="/employeeoverview">Werknemer overzicht</a></li>
-                        <li><a href="/employeecreate">Werknemer aanmaken</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/employeeoverview">Werknemer overzicht</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/employeecreate">Werknemer aanmaken</a></li>
                           </ul>
                         </li>
 
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Klant <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                        <li><a href="/customeroverview">klant overzicht</a></li>
-                        <li><a href="/customercreate">klant aanmaken</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/customeroverview">klant overzicht</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/customercreate">klant aanmaken</a></li>
 
                           </ul>
                         </li>
