@@ -10,35 +10,35 @@ function getMenu(){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="'.$_SESSION['rooturl'].'">ABC-Bikers</a>
+                      <a class="navbar-brand" href="#">ABC-Bikers</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul class="nav navbar-nav">
-                         <li><a href="'.$_SESSION['rooturl'].'">Home</a></li>
-                          <li><a href="'.$_SESSION['rooturl'].'">Over ons</a></li>
+                         <li><a href="">Home</a></li>
+                          <li><a href="">Over ons</a></li>
 
 						<li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Zending <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                        <li><a href="'.$_SESSION['rooturl'].'/consignmentoverview">Zending overzicht</a></li>
-                        <li><a href="'.$_SESSION['rooturl'].'/consignmentcreate">Zending aammaken</a></li>
+                        <li><a href="/consignmentoverview">Zending overzicht</a></li>
+                        <li><a href="/consignmentcreate">Zending aammaken</a></li>
                           </ul>
                         </li>
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Werknemer <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                        <li><a href="'.$_SESSION['rooturl'].'/employeeoverview">Werknemer overzicht</a></li>
-                        <li><a href="'.$_SESSION['rooturl'].'/employeecreate">Werknemer aanmaken</a></li>
+                        <li><a href="/employeeoverview">Werknemer overzicht</a></li>
+                        <li><a href="/employeecreate">Werknemer aanmaken</a></li>
                           </ul>
                         </li>
 
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Klant <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                        <li><a href="'.$_SESSION['rooturl'].'/customeroverview">klant overzicht</a></li>
-                        <li><a href="'.$_SESSION['rooturl'].'/customercreate">klant aanmaken</a></li>
+                        <li><a href="/customeroverview">klant overzicht</a></li>
+                        <li><a href="/customercreate">klant aanmaken</a></li>
 
                           </ul>
                         </li>
