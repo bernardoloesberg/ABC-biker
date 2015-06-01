@@ -1,20 +1,11 @@
 /**
  * Created by Christiaan on 21-5-2015.
  */
-$(document).ready(function () {
-
-    (function ($) {
-
-        $('#filter').keyup(function () {
-
-            var rex = new RegExp($(this).val(), 'i');
-            $('.searchable tr').hide();
-            $('.searchable tr').filter(function () {
-                return rex.test($(this).text());
-            }).show();
-
-        })
-
-    }(jQuery));
-
+$('.biker').on('click', function(){
+    if(document.getElementById("biker").checked){
+        document.getElementById("hiddenFields").style.visibility = "visible";
+    }
+    else{
+        document.getElementById("hiddenFields").style.visibility = "hidden";
+    }
 });

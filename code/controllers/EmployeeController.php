@@ -58,7 +58,7 @@ class EmployeeController{
      * Create an employee.
      */
     function createEmployee($employee){
-        $query = "CALL sp_CreateEmployee(0,
+        $query1 = "CALL sp_CreateEmployee(0,
                                     '".mysqli_real_escape_string($this->connection,$employee['street'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['zipcode'])."',
                                     ".mysqli_real_escape_string($this->connection,$employee['housenumber']).",
@@ -67,17 +67,26 @@ class EmployeeController{
                                     '".mysqli_real_escape_string($this->connection,$employee['employeeFirstName'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['employeeLastName'])."',
                                     ".mysqli_real_escape_string($this->connection,$employee['bsn']).",
-                                    ".mysqli_real_escape_string($this->connection,$employee['cellphone']).",
+                                    '".mysqli_real_escape_string($this->connection,$employee['cellphone'])."',
                                     STR_TO_DATE('".mysqli_real_escape_string($this->connection,$employee['birthday']).",
                                     ".mysqli_real_escape_string($this->connection,$employee['birthmonth']).",
                                     ".mysqli_real_escape_string($this->connection,$employee['birthyear'])."' , '%d,%m,%Y'),
                                     '".mysqli_real_escape_string($this->connection,$employee['sex'])."',
                                     'Hallo');";
-        echo $query;
-        if($result = $this->connection->query($query)){
-            return $result;
+        if($result = $this->connection->query($query1)) {
+            if ($result == 1) {
+                $query2 = "SELECT employeenumber FROM vw_getemployeelist WHERE bsn = " . mysqli_real_escape_string($this->connection, $employee['bsn']);
+                if($result = $this->connection->query($query2)) {
+                    if ($result == 1) {
+                        $employeenumber = $result->fetch_assoc();
+                        $query3 = "Call sp_CreateRolesEmployee($employeenumber,
+                            ".mysqli_real_escape_string($this->connection,$employee['biker']).",
+                            '".mysqli_real_escape_string($this->connection,$employee['bus'])."',
+                            '".mysqli_real_escape_string($this->connection,$employee['dispatcher'])."',);";
+                    }
+                }
+            }
         }
-
     }
 
     function changeEmployee($employee){

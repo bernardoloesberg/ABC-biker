@@ -16,7 +16,7 @@ CREATE PROCEDURE sp_CreateEmployee(
   IN p_employeefirstname varchar(40),
   IN p_employeelastname varchar(40),
   IN p_bsn int,
-  IN p_cellphone numeric(14,0),
+  IN p_cellphone varchar(14),
   IN p_birthday date,
   IN p_sex char(1),
   IN p_password varchar(24)

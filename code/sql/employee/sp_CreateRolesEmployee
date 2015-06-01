@@ -1,0 +1,24 @@
+/*
+ *@Author: Christiaan ten Voorde
+ */
+use `abcbiker`;
+
+DROP procedure IF exists sp_CreateRolesEmployee;
+
+DELIMITER //
+CREATE PROCEDURE sp_CreateRolesEmployee(
+  IN employeenumber int,
+  IN biker bit,
+  IN bus bit,
+  IN dispatcher bit
+)
+  BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+      RESIGNAL SQLSTATE '45000';
+      ROLLBACK;
+    END;
+      INSERT INTO rolesperemployee(employeenumber, role)
+      VALUES (employeenumber, 'biker')
+  END //
+DELIMITER ;

@@ -36,6 +36,7 @@ echo '<div class="row">
                 echo '
                     <form action="#" method="post">
                         <div class="form-group">
+                            <div class="col-md-6">
                             <label for="districtname">Districtname</label>
                             <select class="form-control" id= "districtname" name="districtname">
                             <option>'.$address['districtname'].'</option>';
@@ -47,29 +48,34 @@ echo '<div class="row">
                     }
  echo '
                             </select>
-                          </div>
+                            </div>
+                            <div class="col-md-6">
+                                    <label for="straat">Straat</label>
+                                    <input type="text" class="form-control" id="street" name="street" value="'.$address['street'].'">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                 <div class="col-md-6">
+                                    <label for="Plaats">Plaats</label>
+                                    <input type="text" class="form-control" id="city" name="city" value="'.$address['city'].'">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Postcode">Postcode</label>
+                                    <input type="text" class="form-control" value="'.$address['zipcode'].'" disabled>
+                                    <input type="hidden" class="form-control" id="zipcode" name="zipcode" value="'.$address['zipcode'].'">
+                                </div>
+                            </div>
                           <div class="form-group">
-                            <label for="straat">Straat</label>
-                            <input type="text" class="form-control" id="street" name="street" value="'.$address['street'].'">
-                          </div>
-                           <div class="form-group">
-                            <label for="Plaats">Plaats</label>
-                                <input type="text" class="form-control" id="city" name="city" value="'.$address['city'].'">
-                          </div>
-                          <div class="form-group">
-                            <label for="Huisnummer">Huisnummer</label>
-                            <input type="text" class="form-control" value="'.$address['housenumber'].'" disabled>
-                            <input type="hidden" class="form-control" id="housenumber" name="housenumber" value="'.$address['housenumber'].'">
-                          </div>
-                          <div class="form-group">
-                            <label for="Toevoeging">Toevoeging</label>
-                            <input type="text" class="form-control" value="'.$address['housenumberaddon'].'" disabled>
-                            <input type="hidden" class="form-control" id="housenumberaddon" name="housenumberaddon" value="'.$address['housenumberaddon'].'">
-                          </div>
-                          <div class="form-group">
-                            <label for="Postcode">Postcode</label>
-                            <input type="text" class="form-control" value="'.$address['zipcode'].'" disabled>
-                            <input type="hidden" class="form-control" id="zipcode" name="zipcode" value="'.$address['zipcode'].'">
+                              <div class="col-md-6">
+                                <label for="Huisnummer">Huisnummer</label>
+                                <input type="text" class="form-control" value="'.$address['housenumber'].'" disabled>
+                                <input type="hidden" class="form-control" id="housenumber" name="housenumber" value="'.$address['housenumber'].'">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="Toevoeging">Toevoeging</label>
+                                <input type="text" class="form-control" value="'.$address['housenumberaddon'].'" disabled>
+                                <input type="hidden" class="form-control" id="housenumberaddon" name="housenumberaddon" value="'.$address['housenumberaddon'].'">
+                              </div>
                           </div>
                           <button type="submit" class="btn btn-success" name="changeAddress">Sla verandering op</button>
                         </form>';
