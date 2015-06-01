@@ -23,3 +23,4 @@ RewriteRule ^parceldelete/([-a-zA-Z0-9]+)/?$ index.php?page=parceldelete&id=$1 [
 RewriteRule ^customerdetail/([-a-zA-Z0-9]+)/?$ index.php?page=customerdetail&id=$1 [L]
 RewriteRule ^customerchange/([-a-zA-Z0-9]+)/?$ index.php?page=customerchange&id=$1 [L]
 RewriteRule ^contactdetail/([-a-zA-Z0-9]+)/?$ index.php?page=contactdetail&id=$1 [L]
+RewriteRule ^contactchange/([-a-zA-Z0-9]+)/?$ index.php?page=contactchange&id=$1 [L]
