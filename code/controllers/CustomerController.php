@@ -1,5 +1,6 @@
 <?php
    include_once('ConnectionController.php');
+   include_once('AddressForCustomerController.php');
 
    /**
      * Class CustomerController
@@ -46,6 +47,8 @@
         * @return bool|mysqli_result
         */
       function createCustomer ($customer){
+          $AddressForCustomerController = new AddressForCustomerController();
+
           $query1 = "CALL sp_CreateCustomer('" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "',
                                         '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "',
                                         '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "',
@@ -55,58 +58,13 @@
 
           if ($result = $this->connection->query($query1)) {
               if ($result == 1) {
-                  $query2 = "CALL sp_CreateAddress('" . mysqli_real_escape_string($this->connection, $customer['districtnumber']) . "',
-                                        '" . mysqli_real_escape_string($this->connection, $customer['street']) . "',
-                                        '" . mysqli_real_escape_string($this->connection, $customer['zipcode']) . "',
-                                        '" . mysqli_real_escape_string($this->connection, $customer['housenumber']) . "',
-                                        '" . mysqli_real_escape_string($this->connection, $customer['city']) . "',
-                                        '" . mysqli_real_escape_string($this->connection, $customer['housenumberaddon']) . "')";
+                  $result2 = $AddressForCustomerController->addAddressToCustomer($customer);
 
-                  if ($result = $this->connection->query($query2)) {
-                      if ($result == 1) {
-
-                          $query3 = "SELECT addressnumber FROM address WHERE street = '" . mysqli_real_escape_string($this->connection, $customer['street']) . "' AND zipcode = '" . mysqli_real_escape_string($this->connection, $customer['zipcode']) . "' AND housenumber = '" . mysqli_real_escape_string($this->connection, $customer['housenumber']) . "'";
-                          $query4 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "'";
-
-
-                          if ($result = $this->connection->query($query4)) {
-                              $customernumber = $result->fetch_array();
-                          }
-
-                          if ($result = $this->connection->query($query3)) {
-                              $addressnumber = $result->fetch_array();
-                          }
-
-                          $query5 = "CALL sp_AddAddressToCustomer(" . $addressnumber[0] . "," . $customernumber[0] . ")";
-                          /**
-                           * End stage if this is TRUE then the entire procedure has passed
-                           */
-                          if ($result2 = $this->connection->query($query5)) {
-                                if($result2) {
-                                    return 'success';
-                                }
-                          }
-                      }
+                  if($result2 == 'success') {
+                      return 'success';
                   }
               }
           }
-            /*
-          print_r($query1);
-          echo '<br><br>';
-          print_r($query2);
-          echo '<br><br>';
-          print_r($query3);
-          echo '<br><br>';
-          print_r($query4);
-          echo '<br><br>';
-          print_r($query5);
-          echo '<br><br>';
-            print_r($this->connection);
-
-            */
-
-
-
           return $this->connection->error;
       }
 
@@ -139,16 +97,6 @@
         * @param $id
         * @return mixed
         */
-       function getCustomerAddress($id){
-           $query = "SELECT * FROM vw_getAddressFromCustomer WHERE customernumber =". mysqli_real_escape_string($this->connection, $id);
-
-           if($result = $this->connection->query($query)){
-                   foreach($result as $customerAddress){
-                       $customerAddressList[] = $customerAddress;
-                   }
-               }
-               return $customerAddressList;
-           }
 
       function __destruct(){
          $this->connection->close();
