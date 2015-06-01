@@ -125,6 +125,7 @@ create table customercontact
    customernumber       int not null,
    contactlastname      varchar(40) not null,
    contactfirstname     varchar(40) not null,
+   contactsex           char(1)     not null,
    contactphonenumber   varchar(14) not null,
    contactemail         varchar(50),
    contactdepartment    varchar(40),
