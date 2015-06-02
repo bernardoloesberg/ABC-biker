@@ -62,9 +62,9 @@
                     <br>
                 </address>
                 <address>
-                    <abbr title="Phone">P:</abbr>(123) 456-7890
+                    <abbr title="Phone">P:</abbr>(026) 456-7890
                     <br>
-                    <abbr title="Email">E:</abbr> <a href="mailto:#">name@example.com</a>
+                    <abbr title="Email">E:</abbr> <a href="mailto:#">info@abc-bikers.nl</a>
                 </address>
             </div>
         </div>
@@ -85,17 +85,18 @@ Onze opties
                 <div class="db-wrapper">
                     <div class="db-pricing-eleven db-bk-color-one">
                         <div class="price">
-                            <sup>€</sup>11
-                                <small>per zending</small>
+                            <sup><small>vanaf</small>€</sup>7 
+                               <small> per zending*</small>
+							
                         </div>
                         <div class="type">
                             Fiets verzending
                         </div>
                         <ul>
 
-                            <li><i class="glyphicon glyphicon-print"></i>Milieuvriendelijk </li>
-                            <li><i class="glyphicon glyphicon-time"></i>Aflevering mogelijk binnen 3 uur</li>
-                            <li><i class="glyphicon glyphicon-trash"></i>nog meer info</li>
+                            <li><i class="glyphicon glyphicon-tree-deciduous"></i>Milieuvriendelijk </li>
+                            <li><i class="glyphicon glyphicon-screenshot"></i>Aflevering mogelijk binnen 3 uur</li>
+                            <li><i class="glyphicon glyphicon-fast-forward"></i>nog meer info</li>
                         </ul>
                         <div class="pricing-footer">
 
@@ -107,17 +108,17 @@ Onze opties
                  <div class="db-wrapper">
                 <div class="db-pricing-eleven db-bk-color-two popular">
                     <div class="price">
-                        <sup>€</sup>14
-                                <small>per zending</small>
+                        <small>vanaf</small><sup>€</sup>13
+                                <small>per zending*</small>
                     </div>
                     <div class="type">
                         Fiets Express
                     </div>
                     <ul>
 
-                        <li><i class="glyphicon glyphicon-print"></i>Milieuvriendelijk</li>
-                        <li><i class="glyphicon glyphicon-time"></i>Super snel</li>
-                        <li><i class="glyphicon glyphicon-trash"></i>Aflevering mogelijk binnen 30 min</li>
+                        <li><i class="glyphicon glyphicon-tree-deciduous"></i>Milieuvriendelijk</li>
+                        <li><i class="glyphicon glyphicon-fast-forward"></i>Super snel</li>
+                        <li><i class="glyphicon glyphicon-screenshot"></i>Aflevering mogelijk binnen 30 min</li>
                     </ul>
                     <div class="pricing-footer">
 
@@ -129,17 +130,17 @@ Onze opties
                  <div class="db-wrapper">
                 <div class="db-pricing-eleven db-bk-color-three">
                     <div class="price">
-                        <sup>€</sup>25
-                                <small>per zending</small>
+                        <sup><small>vanaf</small>€</sup>15
+                                <small>per zending*</small>
                     </div>
                     <div class="type">
                         Verre verzending
                     </div>
                     <ul>
 
-                        <li><i class="glyphicon glyphicon-print"></i>In heel Nederland </li>
-                        <li><i class="glyphicon glyphicon-time"></i>1Bezorgen </li>
-                        <li><i class="glyphicon glyphicon-trash"></i>Afhalen</li>
+                        <li><i class="glyphicon glyphicon-new-window"></i>In de regio </li>
+                        <li><i class="glyphicon glyphicon-export"></i>Bezorgen</li>
+                        <li><i class="glyphicon glyphicon-import"></i>Afhalen</li>
                     </ul>
                     <div class="pricing-footer">
 
@@ -168,9 +169,9 @@ Onze opties
                 <p>De sportieve sfeer binnen ons koeriersteam zorgt ervoor dat schijnbaar onmogelijk oplosbare logistieke vraagstukken met veel betrouwbaarheid, continuïteit & snelheid worden uitgevoerd. Van vaste zendingen met groot volume tot spoedzendingen die binnen 30 minuten worden afgeleverd. Bij ABC Bikers kan het allemaal.</p>
             </div>
             <div class="col-sm-4">
-                <img class="img-circle img-responsive img-center" src="img/robin.gif" alt="">
+                <img class="img-circle img-responsive img-center" src="img/dispatcher.jpg" alt="">
                 <h2>Dispatcher Robin</h2>
-                <p>Je, kent, hem, vast, nog, wel, van, bassie, en, adriaan. Tegen, woordig, werkt, hij, bij, ons.</p>
+                <p>Onze dispatcher zorgt ervoor dat al onze bikers zo efficient mogelijk ingezet zijn, altijd. Regel vandaag nog uw pick-up and delivery!</p>
             </div>
         </div>
         <!-- /.row -->
