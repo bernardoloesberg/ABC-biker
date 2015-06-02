@@ -1,4 +1,6 @@
 <?php
+
+include_once('ConnectionController.php');
 /**
  * Created by PhpStorm.
  * User: Tom Kooiman
@@ -34,7 +36,26 @@ class CustomerContactController {
                                                 '" . mysqli_real_escape_string($this->connection, $contact['contactphonenumber']) . "',
                                                 '" . mysqli_real_escape_string($this->connection, $contact['contactemail']) . "',
                                                 '" . mysqli_real_escape_string($this->connection, $contact['contactdeparment']) . "'," .")";
-        echo $query;
+
+        if ($result = $this->connection->query($query)) {
+            if($result) {
+                return 'success';
+            }
+        }
+        return $this->connection->error;
+    }
+
+    function changeContact ($contact) {
+        $query = "CALL sp_ChangeCustomerContact('" . mysqli_real_escape_string($this->connection, $contact['contactnumber']) . "',
+                                                '" . mysqli_real_escape_string($this->connection, $contact['contactlastname']) . "',
+                                                '" . mysqli_real_escape_string($this->connection, $contact['contactfirstname']) . "',
+                                                '" . mysqli_real_escape_string($this->connection, $contact['contactsex']) . "',
+                                                '" . mysqli_real_escape_string($this->connection, $contact['contactphonenumber']) . "',
+                                                '" . mysqli_real_escape_string($this->connection, $contact['contactemail']) . "',
+                                                '" . mysqli_real_escape_string($this->connection, $contact['contactdepartment']) . "')";
+
+        print_r($query);
+
         if ($result = $this->connection->query($query)) {
             if($result) {
                 return 'success';

@@ -92,7 +92,7 @@
                                            ".mysqli_real_escape_string($this->connection,$address['housenumber']).",
                                            '".mysqli_real_escape_string($this->connection,$address['city'])."',
                                            '".mysqli_real_escape_string($this->connection,$address['housenumberaddon'])."')";
-           echo $query;
+
            if($result = $this->connection->query($query)) {
                return $result;
            }
