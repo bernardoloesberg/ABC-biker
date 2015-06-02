@@ -46,11 +46,11 @@ function getMenu(){
                       </ul>
 
                       <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Registreren</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/register">Registreren</a></li>
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                            <li><a href="#">Mijn profiel</a></li>
+                            <li><a href="'.$_SESSION['rooturl'].'/login">Mijn profiel</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Uitloggen</a></li>
                           </ul>
