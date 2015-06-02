@@ -23,7 +23,7 @@
           $addressController = new AddressController();
 
           $result = $addressController->createAddress($address);
-              if ($result == 1) {
+              if ($result) {
 
                   $query3 = "SELECT addressnumber FROM address WHERE street = '" . mysqli_real_escape_string($this->connection, $address['street']) . "' AND zipcode = '" . mysqli_real_escape_string($this->connection, $address['zipcode']) . "' AND housenumber = '" . mysqli_real_escape_string($this->connection, $address['housenumber']) . "'";
                   $query4 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $address['customerlastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $address['customerfirstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $address['phonenumber']) . "'";
@@ -67,7 +67,11 @@
                foreach($result as $customerAddress){
                    $customerAddressList[] = $customerAddress;
                }
-               return $customerAddressList;
+               if(!empty($customerAddressList)) {
+                   return $customerAddressList;
+               } else {
+                   return 0;
+               }
            }
            return $this->connection->error;
        }

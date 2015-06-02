@@ -50,7 +50,7 @@
                 <p>ABC Bikers werd opgericht in 2002 in Arnhem vanuit bevlogenheid en met toewijding. Nog steeds essentiële waarden binnen ons bedrijf. Wij vinden ideaal ondernemen belangrijk: duurzaam en met oog voor mens en maatschappij. Net als helder en integer communiceren, en dat alles zie je terug in het DNA en de werkwijze van ABC Bikers.</p>
 				<p>ABC Bikers Fietskoeriers is de meest schone oplossing voor het uitvoeren van uw logistieke diensten in de stad. Onze energieke fietskoeriers zijn snel en servicegericht.</p>
                 <p></p>
-                    <a class="btn btn-default btn-lg" href="#">Verzend uw pakket &raquo;</a>
+ 
                 </p>
             </div>
             <div class="col-sm-4">
@@ -71,7 +71,91 @@
         <!-- /.row -->
 
         <hr>
+		
+		<div class="container">
+   <div class="row text-center">
+            <div class="col-md-12">
+            <h3>
+Onze opties
+            </h3>
+            </div>
+    </div>        
+        <div class="row db-padding-btm db-attached">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="db-wrapper">
+                    <div class="db-pricing-eleven db-bk-color-one">
+                        <div class="price">
+                            <sup>€</sup>11
+                                <small>per zending</small>
+                        </div>
+                        <div class="type">
+                            Fiets verzending
+                        </div>
+                        <ul>
 
+                            <li><i class="glyphicon glyphicon-print"></i>Milieuvriendelijk </li>
+                            <li><i class="glyphicon glyphicon-time"></i>Aflevering mogelijk binnen 3 uur</li>
+                            <li><i class="glyphicon glyphicon-trash"></i>nog meer info</li>
+                        </ul>
+                        <div class="pricing-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                 <div class="db-wrapper">
+                <div class="db-pricing-eleven db-bk-color-two popular">
+                    <div class="price">
+                        <sup>€</sup>14
+                                <small>per zending</small>
+                    </div>
+                    <div class="type">
+                        Fiets Express
+                    </div>
+                    <ul>
+
+                        <li><i class="glyphicon glyphicon-print"></i>Milieuvriendelijk</li>
+                        <li><i class="glyphicon glyphicon-time"></i>Super snel</li>
+                        <li><i class="glyphicon glyphicon-trash"></i>Aflevering mogelijk binnen 30 min</li>
+                    </ul>
+                    <div class="pricing-footer">
+
+                    </div>
+                </div>
+                     </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                 <div class="db-wrapper">
+                <div class="db-pricing-eleven db-bk-color-three">
+                    <div class="price">
+                        <sup>€</sup>25
+                                <small>per zending</small>
+                    </div>
+                    <div class="type">
+                        Verre verzending
+                    </div>
+                    <ul>
+
+                        <li><i class="glyphicon glyphicon-print"></i>In heel Nederland </li>
+                        <li><i class="glyphicon glyphicon-time"></i>1Bezorgen </li>
+                        <li><i class="glyphicon glyphicon-trash"></i>Afhalen</li>
+                    </ul>
+                    <div class="pricing-footer">
+
+                    </div>
+                </div>
+				                   <a class="btn btn-default btn-lg" href="#">Verzend uw pakket &raquo;</a>
+                     </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+	
+        <hr>
+		
         <div class="row">
             <div class="col-sm-4">
                 <img class="img-circle img-responsive img-center" src="img/mark.gif" alt="">
@@ -91,6 +175,9 @@
         </div>
         <!-- /.row -->
 
+		
+		
+		
         <hr>
 
         <!-- Footer -->

@@ -17,9 +17,6 @@
         $addressList = $addressForCustomerController->getCustomerAddress($_GET['id']);
         $contactList = $customerContactController->getCustomerContactList(($_GET['id']));
 
-        print_r($addressList);
-        print_r($contactList);
-
         echo '<div class="row">
             <div class="col-md-2">
                 Menu
@@ -56,7 +53,7 @@
                             <th>Verwijderen</th>
                         </thead>
                         <tbody class="searchable">';
-        if(isset($addressList)) {
+        if(isset($addressList) && $addressList != 0) {
             foreach ($addressList as $address) {
                 echo '<tr>
                  <td>' . $address['zipcode'] . '</td>

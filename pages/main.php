@@ -10,14 +10,12 @@ function getMenu(){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="#">ABC-Bikers</a>
+                      <a class="navbar-brand" href="'.$_SESSION['rooturl'].'">ABC-Bikers</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                       <ul class="nav navbar-nav">
-                         <li><a href="">Home</a></li>
-                          <li><a href="">Over ons</a></li>
 
 						<li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Zending <b class="caret"></b></a>
