@@ -183,11 +183,14 @@ create table parcel
 /*==============================================================*/
 create table price
 (
-   startdate            date not null,
-   pricepergram         float(6,2) not null,
-   priceperkilometer    float(6,2) not null,
-   primary key (startdate)
+  startdate            date not null,
+  pricepergram         float(6,2) not null,
+  priceperkilometer    float(6,2) not null,
+  pricepergramexpress  float(6,2) not null,
+  priceperkilomterexpress float(6,2) not null,
+  primary key (startdate)
 );
+
 
 /*==============================================================*/
 /* Table: role                                                  */
