@@ -7,10 +7,10 @@ DROP procedure IF exists sp_CreateRolesEmployee;
 
 DELIMITER //
 CREATE PROCEDURE sp_CreateRolesEmployee(
-  IN employeenumber int,
-  IN biker bit,
-  IN bus bit,
-  IN dispatcher bit
+  IN p_employeenumber int,
+  IN p_biker bit,
+  IN p_bus bit,
+  IN p_dispatcher bit
 )
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -18,7 +18,17 @@ CREATE PROCEDURE sp_CreateRolesEmployee(
       RESIGNAL SQLSTATE '45000';
       ROLLBACK;
     END;
-      INSERT INTO rolesperemployee(employeenumber, role)
-      VALUES (employeenumber, 'biker')
+    IF (p_biker) THEN
+      INSERT INTO rolesperemployee(employeenumber, rolename)
+      VALUES (p_employeenumber, 'biker');
+      END IF;
+    IF (p_bus) THEN
+      INSERT INTO rolesperemployee(employeenumber, rolename)
+      VALUES (p_employeenumber, 'bus');
+      END IF;
+    IF (p_dispatcher) THEN
+      INSERT INTO rolesperemployee(employeenumber, rolename)
+      VALUES (p_employeenumber, 'dispatcher');
+      END IF;
   END //
 DELIMITER ;

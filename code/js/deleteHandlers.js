@@ -39,7 +39,6 @@ $('.deleteEmployee').on('click', function(){
             type: 'POST',
             data: {employeenumber: $(this).val()},
             success: function(data){
-
             }
         });
         $(this).closest('tr').remove();

@@ -93,7 +93,7 @@ echo '<div class="row">
                               <div class="col-md-2">
                                   <label for="biker">Biker</label>
                                   <span class="input-group-addon">
-                                    <input type="checkbox" class="biker" id="biker" name="biker" onclick="function()">
+                                    <input type="checkbox" class="biker" id="biker" name="biker" onclick="function()" value="true">
                                   </span>
                               </div>
                               <div id="hiddenFields" style="visibility: hidden;">

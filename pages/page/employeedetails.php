@@ -9,16 +9,6 @@ include_once('code/controllers/EmployeeController.php');
 
 $employeeController = new EmployeeController();
 
-if(isset($_POST['deleteEmployee'])){
-    $result = $employeeController->deleteEmployee($_POST);
-
-    if($result){
-        showMessage('success', 'U heeft een nieuwe employee verwijderd!');
-    }else{
-        showMessage('danger', 'Het verwijderen van een nieuwe employee is mislukt!');
-    }
-}
-
 echo '<div class="row">
             <div class="col-md-4">
                 Menu
@@ -28,6 +18,9 @@ echo '<div class="row">
 if (isset($_GET['id'])) {
     $employee = $employeeController->getEmployee($_GET['id']);
     $birthparts = explode("-", $employee['birthday']);
+    if($employee['biker'] == 'biker'){
+        $biker = $employeeController->getBiker($_GET['id']);
+    }
 
     echo ' <table class="table">
                     <tbody>
@@ -73,7 +66,27 @@ if (isset($_GET['id'])) {
                             <td></td>
                             <td></td>
                         </tr>
-                    </tbody>
+                        <tr>
+                            <td>Biker</td>
+                            <td>' .($employee['biker'] == 'biker' ? 'Ja' : '-'). '</td>
+                            <td>Bus</td>
+                            <td>' .($employee['bus'] == 'bus' ? 'Ja' : '-'). '</td>
+                        </tr>
+                        <tr>
+                            <td>Dispatcher</td>
+                            <td>' .($employee['dispatcher'] == 'dispatcher' ? 'Ja' : '-'). '</td>
+                            <td></td>
+                            <td></td>
+                        </tr>';
+                        if($employee['biker'] == 'biker'){
+echo '                        <tr>
+                            <td>Express</td>
+                            <td>' .($biker['express'] == true ? 'Ja' : '-'). '</td>
+                            <td>aantal pakketjes</td>
+                            <td>'.$biker['maxdeliveries'].'</td>
+                        </tr>';
+                        }
+echo ' </tbody>
             </table>
 
      <a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/employeechange/'.$employee['employeenumber'].'">Bewerken</a>
