@@ -67,8 +67,9 @@
                foreach($result as $customerAddress){
                    $customerAddressList[] = $customerAddress;
                }
+               return $customerAddressList;
            }
-           return $customerAddressList;
+           return $this->connection->error;
        }
 
       function __destruct(){

@@ -17,6 +17,9 @@
         $addressList = $addressForCustomerController->getCustomerAddress($_GET['id']);
         $contactList = $customerContactController->getCustomerContactList(($_GET['id']));
 
+        print_r($addressList);
+        print_r($contactList);
+
         echo '<div class="row">
             <div class="col-md-2">
                 Menu
@@ -53,16 +56,17 @@
                             <th>Verwijderen</th>
                         </thead>
                         <tbody class="searchable">';
-
-        foreach($addressList as $address){
-            echo '<tr>
-                 <td>'.$address['zipcode'].'</td>
-                 <td>'.$address['housenumber'].' '.$address['housenumberaddon'].'</td>
-                 <td>'.$address['districtname']. '</td>
-                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/addressdetails/'.$address['addressnumber'].'">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/addresschange/'.$address['addressnumber'].'">Bewerken</a></td>
-                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="'.$address['addressnumber'].'">Verwijderen</button></td>
+        if(isset($addressList)) {
+            foreach ($addressList as $address) {
+                echo '<tr>
+                 <td>' . $address['zipcode'] . '</td>
+                 <td>' . $address['housenumber'] . ' ' . $address['housenumberaddon'] . '</td>
+                 <td>' . $address['districtname'] . '</td>
+                 <td><a class="btn btn-info" href="' . $_SESSION['rooturl'] . '/addressdetails/' . $address['addressnumber'] . '">Bekijken</a></td>
+                 <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/addresschange/' . $address['addressnumber'] . '">Bewerken</a></td>
+                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="' . $address['addressnumber'] . '">Verwijderen</button></td>
              </tr>';
+            }
         }
 
         echo                '</tbody>
@@ -78,16 +82,17 @@
                             <th>Verwijderen</th>
                         </thead>
                         <tbody class="searchable">';
-
-        foreach($contactList as $contact){
-            echo '<tr>
-                 <td>'.$contact['contactlastname'].' '.$contact['contactfirstname'].'</td>
-                 <td>'.$contact['contactsex'].'</td>
-                 <td>'.$contact['contactdepartment']. '</td>
-                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/contactdetail/'.$contact['contactnumber'].'">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/contactchange/'.$contact['contactnumber'].'">Bewerken</a></td>
-                <td><button class="btn btn-danger deleteContact" name="deleteContact" value="'.$contact['contactnumber'].'">Verwijderen</button></td>
+        if(isset($contactList)) {
+            foreach ($contactList as $contact) {
+                echo '<tr>
+                 <td>' . $contact['contactlastname'] . ' ' . $contact['contactfirstname'] . '</td>
+                 <td>' . $contact['contactsex'] . '</td>
+                 <td>' . $contact['contactdepartment'] . '</td>
+                 <td><a class="btn btn-info" href="' . $_SESSION['rooturl'] . '/contactdetail/' . $contact['contactnumber'] . '">Bekijken</a></td>
+                 <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/contactchange/' . $contact['contactnumber'] . '">Bewerken</a></td>
+                <td><button class="btn btn-danger deleteContact" name="deleteContact" value="' . $contact['contactnumber'] . '">Verwijderen</button></td>
              </tr>';
+            }
         }
 
         echo                '</tbody>

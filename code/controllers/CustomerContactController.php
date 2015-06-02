@@ -54,8 +54,6 @@ class CustomerContactController {
                                                 '" . mysqli_real_escape_string($this->connection, $contact['contactemail']) . "',
                                                 '" . mysqli_real_escape_string($this->connection, $contact['contactdepartment']) . "')";
 
-        print_r($query);
-
         if ($result = $this->connection->query($query)) {
             if($result) {
                 return 'success';
