@@ -41,6 +41,14 @@ function getMenu(){
                           </ul>
                         </li>
 
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Adres <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                        <li><a href="'.$_SESSION['rooturl'].'/addressoverview">Adres overzicht</a></li>
+
+                          </ul>
+                        </li>
+
                       </ul>
 
                       <ul class="nav navbar-nav navbar-right">
