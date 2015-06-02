@@ -183,12 +183,11 @@ create table parcel
 /*==============================================================*/
 create table price
 (
-  startdate            date not null,
-  pricepergram         float(6,2) not null,
-  priceperkilometer    float(6,2) not null,
-  pricepergramexpress  float(6,2) not null,
-  priceperkilomterexpress float(6,2) not null,
-  primary key (startdate)
+  distance             float(2) not null,
+  weight               float(2) not null,
+  price                float(6,2),
+  priceexpress         float(6,2),
+  primary key (distance, weight)
 );
 
 

@@ -71,6 +71,35 @@ VALUES
   (2, 2, 20),
   (1, 5, 20),
   (2, 6, 20);
+
+INSERT INTO price
+VALUES
+  (0,0,2,5),
+  (0,0.5,2.5,6),
+  (0,3.0,4,8),
+  (0,8,NULL,NULL),
+
+  (2,0,3,6),
+  (2,0.5,3.5,7),
+  (2,3.0,5,8),
+  (2,8.0, NULL, NULL),
+
+  (4,0,4,7),
+  (4,0.5,4.5,8),
+  (4,3.0,6,9),
+  (4,8.0, NULL, NULL),
+
+  (6,0,5,8),
+  (6,0.5,5.5,9),
+  (6,3.0,7,10),
+  (6,8.0, NULL, NULL),
+
+  (10,0,6,NULL),
+  (10,0.5,7,NULL),
+  (10,3.0,8,NULL),
+  (10,8.0,NULL,NULL)
+
+
 /*
 INSERT INTO Parcel
 (consignmentnumber,pickupemployeenumber,deliveremployeenumber,tracking,weightingrams,pickuptime,deliverytime)
