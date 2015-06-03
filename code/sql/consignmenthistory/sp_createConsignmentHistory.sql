@@ -4,6 +4,7 @@ DELIMITER //
 CREATE PROCEDURE sp_createConsignmentHistory
   (IN p_consignmentnumber       INT,
     IN p_employeenumber        VARCHAR(40),
+    IN p_alterdate        VARCHAR(40),
     IN p_comment       VARCHAR(6))
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -30,9 +31,9 @@ CREATE PROCEDURE sp_createConsignmentHistory
 
     /*Insert a new row to history to see what has been changed*/
     INSERT INTO consignmenthistory
-    (consignmentnumber,employeenumber,`comment`)
+    (consignmentnumber,employeenumber,alterdate,`comment`)
     VALUES
-    (p_consignmentnumber,p_consignmentnumber,p_comment);
+    (p_consignmentnumber,p_consignmentnumber,p_alterdate,p_comment);
 
     COMMIT;
   END //

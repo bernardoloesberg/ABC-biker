@@ -58,7 +58,7 @@ CREATE PROCEDURE sp_changeConsignment
 
     /* Create the history */
 
-    CALL sp_createConsignmentHistory(p_consignmentnumber,p_employeenumber,p_comment);
+    CALL sp_createConsignmentHistory(p_consignmentnumber,p_employeenumber,NOW(),p_comment);
 
     /*Update the consignment*/
     UPDATE consignment

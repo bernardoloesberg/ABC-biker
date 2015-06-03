@@ -5,6 +5,9 @@ use `abcbiker`;
 
 DROP procedure IF exists sp_createConsignment;
 
+CALL sp_createConsignment
+(1,'Eeshofstraat','6825BV','2','Arnhem','','Bernardo Loesberg', 1, NOW(),NOW(),100,90, @p_consignmentnumber);
+
 DELIMITER //
 CREATE PROCEDURE sp_createConsignment
   (IN p_customernumber       INT,
@@ -51,6 +54,5 @@ CREATE PROCEDURE sp_createConsignment
   END //
 DELIMITER ;
 
-CALL sp_createConsignment
-(1,'Eeshofstraat','6825BV','2','Arnhem','','Bernardo Loesberg', NOW(),NOW(),100,90);
+
 
