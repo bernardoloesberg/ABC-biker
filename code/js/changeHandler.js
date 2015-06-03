@@ -8,7 +8,7 @@ $('#customerChange').on('change', function(){
         type: 'POST',
         data: {customernumber: $(this).val()},
         success: function(data){
-            var customer =JSON.parse(data);
+            var customer = JSON.parse(data);
 
             getAddress(customer.customernumber);
         }
@@ -27,7 +27,7 @@ function getAddress(customernumber){
         data: {customernumberforaddress: customernumber},
         success: function(data){
             var address = JSON.parse(data);
-
+            console.log(address);
             $('#pickupstreet').val(address.street);
             $('#pickuphousenumber').val(address.housenumber);
             $('#pickuphousenumberaddon').val(address.housenumberaddon);
