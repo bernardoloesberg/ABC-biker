@@ -27,6 +27,7 @@
                         <tr><td><strong>Klantgegevens</strong></td>
                             <td></td></tr>
                     </thead>
+
                     <tbody>
                         <tr><td>Achternaam</td>
                             <td>' . $customer['customerlastname'] . '</td>
@@ -66,10 +67,14 @@
             }
         }
 
-        echo                '</tbody>
+        echo '
+                    </tbody>
                     </table>
                     <table class="table">
                         <thead>
+                        <br>
+                        <a class="btn btn-info" href="'.$_SESSION['rooturl'].'/contactcreate/'.$_GET['id'].'">Nieuwe contact</a></td>
+                        <br>
                             <strong>Contactgegevens</strong>
                             <th>naam</th>
                             <th>Geslacht</th>

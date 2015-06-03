@@ -35,7 +35,8 @@ class CustomerContactController {
                                                 '" . mysqli_real_escape_string($this->connection, $contact['contactsex']) . "',
                                                 '" . mysqli_real_escape_string($this->connection, $contact['contactphonenumber']) . "',
                                                 '" . mysqli_real_escape_string($this->connection, $contact['contactemail']) . "',
-                                                '" . mysqli_real_escape_string($this->connection, $contact['contactdeparment']) . "'," .")";
+                                                '" . mysqli_real_escape_string($this->connection, $contact['contactdepartment']) . "'" .")";
+        echo $query;
 
         if ($result = $this->connection->query($query)) {
             if($result) {
