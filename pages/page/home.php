@@ -146,7 +146,6 @@ Onze opties
 
                     </div>
                 </div>
-				                   <a class="btn btn-default btn-lg" href="#">Verzend uw pakket &raquo;</a>
                      </div>
             </div>
 

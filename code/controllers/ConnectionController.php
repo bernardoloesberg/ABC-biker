@@ -4,10 +4,10 @@
      * @Author: Bernardo Loesberg
      */
     class ConnectionController{
-        private $server     = 'localhost';
-        private $database   = 'abcbiker2';
-        private $user       = 'root';
-        private $password   = 'root';
+        private $server     = 'p15.ise.icaprojecten.nl';
+        private $database   = 'abcbiker';
+        private $user       = 'ABCBiker';
+        private $password   = 'Hallo!23';
 
         private $connection;
 
