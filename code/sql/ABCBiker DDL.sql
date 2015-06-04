@@ -92,7 +92,7 @@ create table consignment
 /*==============================================================*/
 create table consignmenthistory
 (
-   historynumber        int not null,
+   historynumber        int not null AUTO_INCREMENT,
    consignmentnumber    int not null,
    employeenumber       int not null,
    alterdate            datetime not null,
