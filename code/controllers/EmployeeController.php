@@ -109,6 +109,7 @@ class EmployeeController{
                                     ".mysqli_real_escape_string($this->connection,$employee['birthyear'])."' , '%d,%m,%Y'),
                                     '".mysqli_real_escape_string($this->connection,$employee['sex'])."',
                                     'Hallo');";
+        echo $query1;
         if($result = $this->connection->query($query1)) {
             if ($result == 1) {
                 $query2 = "SELECT employeenumber FROM vw_getemployeelist WHERE bsn = " . mysqli_real_escape_string($this->connection, $employee['bsn']);
@@ -120,17 +121,26 @@ class EmployeeController{
                     ".mysqli_real_escape_string($this->connection,$employee['bus']).",
                     ".mysqli_real_escape_string($this->connection,$employee['dispatcher']).");";
                     if($result = $this->connection->query($query3)) {
-                        if ($result == 1 & $employee['biker'] == true) {
-                            $query4 = "Call sp_CreateBiker($employeenumber,
-                            ".mysqli_real_escape_string($this->connection,$employee['express']).",
-                            ".mysqli_real_escape_string($this->connection,$employee['max']).");";
-                            $result = $this->connection->query($query4);
+                        if ($result == 1){
+                            if($employee['biker'] == true) {
+                                $query4 = "Call sp_CreateBiker($employeenumber,
+                            " . mysqli_real_escape_string($this->connection, $employee['express']) . ",
+                            " . mysqli_real_escape_string($this->connection, $employee['max']) . ");";
+                                $result = $this->connection->query($query4);
+                                if ($result != 1){
+                                    return $this->connection->error;
+                                }
+                            }
+                        }
+                        else{
+                            return $this->connection->error;
                         }
                     }
                 }
             }
+            return 'success';
         }
-        return $result;
+        return $this->connection->error;
     }
 
     function changeEmployee($employee){

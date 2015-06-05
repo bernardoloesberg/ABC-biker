@@ -5,10 +5,8 @@
  * Date: 28-5-2015
  * Time: 14:33
  */
-include_once('code/controllers/ConnectionController.php');
 include_once('code/controllers/AddressController.php');
 
-$connectionController = new ConnectionController();
 $addressController = new AddressController();
 
 if(isset($_POST['changeAddress'])){

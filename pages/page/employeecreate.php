@@ -12,10 +12,10 @@ $employeeController = new EmployeeController();
 if(isset($_POST['createEmployee'])){
     $result = $employeeController->createEmployee($_POST);
 
-    if($result){
+    if($result == 'success'){
         showMessage('success', 'U heeft een nieuwe employee toegevoegd!');
     }else{
-        showMessage('danger', 'Het toevoegen van een nieuwe employee is mislukt!');
+        showMessage('danger',$result);
     }
 }
 
