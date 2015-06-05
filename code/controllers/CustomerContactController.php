@@ -63,8 +63,8 @@ class CustomerContactController {
         return $this->connection->error;
     }
 
-    function getCustomerContactList () {
-        $query = "SELECT * FROM vw_CustomerContactList";
+    function getCustomerContactList ($customer) {
+        $query = "SELECT * FROM vw_CustomerContactList WHERE customernumber = ".$customer;
         $contactList = array();
 
         if($result = $this->connection->query($query)){

@@ -2,17 +2,20 @@
 /**
  * Created by Tom Kooiman
  */
-include_once('code/controllers/AddressForCustomterController.php');
+include_once('code/controllers/AddressForCustomerController.php');
+include_once('code/controllers/AddressController.php');
+
 
 $addressForCustomerController = new AddressForCustomerController();
+$addressController = new AddressController();
 
-if(isset($_POST['changeAddress'])){
+if(isset($_POST['createAddress'])){
     $result = $addressForCustomerController->addAddressToCustomer($_POST);
 
     print_r($result);
 
-    if($result){
-        showMessage('success', 'Het adres is bijgewerkt!');
+    if($result == 'success'){
+        showMessage('success', 'Het adres is aangemaakt!');
     }else{
         showMessage('danger', $result);
     }
@@ -25,54 +28,48 @@ echo '<div class="row">
             <div class="col-md-8">';
 
             if (isset($_GET['id'])) {
-                $address = $addressController->getAddress($_GET['id']);
                 $districts = $addressController->getDistricts();
 
                 echo '
                     <form action="#" method="post">
+                    <input type="hidden" id="customernumber" name="customernumber" value="'.$_GET['id'].'">
                         <div class="form-group">
                             <div class="col-md-6">
-                            <label for="districtname">Districtname</label>
-                            <select class="form-control" id= "districtname" name="districtname">
-                            <option>'.$address['districtname'].'</option>';
+                            <label for="districtnumber">Districtname</label>
+                            <select class="form-control" id="districtnumber" name="districtnumber">';
 
-                    foreach($districts as $district){
-                        if($district['districtname'] != $address['districtname']){
-                            echo '<option>'.$district['districtname'].'</option>';
-                        }
+                foreach($districts as $district){
+                        echo '<option value="'.$district['districtnumber'].'">'.$district['districtname'].'</option>';
                     }
  echo '
                             </select>
                             </div>
                             <div class="col-md-6">
-                                    <label for="straat">Straat</label>
-                                    <input type="text" class="form-control" id="street" name="street" value="'.$address['street'].'">
+                                    <label for="street">Straat</label>
+                                    <input type="text" class="form-control" id="street" name="street" value="">
                               </div>
                             </div>
                             <div class="form-group">
                                  <div class="col-md-6">
-                                    <label for="Plaats">Plaats</label>
-                                    <input type="text" class="form-control" id="city" name="city" value="'.$address['city'].'">
+                                    <label for="city">Plaats</label>
+                                    <input type="text" class="form-control" id="city" name="city" value="">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="Postcode">Postcode</label>
-                                    <input type="text" class="form-control" value="'.$address['zipcode'].'" disabled>
-                                    <input type="hidden" class="form-control" id="zipcode" name="zipcode" value="'.$address['zipcode'].'">
+                                    <label for="zipcode">Postcode</label>
+                                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="">
                                 </div>
                             </div>
                           <div class="form-group">
                               <div class="col-md-6">
-                                <label for="Huisnummer">Huisnummer</label>
-                                <input type="text" class="form-control" value="'.$address['housenumber'].'" disabled>
-                                <input type="hidden" class="form-control" id="housenumber" name="housenumber" value="'.$address['housenumber'].'">
+                                <label for="housenumber">Huisnummer</label>
+                                <input type="number" id="housenumber" name="housenumber" class="form-control" value="">
                               </div>
                               <div class="col-md-6">
-                                <label for="Toevoeging">Toevoeging</label>
-                                <input type="text" class="form-control" value="'.$address['housenumberaddon'].'" disabled>
-                                <input type="hidden" class="form-control" id="housenumberaddon" name="housenumberaddon" value="'.$address['housenumberaddon'].'">
+                                <label for="housenumberaddon">Toevoeging</label>
+                                <input type="text" id="housenumberaddon" name="housenumberaddon" class="form-control" value="">
                               </div>
                           </div>
-                          <button type="submit" class="btn btn-success" name="changeAddress">Sla verandering op</button>
+                          <button type="submit" class="btn btn-success" name="createAddress">adres aanmaken</button>
                         </form>';
             }
             else{

@@ -50,8 +50,6 @@
                             <th>Huisnummer</th>
                             <th>District</th>
                             <th>Bekijken</th>
-                            <th>Bewerken</th>
-                            <th>Verwijderen</th>
                         </thead>
                         <tbody class="searchable">';
         if(isset($addressList) && $addressList != 0) {
@@ -61,8 +59,6 @@
                  <td>' . $address['housenumber'] . ' ' . $address['housenumberaddon'] . '</td>
                  <td>' . $address['districtname'] . '</td>
                  <td><a class="btn btn-info" href="' . $_SESSION['rooturl'] . '/addressdetails/' . $address['addressnumber'] . '">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/addresschange/' . $address['addressnumber'] . '">Bewerken</a></td>
-                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="' . $address['addressnumber'] . '">Verwijderen</button></td>
              </tr>';
             }
         }
@@ -72,16 +68,11 @@
                     </table>
                     <table class="table">
                         <thead>
-                        <br>
-                        <a class="btn btn-info" href="'.$_SESSION['rooturl'].'/contactcreate/'.$_GET['id'].'">Nieuwe contact</a></td>
-                        <br>
                             <strong>Contactgegevens</strong>
                             <th>naam</th>
                             <th>Geslacht</th>
                             <th>department</th>
                             <th>Bekijken</th>
-                            <th>Bewerken</th>
-                            <th>Verwijderen</th>
                         </thead>
                         <tbody class="searchable">';
         if(isset($contactList)) {
@@ -91,8 +82,6 @@
                  <td>' . $contact['contactsex'] . '</td>
                  <td>' . $contact['contactdepartment'] . '</td>
                  <td><a class="btn btn-info" href="' . $_SESSION['rooturl'] . '/contactdetail/' . $contact['contactnumber'] . '">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/contactchange/' . $contact['contactnumber'] . '">Bewerken</a></td>
-                <td><button class="btn btn-danger deleteContact" name="deleteContact" value="' . $contact['contactnumber'] . '">Verwijderen</button></td>
              </tr>';
             }
         }

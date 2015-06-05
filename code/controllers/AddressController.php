@@ -62,16 +62,6 @@
           return $address;
       }
 
-       /**
-        * Create a address
-        * @param $districtnumber
-        * @param $street
-        * @param $zipcode
-        * @param $housenumber
-        * @param $city
-        * @param $housenumberaddon
-        * @return bool|mysqli_result
-        */
        function createAddress ($address) {
            $query = "CALL sp_CreateAddress(".mysqli_real_escape_string($this->connection,$address['districtnumber']).",
                                            '".mysqli_real_escape_string($this->connection,$address['street'])."',
@@ -79,6 +69,9 @@
                                            ".mysqli_real_escape_string($this->connection,$address['housenumber']).",
                                            '".mysqli_real_escape_string($this->connection,$address['city'])."',
                                            '".mysqli_real_escape_string($this->connection,$address['housenumberaddon'])."')";
+
+           echo $query;
+
            if($result = $this->connection->query($query)) {
                return $result;
            }
