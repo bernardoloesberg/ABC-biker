@@ -9,6 +9,7 @@ RewriteEngine on
 RewriteRule ^([-a-zA-Z0-9]+)/?$ index.php?page=$1 [L]
 RewriteRule ^addressdetails/([-a-zA-Z0-9]+)/?$ index.php?page=addressdetails&id=$1 [L]
 RewriteRule ^addresschange/([-a-zA-Z0-9]+)/?$ index.php?page=addresschange&id=$1 [L]
+RewriteRule ^addresscreate/([-a-zA-Z0-9]+)/?$ index.php?page=addresscreate&id=$1 [L]
 RewriteRule ^addressdelete/([-a-zA-Z0-9]+)/?$ index.php?page=addressdelete&id=$1 [L]
 RewriteRule ^consignmentdetail/([-a-zA-Z0-9]+)/?$ index.php?page=consignmentdetail&id=$1 [L]
 RewriteRule ^consignmentchange/([-a-zA-Z0-9]+)/?$ index.php?page=consignmentchange&id=$1 [L]
