@@ -94,7 +94,7 @@ class EmployeeController{
             $employee['express'] = true;
         }
 
-        $query1 = "CALL sp_CreateEmployee(0,
+        $query1 = "CALL sp_CreateEmployee(1,
                                     '".mysqli_real_escape_string($this->connection,$employee['street'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['zipcode'])."',
                                     ".mysqli_real_escape_string($this->connection,$employee['housenumber']).",
