@@ -74,7 +74,11 @@
 
            if($result = $this->connection->query($query)) {
                return $result;
+               if($result) {
+                   return 'success';
+               }
            }
+           return $this->connection->error;
        }
 
        function changeAddress ($address) {

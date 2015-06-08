@@ -19,55 +19,50 @@
          unset($server);
       }
 
-      function addAddressToCustomer($address) {
+      function addAddressToCustomer($address)
+      {
           $addressController = new AddressController();
 
-          $result = $addressController->createAddress($address);
-              if ($result) {
+          $result45 = $addressController->createAddress($address);
+          if ($result45 == 'success') {
 
-                  $query3 = "SELECT addressnumber FROM address WHERE street = '" . mysqli_real_escape_string($this->connection, $address['street']) . "' AND zipcode = '" . mysqli_real_escape_string($this->connection, $address['zipcode']) . "' AND housenumber = '" . mysqli_real_escape_string($this->connection, $address['housenumber']) . "'";
+              $query3 = "SELECT addressnumber FROM address WHERE street = '" . mysqli_real_escape_string($this->connection, $address['street']) . "' AND zipcode = '" . mysqli_real_escape_string($this->connection, $address['zipcode']) . "' AND housenumber = '" . mysqli_real_escape_string($this->connection, $address['housenumber']) . "'";
 
-                  if ($result = $this->connection->query($query3)) {
-                      $addressnumber = $result->fetch_array();
-                  }
-
-                  if(isset($address['customerlastname']) && $address['customerfirstname'] && $address['phonenumber']) {
-                      $query4 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $address['customerlastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $address['customerfirstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $address['phonenumber']) . "'";
-
-                      if ($result = $this->connection->query($query4)) {
-                          $customernumber = $result->fetch_array();
-                      }
-
-                      $query5 = "CALL sp_AddAddressToCustomer(" . $addressnumber[0] . "," . $customernumber[0] . ")";
-                      /**
-                       * End stage if this is TRUE then the entire procedure has passed
-                       */
-
-                      if ($result2 = $this->connection->query($query5)) {
-                          if($result2) {
-                              return 'success';
-                          }
-                      }
-                  }
-
-                  elseif (isset($address['customernumber'])) {
-                      $query6 = "CALL sp_AddAddressToCustomer(" . $addressnumber[0] . "," . $address['customernumber'] . ")";
-
-                      if ($result2 = $this->connection->query($query6)) {
-                          if($result2) {
-                              return 'success';
-                          }
-                      }
-                  }
-                  else {
-                      echo 'geen geldige klant opgegeven!';
-                  }
-
-
+              if ($result = $this->connection->query($query3)) {
+                  $addressnumber = $result->fetch_array();
               }
 
-          print_r($this->connection->error_list);
+              if (isset($address['customerlastname']) && $address['customerfirstname'] && $address['phonenumber']) {
+                  $query4 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $address['customerlastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $address['customerfirstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $address['phonenumber']) . "'";
 
+                  if ($result = $this->connection->query($query4)) {
+                      $customernumber = $result->fetch_array();
+                  }
+
+                  $query5 = "CALL sp_AddAddressToCustomer(" . $addressnumber[0] . "," . $customernumber[0] . ")";
+                  /**
+                   * End stage if this is TRUE then the entire procedure has passed
+                   */
+
+                  if ($result2 = $this->connection->query($query5)) {
+                      if ($result2) {
+                          return 'success';
+                      }
+                  }
+              } elseif (isset($address['customernumber'])) {
+                  $query6 = "CALL sp_AddAddressToCustomer(" . $addressnumber[0] . "," . $address['customernumber'] . ")";
+
+                  if ($result2 = $this->connection->query($query6)) {
+                      if ($result2) {
+                          return 'success';
+                      }
+                  }
+              } else {
+                  echo 'geen geldige klant opgegeven!';
+              }
+          } else {
+              return $result45;
+          }
           return $this->connection->error;
       }
 

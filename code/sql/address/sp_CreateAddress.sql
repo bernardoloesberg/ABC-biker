@@ -21,16 +21,24 @@ CREATE PROCEDURE sp_CreateAddress
       ROLLBACK;
     END;
     START TRANSACTION;
-      IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_street AND zipcode = p_zipcode AND housenumber = p_housenumber AND city = p_city AND housenumberaddon = p_housenumberaddon)
+      IF EXISTS(SELECT 1 FROM address WHERE street = p_street AND zipcode = p_zipcode AND housenumber = p_housenumber AND city = p_city AND housenumberaddon = p_housenumberaddon)
         THEN
+          SIGNAL SQLSTATE '45009'
+            SET MESSAGE_TEXT = 'Adres staat al in de database';
+          ROLLBACK;/*
+      ELSEIF (p_zipcode NOT REGEXP '^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i')
+        THEN
+        SIGNAL SQLSTATE '45010'
+          SET MESSAGE_TEXT = 'Geen geldig postcode!';*/
+      ELSE
           INSERT INTO address
           (districtnumber, street, zipcode, housenumber, city, housenumberaddon)
           VALUES
           (p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
 
           /*SET p_addressnumber = LAST_INSERT_ID();*/
-      END IF;
-      COMMIT;
+        COMMIT;
+    END IF;
   END //
 DELIMITER ;
 

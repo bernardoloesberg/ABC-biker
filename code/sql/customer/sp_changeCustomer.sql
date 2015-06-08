@@ -10,28 +10,28 @@ BEGIN
     END;
     START TRANSACTION;
 
-/* Email validation businessRule on Customer insert
-  IF (email REGEXP '')
+/* Email validation businessRule on Customer insert */
+  IF (emailaddress NOT REGEXP '^[0-9_a-z-]+(\\.[0-9_a-z-]+)*@([0-9a-z-]+\\.)+[a-z]{2,6}$')
   THEN
-    RESIGNAL SQLSTATE '45001'
+    SIGNAL SQLSTATE '45100'
     SET MESSAGE_TEXT = 'Geen geldig emailadres!';
   ROLLBACK;
 /* Name businessRule  if special characters are used */
-/*ELSE*/IF (lastname REGEXP '[^a-zA-Z ]' || firstname REGEXP '[^a-zA-Z ]')
+ ELSEIF (lastname REGEXP '[^a-zA-Z ]' || firstname REGEXP '[^a-zA-Z ]')
   THEN
-    SIGNAL SQLSTATE '45002'
+    SIGNAL SQLSTATE '45101'
     SET MESSAGE_TEXT = 'De naam mag alleen uit letters bestaan';
     ROLLBACK;
 /*sex businessRule can only be m or v */
   ELSEIF (sexin REGEXP '[^mv]')
     THEN
-      SIGNAL SQLSTATE '45003'
+      SIGNAL SQLSTATE '45102'
       SET MESSAGE_TEXT = 'Geen geldig geslacht!';
       ROLLBACK;
 /*Phonenumber can only exists out of numbers*/
   ELSEIF (phone REGEXP '[^0-9]')
     THEN
-      SIGNAL SQLSTATE '45004'
+      SIGNAL SQLSTATE '45103'
       SET MESSAGE_TEXT = 'Geen geldig Telefoonummner!';
       ROLLBACK;
       ELSE

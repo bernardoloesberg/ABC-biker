@@ -85,6 +85,7 @@
                                             '" . mysqli_real_escape_string($this->connection, $customer['sex']) . "',
                                             '" . mysqli_real_escape_string($this->connection, $customer['companyname']) . "',
                                             '" . mysqli_real_escape_string($this->connection, $customer['email']) . "')";
+           echo $query;
 
            if($result = $this->connection->query($query)){
                return 'success';

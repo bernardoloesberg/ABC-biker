@@ -15,8 +15,20 @@ CREATE PROCEDURE sp_CreateCustomerContact
       ROLLBACK;
     END;
     START TRANSACTION;
+/* Email validation businessRule on CustomerContact insert */
+   IF (email NOT REGEXP '^[0-9_a-z-]+(\\.[0-9_a-z-]+)*@([0-9a-z-]+\\.)+[a-z]{2,6}$')
+    THEN
+    SIGNAL SQLSTATE '45100'
+    SET MESSAGE_TEXT = 'Geen geldig emailadres!';
+  ROLLBACK;
+/* Customer must exists*/
+    ELSEIF NOT EXISTS (SELECT '' FROM customer WHERE customernumber = customer)
+      THEN
+      SIGNAL SQLSTATE '45025'
+        SET MESSAGE_TEXT = 'De klant bestaat niet!';
+      ROLLBACK ;
 /* Name businessRule  if special characters are used */
-    IF (lastname REGEXP '[^a-zA-Z ]' || firstname REGEXP '[^a-zA-Z ]')
+    ELSEIF (lastname REGEXP '[^a-zA-Z ]' || firstname REGEXP '[^a-zA-Z ]')
     THEN
      SIGNAL SQLSTATE '45002'
      SET MESSAGE_TEXT = 'De naam mag alleen uit letters bestaan';
