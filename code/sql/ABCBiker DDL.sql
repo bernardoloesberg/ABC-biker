@@ -151,7 +151,7 @@ create table employee
    addressnumber        int not null,
    employeelastname     varchar(40) not null,
    employeefirstname    varchar(40) not null,
-   bsn                  int not null,
+   bsn                  varchar(9) not null,
    cellphone            varchar(14) not null,
    birthday             date not null,
    sex                  char(1) not null,

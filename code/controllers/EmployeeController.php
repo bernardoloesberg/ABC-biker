@@ -94,6 +94,10 @@ class EmployeeController{
             $employee['express'] = true;
         }
 
+        if(!$employee['housenumber']){
+            $employee['housenumber'] = 0;
+        }
+
         $query1 = "CALL sp_CreateEmployee(1,
                                     '".mysqli_real_escape_string($this->connection,$employee['street'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['zipcode'])."',
@@ -102,14 +106,13 @@ class EmployeeController{
                                     '".mysqli_real_escape_string($this->connection,$employee['housenumberaddon'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['employeeFirstName'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['employeeLastName'])."',
-                                    ".mysqli_real_escape_string($this->connection,$employee['bsn']).",
+                                    '".mysqli_real_escape_string($this->connection,$employee['bsn'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['cellphone'])."',
                                     STR_TO_DATE('".mysqli_real_escape_string($this->connection,$employee['birthday']).",
                                     ".mysqli_real_escape_string($this->connection,$employee['birthmonth']).",
                                     ".mysqli_real_escape_string($this->connection,$employee['birthyear'])."' , '%d,%m,%Y'),
                                     '".mysqli_real_escape_string($this->connection,$employee['sex'])."',
                                     'Hallo');";
-        echo $query1;
         if($result = $this->connection->query($query1)) {
             if ($result == 1) {
                 $query2 = "SELECT employeenumber FROM vw_getemployeelist WHERE bsn = " . mysqli_real_escape_string($this->connection, $employee['bsn']);
@@ -123,6 +126,9 @@ class EmployeeController{
                     if($result = $this->connection->query($query3)) {
                         if ($result == 1){
                             if($employee['biker'] == true) {
+                                if(!$employee['max']){
+                                    $employee['max'] = 0;
+                                }
                                 $query4 = "Call sp_CreateBiker($employeenumber,
                             " . mysqli_real_escape_string($this->connection, $employee['express']) . ",
                             " . mysqli_real_escape_string($this->connection, $employee['max']) . ");";
