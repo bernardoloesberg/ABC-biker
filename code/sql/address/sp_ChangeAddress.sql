@@ -27,4 +27,4 @@ CREATE PROCEDURE sp_ChangeAddress(
     UPDATE address SET districtnumber = p_districtnumber, street = p_street, city = p_city WHERE addressnumber = @p_addressnumber;
     COMMIT;
   END //
-DELIMITER
+DELIMITER ;

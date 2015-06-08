@@ -68,6 +68,7 @@ $('.deleteParcel').on('click', function(){
             data: {parcelnumber: $(this).val()},
             success: function(data){
                 // Success eventueel een message weergeven
+                console.log(data);
             }
         });
 

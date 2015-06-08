@@ -79,7 +79,7 @@
                                                     '".mysqli_real_escape_string($this->connection,$consignment['totalprice'])."',
                                                     @p_consignmentnumber);";
 
-         //echo $query;
+        echo $query;
 
          if($result = $this->connection->query($query)){
             $result = $this->connection->query('SELECT @p_consignmentnumber');

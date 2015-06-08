@@ -66,12 +66,14 @@
                                             '".mysqli_real_escape_string($this->connection,$parcel['pickuphousenumber'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['pickupcity'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['pickuphousenumberaddon'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['weigthingrams'])."',
+                                            ".mysqli_real_escape_string($this->connection,$parcel['weigthingrams']).",
                                             '".mysqli_real_escape_string($this->connection,$parcel['pickup'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['delivery'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['hqarrival'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['hqdeparture'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['comment'])."')";
+                                            '".mysqli_real_escape_string($this->connection,$parcel['comment'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['price'])."',
+                                            ".(isset($parcel['express']) ? mysqli_real_escape_string($this->connection,$parcel['express']) : 0 ).")";
             echo $query;
 
             if($result = $this->connection->query($query)){
@@ -82,6 +84,7 @@
         /**
          * Update a parcel.
          * @param $parcel
+         * @return bool|mysqli_result
          */
         function changeParcel($parcel){
             $query = "CALL sp_changeParcel(".mysqli_real_escape_string($this->connection,$parcel['parcelnumber']).",
@@ -98,7 +101,9 @@
                                             '".mysqli_real_escape_string($this->connection,$parcel['delivery'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['hqarrival'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['hqdeparture'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['comment'])."')";
+                                            '".mysqli_real_escape_string($this->connection,$parcel['comment'])."',
+                                            '".mysqli_real_escape_string($this->connection,$parcel['price'])."',
+                                            ".(isset($parcel['express']) ? mysqli_real_escape_string($this->connection,$parcel['express']) : 0 ).")";
             echo $query;
 
             if($result = $this->connection->query($query)){
@@ -109,11 +114,13 @@
         /**
          * Delete a parcel.
          * @param $parcelnumber
+         * @return bool|mysqli_result
          */
         function deleteParcel($parcelnumber){
             $query = "CALL sp_deleteParcel(".mysqli_real_escape_string($this->connection,$parcelnumber).")";
 
             if($result = $this->connection->query($query)){
+                echo $query;
                 return $result;
             }
         }

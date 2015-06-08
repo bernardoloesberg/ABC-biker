@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="weigthingrams">weigthingrams</label>
+                                <label for="weigthingrams">Gewicht</label>
                                 <input type="text" class="form-control" id="weigthingrams" name="weigthingrams" value="" />
                             </div>
                         </div>
@@ -117,7 +117,21 @@
                         </div>
                     </div>
                     <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="hqarrival">Prijs</label>
+                                <input type="text" class="form-control" id="price" name="price" value="'.$parcel['price'].'" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dispatcher">Express</label>
+                                  <span class="input-group-addon">
+                                    <input type="checkbox" class="" name="express" value="1">
+                                  </span>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                            <div class="col-md-12">
                         <button type="submit" name="createParcel" class="btn btn-primary">Toevoegen</button>
+                        </div>
                     </div>
                 </form>
             </div>

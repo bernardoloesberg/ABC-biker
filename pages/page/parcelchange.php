@@ -11,8 +11,14 @@
         $parcel = $parcelController->getParcel($_GET['id']);
 
         if(isset($_POST['changeParcel'])){
-            print_r($_POST);
+
             $result = $parcelController->changeParcel($_POST);
+
+            if($result){
+                showMessage('success', 'Het pakket is bijgewerkt');
+            }else{
+                showMessage('danger', 'Het bijwerken van een pakket is niet gelukt');
+            }
 
             $parcel = $parcelController->getParcel($_GET['id']);
         }
@@ -79,7 +85,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="weigthingrams">weigthingrams</label>
+                                    <label for="weigthingrams">Gewicht</label>
                                     <input type="text" class="form-control" id="weigthingrams" name="weigthingrams" value="'.$parcel['weightingrams'].'" />
                                 </div>
                             </div>
@@ -112,9 +118,23 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="changeParcel" class="btn btn-primary">Toevoegen</button>
-                            <input type="hidden" value="'.$parcel['parcelnumber'].'" name="parcelnumber" />
-                            <input type="hidden" value="'.$parcel['consignmentnumber'].'" name="consignmentnumber" />
+                            <div class="col-md-6">
+                                <label for="hqarrival">Prijs</label>
+                                <input type="text" class="form-control" id="price" name="price" value="'.$parcel['price'].'" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dispatcher">Express</label>
+                                  <span class="input-group-addon">
+                                    <input type="checkbox" class="" name="express" value="1"'.(isset($parcel['express']) && $parcel['express'] == 1 ? 'checked' : 'no').'>
+                                  </span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button type="submit" name="changeParcel" class="btn btn-primary">Toevoegen</button>
+                                <input type="hidden" value="'.$parcel['parcelnumber'].'" name="parcelnumber" />
+                                <input type="hidden" value="'.$parcel['consignmentnumber'].'" name="consignmentnumber" />
+                            </div>
                         </div>
                     </form>
                 </div>

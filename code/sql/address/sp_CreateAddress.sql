@@ -12,7 +12,8 @@ CREATE PROCEDURE sp_CreateAddress
     IN p_zipcode      VARCHAR(6),
     IN p_housenumber  INT,
     IN p_city         VARCHAR(40),
-    IN p_housenumberaddon char(1))
+    IN p_housenumberaddon char(1)
+    /*OUT p_addressnumber      INT*/)
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -26,6 +27,8 @@ CREATE PROCEDURE sp_CreateAddress
           (districtnumber, street, zipcode, housenumber, city, housenumberaddon)
           VALUES
           (p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
+
+          /*SET p_addressnumber = LAST_INSERT_ID();*/
       END IF;
       COMMIT;
   END //

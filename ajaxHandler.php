@@ -3,7 +3,6 @@
      * @author: Bernardo Loesberg
      */
     require_once('code/controllers/CustomerController.php');
-    require_once('code/controllers/ParcelController.php');
     require_once('code/controllers/AddressForCustomerController.php');
 
     $customerController = new CustomerController();
@@ -16,9 +15,6 @@
     }
 
     if(isset($_POST['customernumberforaddress'])) {
+        header("Content-Type: application/json", true);
         echo json_encode($addressForCustomerController->getCustomerAddress($_POST['customernumberforaddress']));
-    }
-
-    if(isset($_POST['parcelnumber'])) {
-        echo json_encode($parcelController->deleteParcel($_POST['parcelnumber']));
     }

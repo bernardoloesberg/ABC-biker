@@ -18,7 +18,9 @@ CREATE PROCEDURE sp_createParcel
    IN p_deliver               DATETIME,
    IN p_hqarrival             DATETIME,
    IN p_hqdeparmenture        DATETIME,
-   IN p_comment               TEXT)
+   IN p_comment               TEXT,
+   IN p_price                 FLOAT,
+   IN p_express               BOOLEAN)
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -31,13 +33,13 @@ CREATE PROCEDURE sp_createParcel
     (1,p_street,p_housenumber,p_zipcode,p_city,p_housenumberaddon);
 
     INSERT INTO parcel
-    (consignmentnumber,pickupemployeenumber,deliveremployeenumber,addressnumber,weightingrams,pickup,delivery,hqarrival,hqdeparture,`comment`)
+    (consignmentnumber,pickupemployeenumber,deliveremployeenumber,addressnumber,weightingrams,pickup,delivery,hqarrival,hqdeparture,`comment`,price,express)
     VALUES
-    (p_consignmentnumber,p_pickupemployeenumber,p_deliveremployeenumber,(SELECT addressnumber FROM address WHERE street = p_street AND zipcode = p_zipcode AND housenumber = p_housenumber AND city = p_city AND housenumberaddon = p_housenumberaddon), p_weightingrams,p_pickup,p_deliver,p_hqarrival,p_hqdeparmenture,p_comment);
+    (p_consignmentnumber,p_pickupemployeenumber,p_deliveremployeenumber,(SELECT addressnumber FROM address WHERE street = p_street AND zipcode = p_zipcode AND housenumber = p_housenumber AND city = p_city AND housenumberaddon = p_housenumberaddon), p_weightingrams,p_pickup,p_deliver,p_hqarrival,p_hqdeparmenture,p_comment,p_price,p_express);
 
     COMMIT;
   END //
 DELIMITER ;
 
 CALL sp_createParcel
-(6,2,2,'Twikkel straat', '6825BV', 1, 'Arnhem', '',1000,'2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','test')
+(6,2,2,'Twikkel straat', '6825BV', 1, 'Arnhem', '',1000,'2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','test',10,1)

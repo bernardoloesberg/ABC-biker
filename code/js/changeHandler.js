@@ -26,13 +26,11 @@ function getAddress(customernumber){
         type: 'POST',
         data: {customernumberforaddress: customernumber},
         success: function(data){
-            var address = JSON.parse(data);
-            console.log(address);
-            $('#pickupstreet').val(address.street);
-            $('#pickuphousenumber').val(address.housenumber);
-            $('#pickuphousenumberaddon').val(address.housenumberaddon);
-            $('#pickupzipcode').val(address.zipcode);
-            $('#pickupcity').val(address.city);
+            $('#pickupstreet').val(data[0].street);
+            $('#pickuphousenumber').val(data[0].housenumber);
+            $('#pickuphousenumberaddon').val(data[0].housenumberaddon);
+            $('#pickupzipcode').val(data[0].zipcode);
+            $('#pickupcity').val(data[0].city);
         }
     });
 }
