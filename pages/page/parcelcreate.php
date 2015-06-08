@@ -8,7 +8,7 @@
 
     $employees = $emloyeeController->getEmployeeList();
 
-    echo '<form action="'.$_SESSION['rooturl'].'/consignmentoverview" method="post">';
+    echo '<form action="'.$_SESSION['rooturl'].'/consignmentdetail/'.$_GET['id'].'" method="post">';
 
     if(isset($_GET['id'])){
         echo '<input type="hidden" name="consignmentnumber" id="consignmentnumber" value="'.$_GET['id'].'" />';

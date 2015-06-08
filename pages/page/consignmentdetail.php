@@ -11,6 +11,15 @@
     $customerController = new CustomerController();
     $parcelController = new ParcelController();
 
+    if(isset($_POST['createParcel'])){
+        $result = $parcelController->createParcel($_POST);
+
+        if($result){
+
+        }
+        print_r($_POST);
+    }
+
     if(isset($_GET['id'])) {
         $customers = $customerController->getCustomerList();
         $consignment = $consignmentController->getConsignment($_GET['id']);

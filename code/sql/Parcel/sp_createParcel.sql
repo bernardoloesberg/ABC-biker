@@ -29,8 +29,12 @@ CREATE PROCEDURE sp_createParcel
     END;
     START TRANSACTION;
 
-    CALL sp_CreateAddress
-    (1,p_street,p_housenumber,p_zipcode,p_city,p_housenumberaddon);
+    /*Check if there is a pickup addres*/
+    IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_street AND zipcode = p_zipcode AND housenumber = p_housenumber AND city = p_city AND housenumberaddon = p_housenumberaddon)
+    THEN
+      CALL sp_createAddress
+      (1, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon);
+    END IF;
 
     INSERT INTO parcel
     (consignmentnumber,pickupemployeenumber,deliveremployeenumber,addressnumber,weightingrams,pickup,delivery,hqarrival,hqdeparture,`comment`,price,express)

@@ -5,12 +5,6 @@
     $consignmentController = new ConsignmentController();
     $consignmentList = $consignmentController->getConsignmentList();
 
-    if(isset($_POST['createParcel'])){
-        $parcelController = new ParcelController();
-        $result = $parcelController->createParcel($_POST);
-        print_r($_POST);
-    }
-
     echo '<div class="row">
                 <div class="col-md-2">
 

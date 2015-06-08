@@ -77,7 +77,9 @@
             echo $query;
 
             if($result = $this->connection->query($query)){
-                return $result;
+                return 'success';
+            }else{
+                return $this->connection->error;
             }
         }
 
@@ -107,7 +109,9 @@
             echo $query;
 
             if($result = $this->connection->query($query)){
-                return $result;
+                return 'success';
+            }else{
+                return $this->connection->error;
             }
         }
 
@@ -120,7 +124,6 @@
             $query = "CALL sp_deleteParcel(".mysqli_real_escape_string($this->connection,$parcelnumber).")";
 
             if($result = $this->connection->query($query)){
-                echo $query;
                 return $result;
             }
         }
