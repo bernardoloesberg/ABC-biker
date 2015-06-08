@@ -46,7 +46,7 @@ $addressForCustomerController = new AddressForCustomerController();
                               </div>
                               <div class="form-group">
                                 <label for="phonenumber">Telefoonnummer</label>
-                                <input type="number" class="form-control" id="phonenumber" name="phonenumber" value="'.$customer['phonenumber'].'" required>
+                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="'.$customer['phonenumber'].'" required>
                               </div>
                                 <div class="form-group">
                                 <label for="sex">Geslacht</label>

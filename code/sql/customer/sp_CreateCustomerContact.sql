@@ -15,8 +15,14 @@ CREATE PROCEDURE sp_CreateCustomerContact
       ROLLBACK;
     END;
     START TRANSACTION;
+/* Double record prevention*/
+    IF EXISTS(SELECT '' FROM customercontact WHERE contactlastname = lastname AND contactfirstname = firstname AND contactsex = sexin AND contactphonenumber = phone AND contactemail = email AND contactdepartment = department)
+      THEN
+        SIGNAL SQLSTATE '45101'
+          SET MESSAGE_TEXT = 'Dit contact bestaat al!';
+          ROLLBACK;
 /* Email validation businessRule on CustomerContact insert */
-   IF (email NOT REGEXP '^[0-9_a-z-]+(\\.[0-9_a-z-]+)*@([0-9a-z-]+\\.)+[a-z]{2,6}$')
+   ELSEIF (email NOT REGEXP '^[0-9_a-z-]+(\\.[0-9_a-z-]+)*@([0-9a-z-]+\\.)+[a-z]{2,6}$')
     THEN
     SIGNAL SQLSTATE '45100'
     SET MESSAGE_TEXT = 'Geen geldig emailadres!';

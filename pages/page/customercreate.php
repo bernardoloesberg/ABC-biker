@@ -29,7 +29,7 @@
                               </div>
                               <div class="form-group">
                                 <label for="phonenumber">Telefoonnummner</label>
-                                <input type="number" class="form-control" id="phonenumber" name="phonenumber" value="" required>
+                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="" required>
                               </div>
                               <div class="form-group">
                                 <label for="sex">Geslacht</label>
