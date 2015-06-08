@@ -124,7 +124,9 @@
             $query = "CALL sp_deleteParcel(".mysqli_real_escape_string($this->connection,$parcelnumber).")";
 
             if($result = $this->connection->query($query)){
-                return $result;
+                return 'success';
+            }else{
+                return $this->connection->error;
             }
         }
 

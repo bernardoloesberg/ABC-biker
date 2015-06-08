@@ -100,6 +100,7 @@ $('.deleteCustomerAddress').on('click', function(){
             data: {address: $(this).val(), customer: $(this).attr("data-NG-customernumber")},
             success: function(data){
                 // Success eventueel een message weergeven
+                console.log($(this).attr("data-NG-customernumber"));
             }
         });
 
