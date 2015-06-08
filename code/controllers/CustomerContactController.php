@@ -75,6 +75,19 @@ class CustomerContactController {
         return $contactList;
     }
 
+    function deleteCustomerContact ($contact) {
+        $query = "CALL sp_DeleteCustomerContact(".mysqli_real_escape_string($this->connection, $contact['contactnumber']).")";
+        print $query;
+
+        if($result = $this->connection->query($query)) {
+            if($result) {
+                return 'success';
+            }
+        }
+
+        return $this->connection->error;
+    }
+
     function __destruct(){
         $this->connection->close();
     }

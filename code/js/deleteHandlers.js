@@ -75,3 +75,34 @@ $('.deleteParcel').on('click', function(){
         $(this).closest('tr').remove();
     }
 });
+//////////////////////////////////////////////////////////////////////////////////
+
+$('.deleteContact').on('click', function(){
+    if (confirm("Weet u zeker dat u deze contactpersoon wilt verwijderen?") == true) {
+        $.ajax({
+            url: '/ABC-biker/ajaxdelete',
+            type: 'POST',
+            data: {contactnumber: $(this).val()},
+            success: function(data){
+                // Success eventueel een message weergeven
+            }
+        });
+
+        $(this).closest('tr').remove();
+    }
+});
+
+$('.deleteCustomerAddress').on('click', function(){
+    if (confirm("Weet u zeker dat u dit adres wilt verwijderen?") == true) {
+        $.ajax({
+            url: '/ABC-biker/ajaxdelete',
+            type: 'POST',
+            data: {address: $(this).val(), customer: $(this).attr("data-NG-customernumber")},
+            success: function(data){
+                // Success eventueel een message weergeven
+            }
+        });
+
+        $(this).closest('tr').remove();
+    }
+});

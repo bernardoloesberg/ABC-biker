@@ -71,8 +71,8 @@
           return $this->connection->error;
       }
 
-       function deleteAddressFromCustomer($address) {
-           $query = "CALL sp_DeleteCustomerAddress(".$address['customernumber'].",".$address['addressnumber'].")";
+       function deleteAddressFromCustomer($address, $customer) {
+           $query = "CALL sp_DeleteCustomerAddress(".$address.",".$customer.")";
            if ($result = $this->connection->query($query)) {
                if($result) {
                    return 'success';

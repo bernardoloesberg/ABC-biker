@@ -89,7 +89,7 @@ $addressForCustomerController = new AddressForCustomerController();
                  <td>' . $address['districtname'] . '</td>
                  <td><a class="btn btn-info" href="' . $_SESSION['rooturl'] . '/addressdetails/' . $address['addressnumber'] . '">Bekijken</a></td>
                  <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/addresschange/' . $address['addressnumber'] . '">Bewerken</a></td>
-                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="' . $address['addressnumber'] . '">Verwijderen</button></td>
+                <td><button class="btn btn-danger deleteCustomerAddress" name="deleteCustomerAddress" value="' . $address['addressnumber'] . '" data-NG-customernumber="'.$_GET['id'].'">Verwijderen</button></td>
              </tr>';
                     }
                 }
@@ -136,3 +136,5 @@ $addressForCustomerController = new AddressForCustomerController();
             }
     echo '    </div>
           </div>';
+
+loadscript('../code/js/deleteHandlers.js');

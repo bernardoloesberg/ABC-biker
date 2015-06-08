@@ -4,12 +4,14 @@
     require_once('code/controllers/EmployeeController.php');
     require_once('code/controllers/AddressController.php');
     require_once('code/controllers/ParcelController.php');
+    require_once('code/controllers/AddressForCustomerController.php');
 
     $consignmentController = new ConsignmentController();
     $customerController = new CustomerController();
     $employeeController = new EmployeeController();
     $addressController = new AddressController();
     $parcelController = new ParcelController();
+    $addressForCustomerController = new AddressForCustomerController();
 
     if(isset($_POST['consignmentnumber'])) {
         echo $result = $consignmentController->deleteConsignment($_POST['consignmentnumber']);
@@ -39,4 +41,10 @@
         echo json_encode($parcelController->deleteParcel($_POST['parcelnumber']));
     } else {
         echo 'There is no parcelnumber to delete.';
+    }
+
+    if(isset($_POST['address']) && isset($_POST['customer'])) {
+        echo json_encode($addressForCustomerController->deleteAddressFromCustomer($_POST['address'],$_POST['customer']));
+    } else {
+        echo 'there is no address for customer to delete';
     }
