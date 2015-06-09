@@ -103,6 +103,11 @@ CREATE PROCEDURE sp_CreateEmployee(
         SIGNAL SQLSTATE '45114'
         SET MESSAGE_TEXT = 'Huisnummer moet ingevuld zijn en groter dan 0';
     ROLLBACK;
+    ELSEIF ((SELECT bsn FROM vw_getEmployeeList where bsn = p_bsn) IS NOT NULL)
+      THEN
+        SIGNAL SQLSTATE '45115'
+        SET MESSAGE_TEXT = 'Er bestaat al een werknemer met dit BSN';
+    ROLLBACK;
     ELSE
       CALL sp_GetAddressNumber(p_districtnumber, p_street, p_zipcode, p_housenumber, p_city, p_housenumberaddon, @p_addressnumber);
 	  SET p_addressnumber = @p_addressnumber;

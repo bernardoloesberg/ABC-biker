@@ -11,12 +11,11 @@ $employeeController = new EmployeeController();
 
 if(isset($_POST['changeEmployee'])){
     $result = $employeeController->changeEmployee($_POST);
-    print_r($_POST);
 
-    if($result){
+    if($result == 'success' ){
         showMessage('success', 'U heeft een employee gewijzigd!');
     }else{
-        showMessage('danger', 'Het wijzigen van een employee is mislukt!');
+        showMessage('danger', $result);
     }
 }
 
@@ -31,6 +30,10 @@ echo '<div class="row">
                 $birthparts = explode("-",$employee['birthday']);
                 if($employee['biker'] == 'biker'){
                     $biker = $employeeController->getBiker($_GET['id']);
+                }
+                else{
+                    $biker['maxdeliveries'] = 0;
+                    $biker['express'] = 0;
                 }
 
 
@@ -77,7 +80,7 @@ echo '<div class="row">
                               <div class="col-md-4">
                                 <label for="geslacht">Geslacht</label>
                                 <select class="form-control" name="sex">
-                                    <option value="'.($employee['sex'] == 'V' ? 'M' : 'V').'">'.($employee['sex'] == 'V' ? 'Vrouw' : 'Man').'</option>
+                                    <option value="'.($employee['sex'] == 'V' ? 'V' : 'M').'">'.($employee['sex'] == 'V' ? 'Vrouw' : 'Man').'</option>
                                     <option value="'.($employee['sex'] == 'V' ? 'M' : 'V').'">'.($employee['sex'] == 'V' ? 'Man' : 'Vrouw').'</option>
                                 </select>
                               </div>
@@ -117,12 +120,14 @@ echo'                    </span>
                                   <div class="col-md-2">
                                   <label for="express">Express</label>
                                   <span class="input-group-addon">
-                                    <input type="checkbox" name="express" value="true">
+                                    <input type="checkbox" name="express" value="true"'
+                                    .($biker['express'] ? 'checked="checked"':'').'>';
+    echo'
                                   </span>
                                   </div>
                                   <div class="col-md-4">
                                     <label for="max">max-verzendingen</label>
-                                    <input type="text" class="form-control" id="max" name="max" value="">
+                                    <input type="text" class="form-control" id="max" name="max" value="'.$biker['maxdeliveries'].'">
                                   </div>
                               </div>
                               <div class="col-md-2">

@@ -69,34 +69,7 @@ class EmployeeController{
      * Create an employee.
      */
     function createEmployee($employee){
-        if(!isset($employee['biker'])) {
-            $employee['biker'] = '0';
-        }
-        else{
-            $employee['biker'] = true;
-        }
-        if(!isset($employee['bus'])){
-            $employee['bus'] = '0';
-        }
-        else{
-            $employee['bus'] = true;
-        }
-        if(!isset($employee['dispatcher'])){
-            $employee['dispatcher'] = '0';
-        }
-        else{
-            $employee['dispatcher'] = true;
-        }
-        if(!isset($employee['express'])){
-            $employee['express'] = '0';
-        }
-        else{
-            $employee['express'] = true;
-        }
-
-        if(!$employee['housenumber']){
-            $employee['housenumber'] = 0;
-        }
+        $employee = $this->zetNullWaardesOm($employee);
 
         $query1 = "CALL sp_CreateEmployee(1,
                                     '".mysqli_real_escape_string($this->connection,$employee['street'])."',
@@ -150,6 +123,7 @@ class EmployeeController{
     }
 
     function changeEmployee($employee){
+        $employee = $this->zetNullWaardesOm($employee);
         $query = "CALL sp_ChangeEmployee(".mysqli_real_escape_string($this->connection,$employee['employeenumber']).",
                                     0,
                                     '".mysqli_real_escape_string($this->connection,$employee['street'])."',
@@ -159,16 +133,80 @@ class EmployeeController{
                                     '".mysqli_real_escape_string($this->connection,$employee['housenumberaddon'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['employeeFirstName'])."',
                                     '".mysqli_real_escape_string($this->connection,$employee['employeeLastName'])."',
-                                    ".mysqli_real_escape_string($this->connection,$employee['bsn']).",
-                                    ".mysqli_real_escape_string($this->connection,$employee['cellphone']).",
+                                    '".mysqli_real_escape_string($this->connection,$employee['bsn'])."',
+                                    '".mysqli_real_escape_string($this->connection,$employee['cellphone'])."',
                                     STR_TO_DATE('".mysqli_real_escape_string($this->connection,$employee['birthday']).",
                                     ".mysqli_real_escape_string($this->connection,$employee['birthmonth']).",
                                     ".mysqli_real_escape_string($this->connection,$employee['birthyear'])."' , '%d,%m,%Y'),
                                     '".mysqli_real_escape_string($this->connection,$employee['sex'])."');";
         if($result = $this->connection->query($query)){
-            return $result;
+            if ($result == 1) {
+                $query2 = "Call sp_ChangeRolesEmployee($employee[employeenumber],
+                    ".mysqli_real_escape_string($this->connection,$employee['biker']).",
+                    ".mysqli_real_escape_string($this->connection,$employee['bus']).",
+                    ".mysqli_real_escape_string($this->connection,$employee['dispatcher']).");";
+                if($result = $this->connection->query($query2)) {
+                    if ($result == 1){
+                        if($employee['biker'] == true) {
+                            if(!$employee['max']){
+                                $employee['max'] = 0;
+                            }
+                            $query4 = "Call sp_ChangeBiker($employee[employeenumber],
+                            " . mysqli_real_escape_string($this->connection, $employee['express']) . ",
+                            " . mysqli_real_escape_string($this->connection, $employee['max']) . ");";
+                            $result = $this->connection->query($query4);
+                            if ($result != 1){
+                                return $this->connection->error;
+                            }
+                        }
+                        else{
+                            $query5 = "Call sp_DeleteBiker($employee[employeenumber])";
+                            $result = $this->connection->query($query5);
+                            if ($result != 1) {
+                                return $this->connection->error;
+                            }
+                        }
+                    }
+                    else{
+                        return $this->connection->error;
+                    }
+                }
+            }
+            return 'success';
+        }
+        return $this->connection->error;
+    }
+
+    function zetNullWaardesOm($employee){
+        if(!isset($employee['biker'])) {
+            $employee['biker'] = '0';
+        }
+        else{
+            $employee['biker'] = true;
+        }
+        if(!isset($employee['bus'])){
+            $employee['bus'] = '0';
+        }
+        else{
+            $employee['bus'] = true;
+        }
+        if(!isset($employee['dispatcher'])){
+            $employee['dispatcher'] = '0';
+        }
+        else{
+            $employee['dispatcher'] = true;
+        }
+        if(!isset($employee['express'])){
+            $employee['express'] = '0';
+        }
+        else{
+            $employee['express'] = true;
         }
 
+        if(!$employee['housenumber']){
+            $employee['housenumber'] = 0;
+        }
+        return $employee;
     }
 
     /**
