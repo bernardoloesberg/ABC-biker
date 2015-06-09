@@ -3,8 +3,8 @@
 
 <head>
     <?php
-    print_r($_SESSION['user']);
-    //session_destroy();
+    //print_r($_SESSION['user']);
+    session_destroy();
     //print_r($_COOKIE["loginCredentials"]);
     ?>
     <meta charset="utf-8">

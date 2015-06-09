@@ -1,6 +1,10 @@
 <?php
     include_once('code/controllers/ConsignmentController.php');
     include_once('code/controllers/ParcelController.php');
+    print_r($_SESSION['user']);
+    if(isset($_GET['id']) && !empty($_GET['id'])){
+        showMessage('succes', 'Welkom: '. $_SESSION['user']['employeefirstname'] . ' ' . $_SESSION['user']['employeelastname']);
+    }
 
     $consignmentController = new ConsignmentController();
     $consignmentList = $consignmentController->getConsignmentsOfBiker($_SESSION['user']['employeenumber']);
