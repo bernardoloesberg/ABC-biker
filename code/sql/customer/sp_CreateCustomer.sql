@@ -7,7 +7,7 @@ DROP procedure IF exists sp_CreateCustomer;
 
 DELIMITER //
 CREATE PROCEDURE sp_CreateCustomer
-  (IN lastname VARCHAR(40),IN firstname VARCHAR(40),IN phone VARCHAR(14),IN sexin CHAR(1),IN company VARCHAR(40),IN emailaddress VARCHAR(50))
+  (IN lastname VARCHAR(40),IN firstname VARCHAR(40),IN phone VARCHAR(14),IN sexin CHAR(1),IN company VARCHAR(40),IN emailaddress VARCHAR(50),IN pw VARCHAR(256))
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -47,9 +47,8 @@ CREATE PROCEDURE sp_CreateCustomer
           SET MESSAGE_TEXT = 'Geen geldig Telefoonummner!';
     ROLLBACK;
     ELSE
-
-      INSERT INTO customer (customerlastname, customerfirstname, phonenumber, sex, companyname,email)
-      VALUES (lastname, firstname, phone, sexin, company, emailaddress);
+      INSERT INTO customer (customerlastname, customerfirstname, phonenumber, sex, companyname, email, password)
+      VALUES (lastname, firstname, phone, sexin, company, emailaddress, pw);
       COMMIT;
     END IF;
 

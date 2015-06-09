@@ -1,6 +1,8 @@
 <?php
    include_once('ConnectionController.php');
    include_once('AddressForCustomerController.php');
+   include_once('LoginController.php');
+   include_once('mailController.php');
 
    /**
      * Class CustomerController
@@ -48,19 +50,31 @@
         */
       function createCustomer ($customer){
           $AddressForCustomerController = new AddressForCustomerController();
+          $loginController = new LoginController();
+          $mailController = new MailController();
 
           $query1 = "CALL sp_CreateCustomer('" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "',
                                         '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "',
                                         '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "',
                                         '" . mysqli_real_escape_string($this->connection, $customer['sex']) . "',
                                         '" . mysqli_real_escape_string($this->connection, $customer['companyname']) . "',
-                                        '" . mysqli_real_escape_string($this->connection, $customer['email']) . "')";
+                                        '" . mysqli_real_escape_string($this->connection, $customer['email']) . "',
+                                        '" .  $loginController->hashPassword($customer['pw']). "')";
 
           if ($result = $this->connection->query($query1)) {
-              if ($result == 1) {
+              if ($result) {
+
+                  $query3 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "'";
+                  if($result3 = $this->connection->query($query3)) {
+                      if ($result3) {
+                          $mailController->sendPasswordForNewCostumer($result3->fetch_array(),$customer['pw']);
+                      }
+                  }
+
                   $result2 = $AddressForCustomerController->addAddressToCustomer($customer);
 
                   if($result2 == 'success') {
+
                       return 'success';
                   }
               }

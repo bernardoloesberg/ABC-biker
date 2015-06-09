@@ -1,9 +1,11 @@
 <?php
     include_once('code/controllers/CustomerController.php');
     include_once('code/controllers/AddressController.php');
+    include_once('code/controllers/LoginController.php');
 
     $customerController = new CustomerController();
     $addressController = new AddressController();
+    $loginController = new LoginController();
 
     if(isset($_POST['submit'])){
         $result = $customerController->createCustomer($_POST);
@@ -25,6 +27,7 @@
                 </div>
                 <div class="col-md-8">
                         <form action="#" method="post">
+                                <input type="hidden" id="pw" name="pw" value="'.$loginController->passwordGenerator(10).'">
                               <div class="form-group">
                                 <label for="customerlastname">Achternaam</label>
                                 <input type="text" class="form-control" id="customerlastname" name="customerlastname" value="" required>
