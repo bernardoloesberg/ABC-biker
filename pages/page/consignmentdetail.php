@@ -14,10 +14,11 @@
     if(isset($_POST['createParcel'])){
         $result = $parcelController->createParcel($_POST);
 
-        if($result){
-
+        if($result == 'success'){
+            showMessage('success','Er is een pakket toegevoegd aan de consignment.');
+        }else{
+            showMessage('success',$result);
         }
-        print_r($_POST);
     }
 
     if(isset($_GET['id'])) {

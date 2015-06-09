@@ -67,11 +67,11 @@
                                             '".mysqli_real_escape_string($this->connection,$parcel['pickupcity'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['pickuphousenumberaddon'])."',
                                             ".mysqli_real_escape_string($this->connection,$parcel['weigthingrams']).",
-                                            '".mysqli_real_escape_string($this->connection,$parcel['pickup'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['delivery'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['hqarrival'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['hqdeparture'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['comment'])."',
+                                            ".(!empty($parcel['pickup'])? mysqli_real_escape_string($this->connection,$parcel['pickup']) : 'null').",
+                                            ".(!empty($parcel['delivery'])? mysqli_real_escape_string($this->connection,$parcel['delivery']) : 'null').",
+                                            ".(!empty($parcel['hqarrival'])? mysqli_real_escape_string($this->connection,$parcel['hqarrival']) : 'null').",
+                                            ".(!empty($parcel['hqdeparture'])? mysqli_real_escape_string($this->connection,$parcel['hqdeparture']) : 'null').",
+                                            ".(!empty($parcel['comment'])? mysqli_real_escape_string($this->connection,$parcel['comment']) : 'null').",
                                             '".mysqli_real_escape_string($this->connection,$parcel['price'])."',
                                             ".(isset($parcel['express']) ? mysqli_real_escape_string($this->connection,$parcel['express']) : 0 ).")";
             echo $query;
@@ -99,11 +99,11 @@
                                             '".mysqli_real_escape_string($this->connection,$parcel['pickupcity'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['pickuphousenumberaddon'])."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['weigthingrams'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['pickup'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['delivery'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['hqarrival'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['hqdeparture'])."',
-                                            '".mysqli_real_escape_string($this->connection,$parcel['comment'])."',
+                                            ".(!empty($parcel['pickup'])? mysqli_real_escape_string($this->connection,$parcel['pickup']) : 'null').",
+                                            ".(!empty($parcel['delivery'])? mysqli_real_escape_string($this->connection,$parcel['delivery']) : 'null').",
+                                            ".(!empty($parcel['hqarrival'])? mysqli_real_escape_string($this->connection,$parcel['hqarrival']) : 'null').",
+                                            ".(!empty($parcel['hqdeparture'])? mysqli_real_escape_string($this->connection,$parcel['hqdeparture']) : 'null').",
+                                            ".(!empty($parcel['comment'])? mysqli_real_escape_string($this->connection,$parcel['comment']) : 'null').",
                                             '".mysqli_real_escape_string($this->connection,$parcel['price'])."',
                                             ".(isset($parcel['express']) ? mysqli_real_escape_string($this->connection,$parcel['express']) : 0 ).")";
             echo $query;

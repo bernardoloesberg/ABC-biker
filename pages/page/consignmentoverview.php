@@ -5,6 +5,17 @@
     $consignmentController = new ConsignmentController();
     $consignmentList = $consignmentController->getConsignmentList();
 
+    if(isset($_POST['createParcel'])){
+        $parcelController = new ParcelController();
+        $result = $parcelController->createParcel($_POST);
+
+        if($result == 'success'){
+            showMessage('success','Er is een pakket toegevoegd aan de consignment.');
+        }else{
+            showMessage('success',$result);
+        }
+    }
+
     echo '<div class="row">
                 <div class="col-md-2">
 
@@ -28,7 +39,7 @@
                  <td>'.$consignment['customerfirstname'] . ' ' . $consignment['customerlastname'].'</td>
                  <td>'.$consignment['pickupstreet']. ' ' . $consignment['pickuphousenumber'].'</td>
                  <td>'.$consignment['consignorname'].'</td>
-                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/consignmentdetail/'.$consignment['consignmentnumber'].'">Bekijken</a></td>
+                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/consignmentdetail/'.$consignment['consignmentnumber'].'">Bekijken</a></td>
                  <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/consignmentchange/'.$consignment['consignmentnumber'].'">Bewerken</a></td>
                  <td><button class="btn btn-danger deleteConsignment" value="'.$consignment['consignmentnumber'].'">Verwijderen</button></td>
              </tr>';

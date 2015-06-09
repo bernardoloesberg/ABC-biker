@@ -6,20 +6,25 @@
      * @author: Bernardo Loesberg
      */
     class LoginController{
-        private $server;
+        private $connection;
 
         /**
          * When instance has been created then the class get the connection.
          */
         function __construct(){
             $server = new ConnectionController();
-            $this->server = $server->getConnection();
+            $this->connection = $server->getConnection();
             unset($server);
         }
 
+        /**
+         * Authenticate user.
+         * @param $user
+         * @return array
+         */
         function authentication($user){
-            $query = 'SELECT * FROM vw_authenticateUser WHERE email = '. mysqli_real_escape_string($this->connection,$user['email']) . 'AND password = '.mysqli_real_escape_string($this->connection,$this->hashPassword($user['password']));
-
+            $query = "SELECT * FROM vw_authenticateUser WHERE email = '". mysqli_real_escape_string($this->connection,$user['email']) . "' AND password = '".mysqli_real_escape_string($this->connection,$this->hashPassword($user['password'])) . "'";
+            echo $query;
             $account = array();
 
             if($result = $this->connection->query($query)){
@@ -29,14 +34,19 @@
             return $account;
         }
 
+        /**
+         * Hash password with Sha1.
+         * @param $password
+         * @return null|string
+         */
         function hashPassword($password){
             if(!empty($password)){
                 $password = trim($password);
-                $password = hash('sha256', $password . $this->salt);
+                $password = hash('sha256', $password);
 
                 return $password;
             }else{
-                return array('style' => 'danger', 'message' => 'U heeft geen !');
+                return null;
             }
         }
 
@@ -48,6 +58,6 @@
          * When the class isn't used anymore the connection will be closed.
          */
         function __destruct(){
-            $this->server->close();
+            $this->connection->close();
         }
     }

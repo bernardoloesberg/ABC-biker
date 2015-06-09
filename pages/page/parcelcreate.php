@@ -8,10 +8,11 @@
 
     $employees = $emloyeeController->getEmployeeList();
 
-    echo '<form action="'.$_SESSION['rooturl'].'/consignmentdetail/'.$_GET['id'].'" method="post">';
-
     if(isset($_GET['id'])){
-        echo '<input type="hidden" name="consignmentnumber" id="consignmentnumber" value="'.$_GET['id'].'" />';
+        echo '<form action="'.$_SESSION['rooturl'].'/consignmentdetail/'.$_GET['id'].'" method="post">
+              <input type="hidden" name="consignmentnumber" id="consignmentnumber" value="'.$_GET['id'].'" />';
+    }else{
+        echo '<form action="'.$_SESSION['rooturl'].'/consignmentoverview/" method="post">';
     }
 
     /**
@@ -90,7 +91,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <div class="col-md-6">
                             <label for="pickup">Opgehaald om</label>
                             <input type="text" class="form-control" id="pickup" name="pickup" value="" />
@@ -115,7 +116,7 @@
                         <label for="comment">comment</label>
                         <input type="text" class="form-control" id="comment" name="comment" value="" />
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                             <div class="col-md-6">
                                 <label for="hqarrival">Prijs</label>

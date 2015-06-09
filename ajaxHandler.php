@@ -6,7 +6,6 @@
     require_once('code/controllers/AddressForCustomerController.php');
 
     $customerController = new CustomerController();
-    $parcelController = new ParcelController();
     $addressForCustomerController = new AddressForCustomerController();
 
     if(isset($_POST['customernumber'])){
