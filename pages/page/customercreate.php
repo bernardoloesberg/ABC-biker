@@ -1,7 +1,9 @@
 <?php
     include_once('code/controllers/CustomerController.php');
+    include_once('code/controllers/AddressController.php');
 
     $customerController = new CustomerController();
+    $addressController = new AddressController();
 
     if(isset($_POST['submit'])){
         $result = $customerController->createCustomer($_POST);
@@ -12,6 +14,8 @@
             showMessage('danger',$result);
         }
     }
+
+    $districts = $addressController->getDistricts();
 
     echo '<div class="row">
                 <div class="col-md-4">
@@ -48,13 +52,15 @@
                               </div>
 
                               <div class="form-group">
-                                <label for="districtnumber">District</label>
-                                <select name="districtnumber" class="form-control">
+                                <label for="districtnumber">Districtname</label>
+                                    <select class="form-control" id="districtnumber" name="districtnumber">';
 
-                                    <option value="1">1 | Arnhem</option> ';// TODO: Feed this select with the district table.
-                                    echo '
-                                </select>
-                              </div>
+                                foreach($districts as $district){
+                                    echo '<option value="'.$district['districtnumber'].'">'.$district['districtname'].'</option>';
+                                }
+                                echo '
+                            </select>
+                            </div>
                               <div class="form-group">
                                 <label for="street">Straat</label>
                                 <input type="text" class="form-control" id="street" name="street" value="" required>
