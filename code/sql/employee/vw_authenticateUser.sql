@@ -3,14 +3,11 @@
  */
 use `abcbiker`;
 
-DROP VIEW vw_authenticateUser
+DROP VIEW vw_authenticateUser;
 
 CREATE VIEW vw_authenticateUser
 AS
-SELECT *
+SELECT e.employeenumber, e.addressnumber, e.employeelastname, e.employeefirstname, e.bsn, e.cellphone, e.birthday, e.sex,e.email, e.password, rpe.rolename
 FROM Employee e
 INNER JOIN RolesPerEmployee rpe
-ON rpe.employeenumber = e.employeenumber
-INNER JOIN Role r
-ON r.employeenumber = rpe.employeenumber
-
+ON rpe.employeenumber = e.employeenumber;

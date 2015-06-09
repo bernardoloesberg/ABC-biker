@@ -131,6 +131,24 @@
         }
 
         /**
+         * Get consignments of a biker.
+         * @param $id
+         * @return array
+         */
+        function getConsignmentsOfBiker($id){
+            $query = "SELECT * FROM vw_getConsignmentList WHERE employeenumber = ". $id;
+            $consignmentList = array();
+
+            if($result = $this->connection->query($query)){
+                foreach($result as $consignment){
+                    $consignmentList[] = $consignment;
+                }
+            }
+
+            return $consignmentList;
+        }
+
+        /**
          * When the class isn't used anymore the connection will be closed.
          */
         function __destruct(){
