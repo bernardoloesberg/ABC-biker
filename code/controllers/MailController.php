@@ -38,7 +38,11 @@
                     ABCBiker Team
                     ';
                     echo $email['email'] .' '. $subject .' '. $contents .' ';
-                    mail($email['email'],$subject,$contents);
+                    if(mail($email['email'],$subject,$contents)) {
+                        echo 'mail sent';
+                    } else {
+                        echo 'no mail sent';
+                    }
                 }
             }
             return $this->connection->error;

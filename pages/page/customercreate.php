@@ -11,7 +11,7 @@
         $result = $customerController->createCustomer($_POST);
 
         if($result == 'success') {
-            showMessage('success','De klant is succesvol aangemaakt!');
+            showMessage('success','De klant is succesvol aangemaakt! Een email met het wachtwoord is gestuurd! ');
         } else {
             showMessage('danger',$result);
         }
