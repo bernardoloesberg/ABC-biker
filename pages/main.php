@@ -37,7 +37,7 @@ function getMenu(){
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Zending <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="'.$_SESSION['rooturl'].'/consignmentoverview">Zending overzicht</a></li>
-                        <li><a href="'.$_SESSION['rooturl'].'/consignmentcreate">Zending aammaken</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/consignmentcreate">Zending aanmaken</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -50,8 +50,8 @@ function getMenu(){
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Klant <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="'.$_SESSION['rooturl'].'/customeroverview">klant overzicht</a></li>
-                        <li><a href="'.$_SESSION['rooturl'].'/customercreate">klant aanmaken</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/customeroverview">Klant overzicht</a></li>
+                        <li><a href="'.$_SESSION['rooturl'].'/customercreate">Klant aanmaken</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
