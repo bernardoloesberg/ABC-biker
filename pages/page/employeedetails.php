@@ -7,6 +7,7 @@
  */
 include_once('code/controllers/EmployeeController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
 $employeeController = new EmployeeController();
 
 echo '<div class="row">
@@ -100,3 +101,6 @@ echo'    </div>
           </div>';
 
 loadscript($_SESSION['rooturl'].'/code/js/deleteHandlers.js');
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

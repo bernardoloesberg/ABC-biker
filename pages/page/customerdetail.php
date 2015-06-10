@@ -7,7 +7,7 @@
     include_once('code/controllers/CustomerContactController.php');
     include_once('code/controllers/AddressForCustomerController.php');
 
-
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
     $customerController = new CustomerController();
     $customerContactController = new CustomerContactController();
     $addressForCustomerController = new AddressForCustomerController();
@@ -93,4 +93,6 @@
             </div>
           </div>';
     }
-
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

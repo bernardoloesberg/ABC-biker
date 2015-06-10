@@ -7,6 +7,7 @@
  */
 include_once('code/controllers/EmployeeController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
 $employeeController = new EmployeeController();
 
 if(isset($_POST['createEmployee'])){
@@ -127,3 +128,6 @@ echo '<div class="row">
           </div>';
 
 loadscript('code/js/employee.js');
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

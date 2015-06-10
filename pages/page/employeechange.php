@@ -5,6 +5,7 @@
  * Date: 18-5-2015
  * Time: 11:12
  */
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
 include_once('code/controllers/EmployeeController.php');
 
 $employeeController = new EmployeeController();
@@ -155,4 +156,6 @@ echo'             </span>
           </div>';
 
 loadscript('../code/js/employee.js');
-
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

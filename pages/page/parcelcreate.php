@@ -2,7 +2,7 @@
     include_once('code/controllers/ConsignmentController.php');
     include_once('code/controllers/ParcelController.php');
     include_once('code/controllers/EmployeeController.php');
-
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
     $emloyeeController = new EmployeeController();
     $consignmentController = new ConsignmentController();
 
@@ -137,3 +137,6 @@
                 </form>
             </div>
         </div>';
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

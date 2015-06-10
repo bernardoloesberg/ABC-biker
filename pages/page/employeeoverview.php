@@ -1,6 +1,7 @@
 <?php
 include_once('code/controllers/EmployeeController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
 $employeeController = new EmployeeController();
 $employeeList = $employeeController->getEmployeeList();
 
@@ -44,3 +45,6 @@ echo                '</tbody>
 
 loadscript('code/js/deleteHandlers.js');
 loadscript('code/js/filter.js');
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

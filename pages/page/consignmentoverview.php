@@ -2,6 +2,7 @@
     include_once('code/controllers/ConsignmentController.php');
     include_once('code/controllers/ParcelController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
     $consignmentController = new ConsignmentController();
     $consignmentList = $consignmentController->getConsignmentList();
 
@@ -51,3 +52,6 @@
           </div>';
 
     loadscript('code/js/deleteHandlers.js');
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

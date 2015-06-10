@@ -49,29 +49,39 @@
             </div>
         </div>';
 
-    if(isset($_SESSION['user'])){
-        loadpage($_SESSION['rooturl'] . '/home');
-    }
 
-    if(isset($_POST['login'])){
-        $result = $loginController->authentication($_POST);
-        if(!empty($result['employeenumber'])){
-            $_SESSION['user'] = $result;
+    if(isset($_GET['logout'])){
+        session_destroy();
+        showMessage('warning', 'U bent nu uitgelogd!');
+    }else{
+        if(isset($_SESSION['user'])){
+            loadpage($_SESSION['rooturl'] . '/home');
+        }
 
-            /*TODO : FIX COOKIE*/
-            if(isset($_POST['remember'])){
-                setcookie("loginCredentials", $result, time() * 7200); // Expiring after 2 hours
+        if(isset($_POST['login'])){
+            $result = $loginController->authentication($_POST);
+
+            print_r($result);
+            if(!empty($result['employeenumber'])){
+                $_SESSION['user'] = $result;
+
+                /*TODO : FIX COOKIE*/
+                if(isset($_POST['remember'])){
+                    setcookie("loginCredentials", $result, time() * 7200); // Expiring after 2 hours
+                }else{
+                    setcookie("loginCredentials", "", time() - 3600); // "Expires" 1 hour ago
+                }
+
+                loadpage($_SESSION['rooturl'] . '/account/'. $result['employeenumber']);
             }else{
-                setcookie("loginCredentials", "", time() - 3600); // "Expires" 1 hour ago
+                showMessage('danger', 'Het door u ingevoerde emailadres en/of wachtwoord is onjuist.');
+
+                echo $form;
             }
-
-            loadpage($_SESSION['rooturl'] . '/account/'. $result['employeenumber']);
         }else{
-            showMessage('danger', 'Het door u ingevoerde emailadres en/of wachtwoord is onjuist.');
-
             echo $form;
         }
-    }else{
-        echo $form;
     }
+
+
 

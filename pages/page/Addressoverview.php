@@ -11,8 +11,8 @@ include_once('code/controllers/AddressController.php');
 $addressController = new AddressController();
 $addressList = $addressController->getAddressDistrictList();
 
-
-echo '<div class="row">
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher') {
+    echo '<div class="row">
                 <div class="col-md-4">
 
                 </div>
@@ -31,21 +31,24 @@ echo '<div class="row">
                         </thead>
                         <tbody class="searchable">';
 
-foreach($addressList as $address){
-    echo '<tr>
-                 <td>'.$address['zipcode'].'</td>
-                 <td>'.$address['housenumber'].' '.$address['housenumberaddon'].'</td>
-                 <td>'.$address['districtname']. '</td>
-                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/addressdetails/'.$address['addressnumber'].'">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/addresschange/'.$address['addressnumber'].'">Bewerken</a></td>
-                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="'.$address['addressnumber'].'">Verwijderen</button></td>
+    foreach ($addressList as $address) {
+        echo '<tr>
+                 <td>' . $address['zipcode'] . '</td>
+                 <td>' . $address['housenumber'] . ' ' . $address['housenumberaddon'] . '</td>
+                 <td>' . $address['districtname'] . '</td>
+                 <td><a class="btn btn-info" href="' . $_SESSION['rooturl'] . '/addressdetails/' . $address['addressnumber'] . '">Bekijken</a></td>
+                 <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/addresschange/' . $address['addressnumber'] . '">Bewerken</a></td>
+                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="' . $address['addressnumber'] . '">Verwijderen</button></td>
              </tr>';
-}
+    }
 
-echo                '</tbody>
+    echo '</tbody>
                     </table>
                 </div>
           </div>';
 
-loadscript('code/js/deleteHandlers.js');
-loadscript('code/js/filter.js');
+    loadscript('code/js/deleteHandlers.js');
+    loadscript('code/js/filter.js');
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

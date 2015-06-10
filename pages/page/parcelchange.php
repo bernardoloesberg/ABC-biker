@@ -3,6 +3,7 @@
     include_once('code/controllers/ParcelController.php');
     include_once('code/controllers/EmployeeController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
     $emloyeeController = new EmployeeController();
     $parcelController = new ParcelController();
     $employees = $emloyeeController->getEmployeeList();
@@ -142,3 +143,6 @@
     }else{
         echo 'U heeft geen pakketnummer opgegeven!';
     }
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

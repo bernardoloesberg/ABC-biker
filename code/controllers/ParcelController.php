@@ -149,19 +149,19 @@
         }
 
         function setPickupTime($id){
-            $query = "CALL sp_biker_pickedup(".$id.", ".$_SESSION['user']['employeenumber'].")";
+            $query = "CALL sp_biker_pickedup(".mysqli_real_escape_string($this->connection,$id).", ".mysqli_real_escape_string($this->connection,$_SESSION['user']['employeenumber']).")";
         }
 
         function setDeliverTime($id){
-            $query = "CALL sp_biker_pickedup(".$id.", ".$_SESSION['user']['employeenumber'].")";
+            $query = "CALL sp_biker_pickedup(".mysqli_real_escape_string($this->connection,$id).", ".mysqli_real_escape_string($this->connection,$_SESSION['user']['employeenumber']).")";
         }
 
         function setHqDepatureTime($id){
-            $query = "CALL sp_biker_pickedup(".$id.", ".$_SESSION['user']['employeenumber'].")";
+            $query = "CALL sp_biker_pickedup(".mysqli_real_escape_string($this->connection,$id).", ".mysqli_real_escape_string($this->connection,$_SESSION['user']['employeenumber']).")";
         }
 
         function setHqArrivalTime($id){
-            $query = "CALL sp_biker_pickedup(".$id.", ".$_SESSION['user']['employeenumber'].")";
+            $query = "CALL sp_biker_pickedup(".mysqli_real_escape_string($this->connection,$id).", ".mysqli_real_escape_string($this->connection,$_SESSION['user']['employeenumber']).")";
         }
 
         /**

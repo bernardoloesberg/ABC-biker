@@ -9,29 +9,30 @@ include_once('code/controllers/AddressController.php');
 
 $addressController = new AddressController();
 
-if(isset($_POST['changeAddress'])){
-    $result = $addressController->changeAddress($_POST);
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
+    if(isset($_POST['changeAddress'])){
+        $result = $addressController->changeAddress($_POST);
 
-    print_r($result);
+        print_r($result);
 
-    if($result){
-        showMessage('success', 'Het adres is bijgewerkt!');
-    }else{
-        showMessage('danger', 'Het adres kon niet worden bijgewerkt!');
+        if($result){
+            showMessage('success', 'Het adres is bijgewerkt!');
+        }else{
+            showMessage('danger', 'Het adres kon niet worden bijgewerkt!');
+        }
     }
-}
 
-echo '<div class="row">
+    echo '<div class="row">
             <div class="col-md-4">
                 Menu
             </div>
             <div class="col-md-8">';
 
-            if (isset($_GET['id'])) {
-                $address = $addressController->getAddress($_GET['id']);
-                $districts = $addressController->getDistricts();
+    if (isset($_GET['id'])) {
+        $address = $addressController->getAddress($_GET['id']);
+        $districts = $addressController->getDistricts();
 
-                echo '
+        echo '
                     <form action="#" method="post">
                         <div class="form-group">
                             <div class="col-md-6">
@@ -39,12 +40,12 @@ echo '<div class="row">
                             <select class="form-control" id= "districtname" name="districtname">
                             <option>'.$address['districtname'].'</option>';
 
-                    foreach($districts as $district){
-                        if($district['districtname'] != $address['districtname']){
-                            echo '<option>'.$district['districtname'].'</option>';
-                        }
-                    }
- echo '
+        foreach($districts as $district){
+            if($district['districtname'] != $address['districtname']){
+                echo '<option>'.$district['districtname'].'</option>';
+            }
+        }
+        echo '
                             </select>
                             </div>
                             <div class="col-md-6">
@@ -77,11 +78,14 @@ echo '<div class="row">
                           </div>
                           <button type="submit" class="btn btn-success" name="changeAddress">Sla verandering op</button>
                         </form>';
-            }
-            else{
-                echo 'Geen nummer meegegeven';
-            }
-            echo'
+    }
+    else{
+        echo 'Geen nummer meegegeven';
+    }
+    echo'
 
                     </div>
           </div>';
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

@@ -25,9 +25,12 @@
         function authentication($user){
             $query = "SELECT * FROM vw_authenticateUser WHERE email = '". mysqli_real_escape_string($this->connection,$user['email']) . "' AND password = '".mysqli_real_escape_string($this->connection,$this->hashPassword($user['password'])) . "'";
             $account = array();
-
+            echo $query;
             if($result = $this->connection->query($query)){
                 $account = $result->fetch_assoc();
+
+            }else{
+                return $this->connection->error;
             }
 
             return $account;

@@ -6,6 +6,7 @@
 
     $CustomerContactController = new CustomerContactController();
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
     if(isset($_POST['changeContact'])){
         $result = $CustomerContactController->addContactToCustomer($_POST);
 
@@ -59,3 +60,7 @@
             }
     echo '    </div>
           </div>';
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}
+    

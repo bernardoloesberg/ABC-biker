@@ -6,11 +6,11 @@
     include_once('code/controllers/ConsignmentController.php');
     include_once('code/controllers/CustomerController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
     $consignmentController = new ConsignmentController();
     $customerController = new CustomerController();
 
     $customers = $customerController->getCustomerList();
-
     echo '<div class="row">
                 <div class="col-md-2">
                     Menu
@@ -94,3 +94,6 @@ foreach($customers as $customer){
               </div>';
 
         loadscript('code/js/changeHandler.js');
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

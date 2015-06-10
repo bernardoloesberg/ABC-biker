@@ -5,6 +5,7 @@
     require_once('code/controllers/AddressController.php');
     require_once('code/controllers/ParcelController.php');
     require_once('code/controllers/AddressForCustomerController.php');
+    require_once('code/controllers/CustomerContactController.php');
 
     $consignmentController = new ConsignmentController();
     $customerController = new CustomerController();
@@ -12,6 +13,13 @@
     $addressController = new AddressController();
     $parcelController = new ParcelController();
     $addressForCustomerController = new AddressForCustomerController();
+    $customerContactController = new CustomerContactController();
+
+    if(isset($_POST['contactnumber'])){
+        echo $customerContactController->deleteCustomerContact($_POST['contactnumber']);
+    } else {
+        echo 'There is no contactnumber to delete.';
+    }
 
     if(isset($_POST['parcelnumber'])) {
         echo $parcelController->deleteParcel($_POST['parcelnumber']);

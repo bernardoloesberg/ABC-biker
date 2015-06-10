@@ -6,6 +6,7 @@
     include_once('code/controllers/CustomerController.php');
     include_once('code/controllers/CustomerContactController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
     $customerController = new CustomerController();
     $CustomerContactController = new CustomerContactController();
 
@@ -41,3 +42,6 @@
     }else{
         echo 'Er is geen consignment nummer opgegeven';
     }
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

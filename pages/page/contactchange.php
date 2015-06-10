@@ -4,6 +4,7 @@
  */
     include_once('code/controllers/CustomerContactController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
     $CustomerContactController = new CustomerContactController();
 
     if(isset($_POST['changeContact'])){
@@ -59,3 +60,6 @@
             }
     echo '    </div>
           </div>';
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

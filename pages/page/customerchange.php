@@ -6,6 +6,7 @@ include_once('code/controllers/CustomerController.php');
 include_once('code/controllers/CustomerContactController.php');
 include_once('code/controllers/AddressForCustomerController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
 
 $customerController = new CustomerController();
 $customerContactController = new CustomerContactController();
@@ -138,3 +139,6 @@ $addressForCustomerController = new AddressForCustomerController();
           </div>';
 
 loadscript('../code/js/deleteHandlers.js');
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

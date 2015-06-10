@@ -4,6 +4,7 @@
     $CustomerController = new CustomerController();
     $CustomerList = $CustomerController->getCustomerList();
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
     echo '<div class="row">
                 <div class="col-md-4">
 
@@ -37,3 +38,6 @@
           </div>';
 
 loadscript('code/js/deleteHandlers.js');
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}

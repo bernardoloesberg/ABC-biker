@@ -6,10 +6,11 @@
 
     include_once('code/controllers/ParcelController.php');
 
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
     $parcelController = new ParcelController();
 
     if(isset($_POST['pickup'])){
-        $result = $parcelController;
+        $result = $parcelController->setPickupTime($_GET['id']);
     }
 
     if(isset($_POST['deliver'])){
@@ -77,4 +78,7 @@
     }else{
         echo 'U heeft geen pakket gekozen!';
     }
+}else{
+    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
+}
 
