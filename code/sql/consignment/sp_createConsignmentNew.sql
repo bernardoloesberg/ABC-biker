@@ -33,13 +33,18 @@ CREATE PROCEDURE sp_createConsignment
       SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';
       ROLLBACK;
-    END IF;
-    /*Check if there is a pickup addres*/
-    IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon)
-    THEN
-      CALL sp_createAddress
-      (1, p_pickupstreet, p_pickupzipcode, p_pickuphousenumber, p_pickupcity, p_pickuphousenumberaddon);
-    END IF;
+    ELSEIF (p_consignorname NOT REGEXP '[^a-zA-Z ]')
+      THEN
+      SIGNAL SQLSTATE '45013'
+        SET MESSAGE_TEXT = 'De Tekenaar mag alleen uit letters bestaan';
+
+    ELSE
+/*Check if there is a pickup addres*/
+      IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon)
+      THEN
+        CALL sp_createAddress
+        (1, p_pickupstreet, p_pickupzipcode, p_pickuphousenumber, p_pickupcity, p_pickuphousenumberaddon);
+      END IF;
 
     /* Insert into consignment */
     INSERT INTO consignment
@@ -49,6 +54,7 @@ CREATE PROCEDURE sp_createConsignment
 
     SET p_consignmentnumber = LAST_INSERT_ID();
     COMMIT;
+    END IF;
   END //
 DELIMITER ;
 

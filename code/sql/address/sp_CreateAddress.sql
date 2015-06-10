@@ -1,5 +1,5 @@
 /*
- *@Author: Bernardo Loesberg
+ *@Author: Bernardo Loesberg, Tom Kooiman
  */
 use `database`;
 

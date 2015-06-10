@@ -1,5 +1,5 @@
 /*
- *@Author: Bernardo Loesberg
+ *@Author: Bernardo Loesberg, Tom Kooiman
  * IF THERE IS AN ERROR CHECK ON THE ID CONSIGNMENT AND EMPLOYEE
  */
 use `abcbiker`;
@@ -37,28 +37,26 @@ CREATE PROCEDURE sp_changeConsignment
       SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';
       ROLLBACK;
-    END IF;
 
     /*Check if the customer exists*/
-    IF NOT EXISTS(SELECT 1 FROM customer WHERE customernumber = p_customernumber)
+    ELSEIF NOT EXISTS(SELECT 1 FROM customer WHERE customernumber = p_customernumber)
     THEN
       SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';
       ROLLBACK;
-    END IF;
 
+    ELSEIF (p_consignorname NOT REGEXP '[^a-zA-Z ]')
+      THEN
+      SIGNAL SQLSTATE '45014'
+        SET MESSAGE_TEXT = 'De Tekenaar mag alleen uit letters bestaan';
+      ROLLBACK ;
+
+    ELSE
     /*Check if there is a pickup addres*/
     IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_pickupstreet AND zipcode = p_pickupzipcode AND housenumber = p_pickuphousenumber AND city = p_pickupcity AND housenumberaddon = p_pickuphousenumberaddon)
     THEN
       CALL sp_createAddress
       (1, p_pickupstreet, p_pickupzipcode, p_pickuphousenumber, p_pickupcity, p_pickuphousenumberaddon);
-    END IF;
-
-    /* The zipcode isnt valid */
-    IF (p_zipcode NOT REGEXP '^[1-9][0-9]{3}\s?[a-zA-Z]{2}$')
-    THEN
-      SIGNAL SQLSTATE '45010'
-      SET MESSAGE_TEXT = 'Geen geldig postcode!';
     END IF;
 
     /*This is needed because cant update foreign keys*/
@@ -81,6 +79,7 @@ CREATE PROCEDURE sp_changeConsignment
 
     /*Reactivate the foreign key checks*/
     SET FOREIGN_KEY_CHECKS=1;
+      END IF;
   END //
 DELIMITER ;
 
