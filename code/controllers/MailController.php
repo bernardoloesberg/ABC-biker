@@ -35,7 +35,7 @@
         }
 
         function sendPasswordForNewCostumer($customernumber, $pw) {
-            $queryEmail = 'SELECT customerlastname, customerfirstname, sex, email FROM customer WHERE customernumber = '.$customernumber['customernumber'];
+            $queryEmail = 'SELECT customerlastname, customerfirstname, email FROM customer WHERE customernumber = '.$customernumber['customernumber'];
 
             if($result = $this->connection->query($queryEmail)){
                 if($result) {
@@ -62,7 +62,7 @@
                     if(!$this->mail->send()) {
                         echo 'Message could not be sent. '.'Mailer Error: ' . $this->mail->ErrorInfo;
                     } else {
-                        echo 'Message has been sent';
+                        //echo 'Message has been sent';
                     }
                 }
             }
