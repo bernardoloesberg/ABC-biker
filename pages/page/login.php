@@ -52,7 +52,11 @@
 
     if(isset($_GET['logout'])){
         session_destroy();
-        showMessage('warning', 'U bent nu uitgelogd!');
+        showMessage('warning', 'U bent nu uitgelogd en wordt over 5 seconden terug gestuurd naar de Homepagina');
+
+        sleep(5);
+
+        loadpage($_SESSION['rooturl'] . '/home');
     }else{
         if(isset($_SESSION['user'])){
             loadpage($_SESSION['rooturl'] . '/home');

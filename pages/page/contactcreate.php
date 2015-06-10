@@ -18,8 +18,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
     }
 
     echo '<div class="row">
-            </div>
-            <div class="col-md-10">';
+            <div class="col-md-12">';
 
             if (isset($_GET['id'])) {
                 $contact = $CustomerContactController->getContact($_GET['id']);
@@ -63,4 +62,3 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
 }else{
     showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
 }
-    

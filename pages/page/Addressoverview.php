@@ -13,10 +13,7 @@ $addressList = $addressController->getAddressDistrictList();
 
 if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher') {
     echo '<div class="row">
-                <div class="col-md-4">
-
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="input-group"> <span class="input-group-addon">Filter</span>
                          <input id="filter" type="text" class="form-control" placeholder="Type here...">
                     </div>

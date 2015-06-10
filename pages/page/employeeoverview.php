@@ -8,10 +8,7 @@ $employeeList = $employeeController->getEmployeeList();
 //print_r($employeeList);
 
 echo '<div class="row">
-                <div class="col-md-4">
-
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <a class="btn btn-info" href="'.$_SESSION['rooturl'].'/employeecreate">Nieuwe werknemer</a></td>
                     <div class="input-group"> <span class="input-group-addon">Filter</span>
                          <input id="filter" type="text" class="form-control" placeholder="Type here...">

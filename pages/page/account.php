@@ -22,7 +22,7 @@
                                 <tr>
                                     <th>Zendingnr</th>
                                     <th>Pakketnr</th>
-                                    <th>Wordt opgehaald doo</th>
+                                    <th>Wordt opgehaald door</th>
                                     <th>Wordt geleverd door</th>
                                     <th>Bekijken</th>
                                 </tr>

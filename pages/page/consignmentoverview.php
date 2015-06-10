@@ -18,10 +18,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
     }
 
     echo '<div class="row">
-                <div class="col-md-2">
-
-                </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <table class="table">
                         <thead>
                             <th>Consignmentnumber</th>

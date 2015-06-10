@@ -6,28 +6,51 @@
 
     include_once('code/controllers/ParcelController.php');
 
-if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
+if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'biker' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
     $parcelController = new ParcelController();
 
     if(isset($_POST['pickup'])){
         $result = $parcelController->setPickupTime($_GET['id']);
+
+        if($result = 'success'){
+            showMessage('success','Je hebt een ophaaltijd toegevoegd');
+        }else{
+            showMessage('danger',$result);
+        }
     }
 
     if(isset($_POST['deliver'])){
+        $result = $parcelController->setDeliverTime($_GET['id']);
 
+        if($result = 'success'){
+            showMessage('success','Je hebt een bezorgtijd toegevoegd');
+        }else{
+            showMessage('danger',$result);
+        }
     }
 
     if(isset($_POST['hqarrival'])){
+        $result = $parcelController->setHqArrivalTime($_GET['id']);
 
+        if($result = 'success'){
+            showMessage('success','Je hebt een hoofdkantoor ophaaltijd toegevoegd');
+        }else{
+            showMessage('danger',$result);
+        }
     }
 
     if(isset($_POST['hqdeliver'])){
+        $result = $parcelController->setHqDepatureTime($_GET['id']);
 
+        if($result = 'success'){
+            showMessage('success','Je hebt een hoofdkantoor bezorgtijd toegevoegd');
+        }else{
+            showMessage('danger',$result);
+        }
     }
 
     if(isset($_GET['id'])){
         $parcel = $parcelController->getParcel($_GET['id']);
-        print_r($parcel);
 
         echo '<div class="row">
                 <div class="col-md-12">

@@ -3,7 +3,6 @@
     include_once('code/controllers/AddressController.php');
     include_once('code/controllers/LoginController.php');
 
-if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
     $customerController = new CustomerController();
     $addressController = new AddressController();
     $loginController = new LoginController();
@@ -91,6 +90,3 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                         </form>
                     </div>
               </div>';
-}else{
-    showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
-}

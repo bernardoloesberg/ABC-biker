@@ -25,10 +25,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
         }
 
         echo '<div class="row">
-                <div class="col-md-2">
-                    Menu
-                </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <form action="'.$_SESSION['rooturl'].'/parcelchange/'.$_GET['id'].'" method="post">
                         <div class="form-group">
                             <div class="col-md-6">

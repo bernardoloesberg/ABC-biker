@@ -11,10 +11,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
 $employeeController = new EmployeeController();
 
 echo '<div class="row">
-            <div class="col-md-4">
-                Menu
-            </div>
-            <div class="col-md-8">';
+            <div class="col-md-12">';
 
 if (isset($_GET['id'])) {
     $employee = $employeeController->getEmployee($_GET['id']);

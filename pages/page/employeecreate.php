@@ -21,12 +21,7 @@ if(isset($_POST['createEmployee'])){
 }
 
 echo '<div class="row">
-            <div class="col-md-4">
-                Menu
-            </div>
-            <div class="col-md-8">
-
-
+            <div class="col-md-12">
                            <form action="#" method="post">
                            <div class="form-group">
                             <div class="col-md-4">

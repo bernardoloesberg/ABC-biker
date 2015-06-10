@@ -25,10 +25,7 @@ $addressForCustomerController = new AddressForCustomerController();
     }
 
     echo '<div class="row">
-            <div class="col-md-2">
-                Menu
-            </div>
-            <div class="col-md-10">';
+            <div class="col-md-12">';
 
             if (isset($_GET['id'])) {
                 $customer = $customerController->getCustomer($_GET['id']);

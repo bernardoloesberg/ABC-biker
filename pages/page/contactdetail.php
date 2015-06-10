@@ -16,7 +16,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
         $contact = $CustomerContactController->getContact(($_GET['id']));
 
         echo '<div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <table class="table">
                     <thead>
                         <tr><td><strong>Contactgegevens</strong></td>

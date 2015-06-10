@@ -24,12 +24,10 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
     if(isset($_GET['id'])) {
         $customers = $customerController->getCustomerList();
         $consignment = $consignmentController->getConsignment($_GET['id']);
+        $price = $consignmentController->getConsignmentPrice($_GET['id']);
 
         echo '<div class="row">
-            <div class="col-md-2">
-                Menu
-            </div>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <table class="table">
                     <thead>
                         <tr><td><strong>Consignmentgegevens</strong></td>
@@ -59,7 +57,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
                             <td>Aflevertijd</td>
                             <td>'.$consignment['scheduleddelivery'].'</td>
                             <td>price</td>
-                            <td>'.$consignment['price'] .'</td></tr>
+                            <td>'.(!empty($price) ? $price['price'] : '0') .'</td></tr>
                         <tr><td>Totaalprijs</td>
                             <td>'.$consignment['totalprice'].'</td>
                             <td></td>

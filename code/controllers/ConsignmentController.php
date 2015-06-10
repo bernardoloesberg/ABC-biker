@@ -149,6 +149,21 @@
         }
 
         /**
+         * Get the price of a consignment.
+         * @param $id
+         * @return array|string
+         */
+        function getConsignmentPrice($id){
+            $query = "SELECT * FROM vw_getTotalPrice WHERE consignmentnumber = ". $id;
+
+            if($result = $this->connection->query($query)){
+                return $result->fetch_assoc();
+            }else{
+                return $this->connection->error;
+            }
+        }
+
+        /**
          * When the class isn't used anymore the connection will be closed.
          */
         function __destruct(){

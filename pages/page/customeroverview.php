@@ -6,10 +6,7 @@
 
 if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
     echo '<div class="row">
-                <div class="col-md-4">
-
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <table class="table">
                         <thead>
                             <th>Klantnummner</th>
