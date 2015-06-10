@@ -34,14 +34,15 @@ CREATE PROCEDURE sp_changeConsignment
     /*Check if the employee exists*/
     IF NOT EXISTS(SELECT 1 FROM employee WHERE employeenumber = p_employeenumber)
     THEN
-      RESIGNAL SQLSTATE '45012'
+      SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';
       ROLLBACK;
     END IF;
+
     /*Check if the customer exists*/
     IF NOT EXISTS(SELECT 1 FROM customer WHERE customernumber = p_customernumber)
     THEN
-      RESIGNAL SQLSTATE '45012'
+      SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';
       ROLLBACK;
     END IF;
@@ -53,11 +54,17 @@ CREATE PROCEDURE sp_changeConsignment
       (1, p_pickupstreet, p_pickupzipcode, p_pickuphousenumber, p_pickupcity, p_pickuphousenumberaddon);
     END IF;
 
+    /* The zipcode isnt valid */
+    IF (p_zipcode NOT REGEXP '^[1-9][0-9]{3}\s?[a-zA-Z]{2}$')
+    THEN
+      SIGNAL SQLSTATE '45010'
+      SET MESSAGE_TEXT = 'Geen geldig postcode!';
+    END IF;
+
     /*This is needed because cant update foreign keys*/
     SET FOREIGN_KEY_CHECKS=0;
 
     /* Create the history */
-
     CALL sp_createConsignmentHistory(p_consignmentnumber,p_employeenumber,NOW(),p_comment);
 
     /*Update the consignment*/

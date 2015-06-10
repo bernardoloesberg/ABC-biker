@@ -36,6 +36,24 @@
         }
 
         /**
+         * Get the parcel list
+         * @param $id
+         * @return array
+         */
+        function getParcelListOfBiker($id){
+            $query = 'SELECT * FROM vw_getParcelList WHERE pickupemployeenumber = '. mysqli_real_escape_string($this->connection,$id) .' OR deliveremployeenumber = ' . mysqli_real_escape_string($this->connection,$id);
+            $parcelList = array();
+
+            if($result = $this->connection->query($query)){
+                foreach($result as $parcel){
+                    $parcelList[] = $parcel;
+                }
+            }
+
+            return $parcelList;
+        }
+
+        /**
          * Get Parcel.
          * @param $id
          * @return array
@@ -128,6 +146,22 @@
             }else{
                 return $this->connection->error;
             }
+        }
+
+        function setPickupTime($id){
+            $query = "CALL sp_biker_pickedup(".$id.", ".$_SESSION['user']['employeenumber'].")";
+        }
+
+        function setDeliverTime($id){
+            $query = "CALL sp_biker_pickedup(".$id.", ".$_SESSION['user']['employeenumber'].")";
+        }
+
+        function setHqDepatureTime($id){
+            $query = "CALL sp_biker_pickedup(".$id.", ".$_SESSION['user']['employeenumber'].")";
+        }
+
+        function setHqArrivalTime($id){
+            $query = "CALL sp_biker_pickedup(".$id.", ".$_SESSION['user']['employeenumber'].")";
         }
 
         /**

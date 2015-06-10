@@ -30,7 +30,7 @@ CREATE PROCEDURE sp_createConsignment
     /*Check if the customer exists*/
     IF NOT EXISTS(SELECT 1 FROM customer WHERE customernumber = p_customernumber)
     THEN
-      RESIGNAL SQLSTATE '45012'
+      SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';
       ROLLBACK;
     END IF;
@@ -41,6 +41,7 @@ CREATE PROCEDURE sp_createConsignment
       (1, p_pickupstreet, p_pickupzipcode, p_pickuphousenumber, p_pickupcity, p_pickuphousenumberaddon);
     END IF;
 
+    /* Insert into consignment */
     INSERT INTO consignment
     (customernumber,addressnumber,consignorname,completed,scheduledpickup,scheduleddelivery,price,totalprice)
     VALUES

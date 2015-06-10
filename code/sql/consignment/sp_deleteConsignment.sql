@@ -1,4 +1,4 @@
-/*
+f/*
  *@Author: Bernardo Loesberg
  */
 use `abcbiker`;
@@ -18,7 +18,7 @@ CREATE PROCEDURE sp_deleteConsignment
     /*Check if the consignment exists*/
     IF NOT EXISTS(SELECT 1 FROM consignment WHERE consignmentnumber = p_consignmentnumber)
     THEN
-      RESIGNAL SQLSTATE '45018'
+      SIGNAL SQLSTATE '45018'
       SET MESSAGE_TEXT = 'Er geen consignments gevonden';
       ROLLBACK;
     END IF;
@@ -26,7 +26,7 @@ CREATE PROCEDURE sp_deleteConsignment
     /*Check if the consignment has parcels*/
     IF EXISTS(SELECT 1 FROM parcel WHERE consignmentnumber = p_consignmentnumber)
     THEN
-      RESIGNAL SQLSTATE '45015'
+      SIGNAL SQLSTATE '45015'
       SET MESSAGE_TEXT = 'Er geen consignments gevonden';
       ROLLBACK;
     END IF;

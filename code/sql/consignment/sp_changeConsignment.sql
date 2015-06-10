@@ -26,17 +26,34 @@ CREATE PROCEDURE sp_ChangeConsignment
       ROLLBACK;
     END;
     START TRANSACTION;
+      /* There is not customer */
       IF NOT EXISTS(SELECT 1 FROM customer WHERE customernumber = p_customernumber)
       THEN
         RESIGNAL SQLSTATE '45012'
         SET MESSAGE_TEXT = 'Er bestaat geen klant met de opgegeven nummer';
         ROLLBACK;
       END IF;
+
+      /* The is already a adres */
+      IF EXISTS(SELECT 1 FROM address WHERE street = p_street AND zipcode = p_zipcode AND housenumber = p_housenumber AND city = p_city AND housenumberaddon = p_housenumberaddon)
+      THEN
+        SIGNAL SQLSTATE '45009'
+        SET MESSAGE_TEXT = 'Adres staat al in de database';
+        ROLLBACK;
+      END IF;
+
       /* Check if the deliveradres is in address */
       IF EXISTS(SELECT 1 FROM address WHERE street = p_deliverstreet AND zipcode = p_deliverzipcode AND housenumber = p_deliverhousenumber AND city = p_delivercity AND housenumberaddon = p_deliverhousenumberaddon)
       THEN
         CALL sp_CreateAddress
         (p_districtnumber ,p_deliverstreet,p_deliverzipcode,p_deliverhousenumber,p_delivercity,p_deliverhousenumberaddon);
+      END IF;
+
+      /* The zipcode isnt valid */
+      IF (p_zipcode NOT REGEXP '^[1-9][0-9]{3}\s?[a-zA-Z]{2}$')
+      THEN
+        SIGNAL SQLSTATE '45010'
+        SET MESSAGE_TEXT = 'Geen geldig postcode!';
       END IF;
 
       /* Check if the pickup is in address */
@@ -46,6 +63,7 @@ CREATE PROCEDURE sp_ChangeConsignment
         (p_districtnumber ,p_pickupstreet,p_pickupzipcode,p_pickuphousenumber,p_pickupcity,p_pickuphousenumberaddon);
       END IF;
 
+      /* Update consignment */
       SET FOREIGN_KEY_CHECKS=0;
        UPDATE consignment
          SET customernumber = p_customernumber,

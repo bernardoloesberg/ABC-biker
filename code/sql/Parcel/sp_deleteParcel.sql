@@ -18,7 +18,7 @@ CREATE PROCEDURE sp_deleteParcel
     /*Check if the consignment has parcels*/
     IF NOT EXISTS(SELECT 1 FROM parcel WHERE parcelnumber = p_parcelnumber)
     THEN
-      RESIGNAL SQLSTATE '45015'
+      SIGNAL SQLSTATE '45015'
       SET MESSAGE_TEXT = 'Er geen consignments gevonden';
       ROLLBACK;
     END IF;

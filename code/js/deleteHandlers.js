@@ -53,6 +53,7 @@ $('.deleteAddress').on('click', function(){
             type: 'POST',
             data: {addressnumber: $(this).val()},
             success: function(data){
+                console.log(data);
             }
         });
         $(this).closest('tr').remove();

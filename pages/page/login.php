@@ -65,7 +65,7 @@
                 setcookie("loginCredentials", "", time() - 3600); // "Expires" 1 hour ago
             }
 
-            loadpage($_SESSION['rooturl'] . '/account/'. $result['user']['employeenumber']);
+            loadpage($_SESSION['rooturl'] . '/account/'. $result['employeenumber']);
         }else{
             showMessage('danger', 'Het door u ingevoerde emailadres en/of wachtwoord is onjuist.');
 

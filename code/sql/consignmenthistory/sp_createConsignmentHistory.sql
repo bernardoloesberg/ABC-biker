@@ -16,7 +16,7 @@ CREATE PROCEDURE sp_createConsignmentHistory
     /*Check if the customer exists*/
     IF NOT EXISTS(SELECT 1 FROM consignment WHERE consignmentnumber = p_consignmentnumber)
     THEN
-      RESIGNAL SQLSTATE '45012'
+      SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er bestaat geen zending';
       ROLLBACK;
     END IF;
@@ -24,7 +24,7 @@ CREATE PROCEDURE sp_createConsignmentHistory
     /*Check if the employee exists*/
     IF NOT EXISTS(SELECT 1 FROM employee WHERE employeenumber = p_employeenumber)
     THEN
-      RESIGNAL SQLSTATE '45012'
+      SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er bestaat geen werknemmer.';
       ROLLBACK;
     END IF;

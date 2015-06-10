@@ -31,7 +31,7 @@
       START TRANSACTION;
         IF NOT EXISTS(SELECT 1 FROM parcel WHERE parcelnumber = p_parcelnumber)
         THEN
-          RESIGNAL SQLSTATE '45012'
+          SIGNAL SQLSTATE '45012'
           SET MESSAGE_TEXT = 'Er bestaat geen pakket met de opgegeven nummer';
           ROLLBACK;
         END IF;
