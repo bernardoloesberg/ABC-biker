@@ -71,7 +71,6 @@
                                            '".mysqli_real_escape_string($this->connection,$address['housenumberaddon'])."')";
 
            if($result = $this->connection->query($query)) {
-               return $result;
                if($result) {
                    return 'success';
                }

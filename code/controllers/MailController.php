@@ -19,7 +19,7 @@
              */
             $this->mail = new PHPMailer();
 
-            //$this->mail->SMTPDebug = 3;
+            $this->mail->SMTPDebug = 3;
 
             $this->mail->isSMTP();
             $this->mail->Host = 'smtp.mail.com';
@@ -60,9 +60,9 @@
 
 
                     if(!$this->mail->send()) {
-                        echo 'Message could not be sent. '.'Mailer Error: ' . $this->mail->ErrorInfo;
+                        return 'Message could not be sent. '.'Mailer Error: ' . $this->mail->ErrorInfo;
                     } else {
-                        //echo 'Message has been sent';
+                        return 'success';
                     }
                 }
             }

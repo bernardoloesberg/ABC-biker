@@ -67,7 +67,11 @@
                   $query3 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "'";
                   if($result3 = $this->connection->query($query3)) {
                       if ($result3) {
-                          $mailController->sendPasswordForNewCostumer($result3->fetch_array(),$customer['pw']);
+                          $result4 = $mailController->sendPasswordForNewCostumer($result3->fetch_array(),$customer['pw']);
+
+                          if($result4 != 'success') {
+                              return $result4;
+                          }
                       }
                   }
 

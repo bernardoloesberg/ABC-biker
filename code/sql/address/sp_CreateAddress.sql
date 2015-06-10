@@ -25,11 +25,11 @@ CREATE PROCEDURE sp_CreateAddress
         THEN
           SIGNAL SQLSTATE '45009'
             SET MESSAGE_TEXT = 'Adres staat al in de database';
-          ROLLBACK;/*
-      ELSEIF (p_zipcode NOT REGEXP '^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i')
+          ROLLBACK;
+      ELSEIF (p_zipcode NOT REGEXP '^[1-9][0-9]{3}\s?[a-zA-Z]{2}$')
         THEN
         SIGNAL SQLSTATE '45010'
-          SET MESSAGE_TEXT = 'Geen geldig postcode!';*/
+          SET MESSAGE_TEXT = 'Geen geldig postcode!';
       ELSE
           INSERT INTO address
           (districtnumber, street, zipcode, housenumber, city, housenumberaddon)
