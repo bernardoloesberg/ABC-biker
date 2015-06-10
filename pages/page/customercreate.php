@@ -72,22 +72,21 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                                 <input type="text" class="form-control" id="street" name="street" value="" required>
                               </div>
                               <div class="form-group">
-                                <label for="zipcode">Postcode</label>
-                                <input type="text" class="form-control" id="zipcode" name="zipcode" value="" required>
-                              </div>
-                              <div class="form-group">
                                 <label for="housenumber">Huisnummner</label>
                                 <input type="number" class="form-control" id="housenumber" name="housenumber" value="" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="city">Woonplaats</label>
-                                <input type="text" class="form-control" id="city" name="city" value="" required>
                               </div>
                               <div class="form-group">
                                 <label for="housenumberaddon">huisnummer toevoeging</label>
                                 <input type="text" class="form-control" id="housenumberaddon" name="housenumberaddon" value="">
                               </div>
-
+                              <div class="form-group">
+                                <label for="zipcode">Postcode</label>
+                                <input type="text" class="form-control" id="zipcode" name="zipcode" value="" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="city">Woonplaats</label>
+                                <input type="text" class="form-control" id="city" name="city" value="" required>
+                              </div>
                               <button type="submit" name="submit" id="submit" class="btn btn-default">Opslaan</button>
                         </form>
                     </div>
