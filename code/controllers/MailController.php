@@ -1,9 +1,11 @@
 <?php
+    require_once('lib/PHPMailer/PHPMailerAutoload.php');
     /**
      * Class MailController
      * @Author: Tom Kooiman
      */
     class MailController{
+            private $mail;
         /**
          * When instance has been created then the class get the connection.
          */
@@ -11,46 +13,60 @@
             $server = new ConnectionController();
             $this->connection = $server->getConnection();
             unset($server);
+
+            /**
+             * To start the PHPmailer
+             */
+            $this->mail = new PHPMailer();
+
+            //$this->mail->SMTPDebug = 3;
+
+            $this->mail->isSMTP();
+            $this->mail->Host = 'smtp.mail.com';
+            $this->mail->SMTPAuth = true;
+            $this->mail->Username = 'ABCBiker@mail.com';
+            $this->mail->Password = 'Hallo!23';
+            $this->mail->SMTPSecure = 'tls';
+            $this->mail->Port = '587';
+
+            $this->mail->From = 'ABCBiker@mail.com';
+            $this->mail->FromName = 'ABCBiker';
+
         }
 
         function sendPasswordForNewCostumer($customernumber, $pw) {
-            $queryEmail = 'SELECT email FROM customer WHERE customernumber = '.$customernumber['customernumber'];
+            $queryEmail = 'SELECT customerlastname, customerfirstname, sex, email FROM customer WHERE customernumber = '.$customernumber['customernumber'];
 
             if($result = $this->connection->query($queryEmail)){
                 if($result) {
                     if($this->connection->affected_rows < 1) {
                         return 'er is geen klant met dit klantnummer';
                     }
-                    $email = $result->fetch_array();
+                    $customer = $result->fetch_array();
 
+                    $this->mail->addAddress($customer['email']);
 
-                    $subject = 'Welkom bij ABCBiker : Uw inlogegevens';
-                    $contents = '
-                    Beste Klant,
+                    $this->mail->Subject = 'Welkom bij ABCBiker : Uw inlogegevens';
+                    $this->mail->Body = 'Beste '.$customer['customerfirstname'].' '.$customer['customerlastname'].',
 
-                    Welkom bij ABCbiker
+                    Welkom bij ABCbiker.
                     Hierbij sturen we je de inlogegevens voor de website.
-                    Uw inlognaam is: '.$email['email'].'
+                    Uw inlognaam is: '.$customer['email'].'
                     Uw wachtwoord is: '.$pw.'
 
                     Wij hopen hiermee u genoeg geinformeerd te hebben.
 
-                    ABCBiker Team
-                    ';
-                    echo $email['email'] .' '. $subject .' '. $contents .' ';
-                    if(mail($email['email'],$subject,$contents)) {
-                        echo 'mail sent';
+                    ABCBiker Team';
+
+
+                    if(!$this->mail->send()) {
+                        echo 'Message could not be sent. '.'Mailer Error: ' . $this->mail->ErrorInfo;
                     } else {
-                        echo 'no mail sent';
+                        echo 'Message has been sent';
                     }
                 }
             }
             return $this->connection->error;
-
-
-
-
-
         }
 
         function getConnection(){
