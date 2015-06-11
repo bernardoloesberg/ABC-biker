@@ -42,59 +42,59 @@ echo '<div class="row">
                           </div>
                           <div class="form-group">
                               <div class="col-md-4">
-                                <label for="Voornaam">Voornaam</label>
+                                <label for="Voornaam">Voornaam*</label>
                                 <input type="text" class="form-control" id="employeeLastname" name="employeeFirstName" value="'.$employee['employeefirstname'].'">
                               </div>
                               <div class="col-md-4">
-                                <label for="Achternaam">Achternaam</label>
+                                <label for="Achternaam">Achternaam*</label>
                                 <input type="text" class="form-control" id="employeeLastName" name="employeeLastName" value="'.$employee['employeelastname'].'">
                               </div>
                               <div class="col-md-4">
-                                <label for="Bsn-nummer">Bsn-nummer</label>
+                                <label for="Bsn-nummer">Bsn-nummer*</label>
                                 <input type="text" class="form-control" id="bsn" name="bsn" value="'.$employee['bsn'].'">
                               </div>
                           </div>
 
                           <div class="form-group">
                               <div class="col-md-4">
-                                <label for="Geboortedag">Geboortedag</label>
+                                <label for="Geboortedag">Geboortedatum(dag)*</label>
                                 <input type="text" class="form-control" id="birthday" name="birthday" value="'.$birthparts['2'].'">
                               </div>
                               <div class="col-md-4">
-                                <label for="Geboortemaand">Geboortemaand</label>
+                                <label for="Geboortemaand">Geboortedatum(maand)*</label>
                                 <input type="text" class="form-control" id="birthmonth" name="birthmonth" value="'.$birthparts['1'].'">
                               </div>
                               <div class="col-md-4">
-                                <label for="Geboortejaar">Geboortejaar</label>
+                                <label for="Geboortejaar">Geboortedatum(jaar)*</label>
                                 <input type="text" class="form-control" id="birthyear" name="birthyear" value="'.$birthparts['0'].'">
                               </div>
                           </div>
 
                           <div class="form-group">
                               <div class="col-md-4">
-                                <label for="Mobiel Telefoonnummer">Mobiel Telefoonnummer</label>
+                                <label for="Mobiel Telefoonnummer">Mobiel Telefoonnummer*</label>
                                 <input type="text" class="form-control" id="cellphone" name="cellphone" value="'.$employee['cellphone'].'">
                               </div>
                               <div class="col-md-4">
-                                <label for="geslacht">Geslacht</label>
+                                <label for="geslacht">Geslacht*</label>
                                 <select class="form-control" name="sex">
                                     <option value="'.($employee['sex'] == 'V' ? 'V' : 'M').'">'.($employee['sex'] == 'V' ? 'Vrouw' : 'Man').'</option>
                                     <option value="'.($employee['sex'] == 'V' ? 'M' : 'V').'">'.($employee['sex'] == 'V' ? 'Man' : 'Vrouw').'</option>
                                 </select>
                               </div>
                               <div class="col-md-4">
-                                <label for="Postcode">Postcode</label>
+                                <label for="Postcode">Postcode*</label>
                                 <input type="text" class="form-control" id="zipcode" name="zipcode" value="'.$employee['zipcode'].'">
                               </div>
                           </div>
 
                           <div class="form-group">
                               <div class="col-md-4">
-                                <label for="straat">Straat</label>
+                                <label for="straat">Straat*</label>
                                 <input type="text" class="form-control" id="street" name="street" value="'.$employee['street'].'">
                               </div>
                               <div class="col-md-2">
-                                <label for="Huisnummer">Huisnummer</label>
+                                <label for="Huisnummer">Huisnummer*</label>
                                 <input type="text" class="form-control" id="housenumber" name="housenumber" value="'.$employee['housenumber'].'">
                               </div>
                               <div class="col-md-2">
@@ -102,7 +102,7 @@ echo '<div class="row">
                                 <input type="text" class="form-control" id="housenumberaddon" name="housenumberaddon" value="'.$employee['housenumberaddon'].'">
                               </div>
                               <div class="col-md-4">
-                                <label for="Plaats">Plaats</label>
+                                <label for="Plaats">Plaats*</label>
                                 <input type="text" class="form-control" id="city" name="city" value="'.$employee['city'].'">
                               </div>
                           </div>
@@ -142,6 +142,9 @@ echo'                                    </span>
                                     .($employee['dispatcher'] == 'dispatcher' ? 'checked="checked"':'').'>';
 echo'             </span>
                               </div>
+                          </div>
+                          <div class="form-group">
+                            Velden met een * zijn verplicht
                           </div>
                           <button type="submit" class="btn btn-success" name="changeEmployee">Sla verandering op</button>
                         </form>';

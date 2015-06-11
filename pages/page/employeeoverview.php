@@ -29,9 +29,9 @@ foreach($employeeList as $employee){
                  <td>'.$employee['employeefirstname'] . ' ' . $employee['employeelastname'].'</td>
                  <td>'.$employee['bsn']. '</td>
                  <td>'.$employee['cellphone']. '</td>
-                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/employeedetails/'.$employee['employeenumber'].'">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/employeechange/'.$employee['employeenumber'].'">Bewerken</a></td>
-                <td><button class="btn btn-danger deleteEmployee" name="deleteEmployee" value="'.$employee['employeenumber'].'">Verwijderen</button></td>
+                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/employeedetails/'.$employee['employeenumber'].'"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></a></td>
+                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/employeechange/'.$employee['employeenumber'].'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a></td>
+                <td><button class="btn btn-danger deleteEmployee" name="deleteEmployee" value="'.$employee['employeenumber'].'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button></td>
              </tr>';
 }
 
