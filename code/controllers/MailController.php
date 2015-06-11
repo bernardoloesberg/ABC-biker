@@ -24,12 +24,12 @@
             $this->mail->isSMTP();
             $this->mail->Host = 'smtp.mail.com';
             $this->mail->SMTPAuth = true;
-            $this->mail->Username = 'ABCBiker@mail.com';
+            $this->mail->Username = 'abcbiker@mail.com';
             $this->mail->Password = 'Hallo!23';
             $this->mail->SMTPSecure = 'tls';
             $this->mail->Port = '587';
 
-            $this->mail->From = 'ABCBiker@mail.com';
+            $this->mail->From = 'abcbiker@mail.com';
             $this->mail->FromName = 'ABCBiker';
 
         }
