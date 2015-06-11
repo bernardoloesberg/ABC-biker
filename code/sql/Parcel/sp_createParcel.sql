@@ -44,7 +44,7 @@ CREATE PROCEDURE sp_createParcel
     END IF;
       IF (p_weightingrams >= 25000)
         THEN
-          SET fullcomment = 'Bus ' + p_comment;
+          SET fullcomment = CONCAT( 'Bus ' , p_comment);
       ELSE
         SET fullcomment = p_comment;
         END IF;

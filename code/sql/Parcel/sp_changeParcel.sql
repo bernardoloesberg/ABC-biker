@@ -1,6 +1,10 @@
 /*
  * Author: Bernardo Loesberg, Tom Kooiman
  */
+
+CALL sp_changeParcel
+(7,15,38,38,'Twikkel straat', '6825BV', 1, 'Arnhem', '',1000,'2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','test',10,FALSE);
+
   DROP procedure IF exists sp_changeParcel;
 
   DELIMITER //
@@ -64,7 +68,7 @@
           ELSE
             IF (p_weightingrams >= 25000 && SUBSTRING(p_comment FROM 1 FOR 3) != 'Bus')
             THEN
-              SET fullcomment = 'Bus ' + p_comment;
+              SET fullcomment = CONCAT( 'Bus ' , p_comment);
               ELSE
               SET fullcomment = p_comment;
             END IF;
@@ -87,7 +91,7 @@
             pickup = p_pickup,
             delivery = p_deliver,
             hqarrival = p_hqarrival,
-            hqdeparture = p_p_hqdeparture,
+            hqdeparture = p_hqdeparture,
             `comment` = fullcomment,
             price = p_price,
             express = p_express
@@ -99,6 +103,3 @@
        END IF;
     END //
   DELIMITER ;
-
-CALL sp_changeParcel
-(1,6,2,2,'Twikkel straat', '6825BV', 1, 'Arnhem', '',1000,'2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','2015-05-26 12:34:02','test')
