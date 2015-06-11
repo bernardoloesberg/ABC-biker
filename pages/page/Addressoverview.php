@@ -33,9 +33,9 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher') {
                  <td>' . $address['zipcode'] . '</td>
                  <td>' . $address['housenumber'] . ' ' . $address['housenumberaddon'] . '</td>
                  <td>' . $address['districtname'] . '</td>
-                 <td><a class="btn btn-info" href="' . $_SESSION['rooturl'] . '/addressdetails/' . $address['addressnumber'] . '">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/addresschange/' . $address['addressnumber'] . '">Bewerken</a></td>
-                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="' . $address['addressnumber'] . '">Verwijderen</button></td>
+                 <td><a class="btn btn-info" href="' . $_SESSION['rooturl'] . '/addressdetails/' . $address['addressnumber'] . '"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></a></td>
+                 <td><a class="btn btn-primary" href="' . $_SESSION['rooturl'] . '/addresschange/' . $address['addressnumber'] . '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a></td>
+                <td><button class="btn btn-danger deleteAddress" name="deleteAddress" value="' . $address['addressnumber'] . '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button></td>
              </tr>';
     }
 

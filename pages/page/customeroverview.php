@@ -23,9 +23,9 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
                  <td>'.$customer['customernumber'].'</td>
                  <td>'.$customer['customerfirstname'] . ' ' . $customer['customerlastname'].'</td>
                  <td>'.$customer['companyname']. '</td>
-                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/customerdetail/'.$customer['customernumber'].'">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/customerchange/'.$customer['customernumber'].'">Bewerken</a></td>
-                 <td><button class="btn btn-danger deleteCustomer" value="'.$customer['customernumber'].'">Verwijderen</button></td>
+                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/customerdetail/'.$customer['customernumber'].'"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></a></td>
+                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/customerchange/'.$customer['customernumber'].'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a></td>
+                 <td><button class="btn btn-danger deleteCustomer" value="'.$customer['customernumber'].'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button></td>
              </tr>';
     }
 

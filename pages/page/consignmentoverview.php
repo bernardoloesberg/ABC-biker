@@ -37,9 +37,9 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
                  <td>'.$consignment['customerfirstname'] . ' ' . $consignment['customerlastname'].'</td>
                  <td>'.$consignment['pickupstreet']. ' ' . $consignment['pickuphousenumber'].'</td>
                  <td>'.$consignment['consignorname'].'</td>
-                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/consignmentdetail/'.$consignment['consignmentnumber'].'">Bekijken</a></td>
-                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/consignmentchange/'.$consignment['consignmentnumber'].'">Bewerken</a></td>
-                 <td><button class="btn btn-danger deleteConsignment" value="'.$consignment['consignmentnumber'].'">Verwijderen</button></td>
+                 <td><a class="btn btn-info" href="'.$_SESSION['rooturl'].'/consignmentdetail/'.$consignment['consignmentnumber'].'"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></a></td>
+                 <td><a class="btn btn-primary" href="'.$_SESSION['rooturl'].'/consignmentchange/'.$consignment['consignmentnumber'].'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></a></td>
+                 <td><button class="btn btn-danger deleteConsignment" value="'.$consignment['consignmentnumber'].'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button></td>
              </tr>';
     }
 
