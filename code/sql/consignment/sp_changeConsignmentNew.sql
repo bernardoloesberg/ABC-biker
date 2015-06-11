@@ -2,7 +2,7 @@
  *@Author: Bernardo Loesberg, Tom Kooiman
  * IF THERE IS AN ERROR CHECK ON THE ID CONSIGNMENT AND EMPLOYEE
  */
-use `abcbiker`;
+
 
 DROP procedure IF exists sp_changeConsignment;
 
@@ -82,7 +82,3 @@ CREATE PROCEDURE sp_changeConsignment
       END IF;
   END //
 DELIMITER ;
-
-/* ALS ER EEN ERROR GEGEVEN WORDT DAT DE HANDLER NIET ACTIEF IS DAN BESTAAT CONSIGNMENT / EMPLOYEE NIET !*/
-CALL sp_changeConsignment
-(1,1,'Eeshofstraat','6825BV','2','Arnhem','','Bernardo Loesberg',1, NOW(), NOW(), 120, 100, 1, 'De prijs moest verhoogd worden.');

@@ -3,7 +3,7 @@
  */
 use abcbiker;
 
-DROP VIEW vw_AddressListDistrictName;
+DROP view IF exists vw_AddressListDistrictName;
 
 CREATE VIEW vw_AddressListDistrictName
 AS

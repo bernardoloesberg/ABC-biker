@@ -1,7 +1,6 @@
 /*
  *@Author: Bernardo Loesberg, Tom Kooiman
  */
-use `database`;
 
 DROP procedure IF exists sp_CreateAddress;
 
@@ -57,6 +56,3 @@ CREATE PROCEDURE sp_CreateAddress
     END IF;
   END //
 DELIMITER ;
-
-CALL sp_CreateAddress
-(1,'Eeshofstraat','2','6825BV','Arnhem','');

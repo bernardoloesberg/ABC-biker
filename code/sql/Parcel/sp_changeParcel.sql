@@ -23,6 +23,7 @@
      IN p_price                 FLOAT,
      IN p_express               BOOLEAN)
     BEGIN
+      DECLARE fullcomment TEXT;
       DECLARE EXIT HANDLER FOR SQLEXCEPTION
       BEGIN
         RESIGNAL SQLSTATE '45000';
@@ -60,11 +61,12 @@
                 SET MESSAGE_TEXT = 'De HQaankomst is nog niet ingevuld, maar de HQvertrek wel!';
             ROLLBACK ;
 
-
           ELSE
             IF (p_weightingrams >= 25000 && SUBSTRING(p_comment FROM 1 FOR 3) != 'Bus')
             THEN
               SET fullcomment = 'Bus ' + p_comment;
+              ELSE
+              SET fullcomment = p_comment;
             END IF;
         /*Check if there is a pickup addres*/
         IF NOT EXISTS(SELECT 1 FROM address WHERE street = p_street AND zipcode = p_zipcode AND housenumber = p_housenumber AND city = p_city AND housenumberaddon = p_housenumberaddon)
@@ -86,7 +88,7 @@
             delivery = p_deliver,
             hqarrival = p_hqarrival,
             hqdeparture = p_p_hqdeparture,
-            `comment` = p_comment,
+            `comment` = fullcomment,
             price = p_price,
             express = p_express
         WHERE parcelnumber = p_parcelnumber;

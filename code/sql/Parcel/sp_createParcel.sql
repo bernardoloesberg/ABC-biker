@@ -45,6 +45,8 @@ CREATE PROCEDURE sp_createParcel
       IF (p_weightingrams >= 25000)
         THEN
           SET fullcomment = 'Bus ' + p_comment;
+      ELSE
+        SET fullcomment = p_comment;
         END IF;
 
     INSERT INTO parcel

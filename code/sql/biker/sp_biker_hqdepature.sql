@@ -1,7 +1,6 @@
 /*
  *@Author: Bernardo Loesberg
  */
-use `database`;
 
 DROP procedure IF exists sp_biker_hqdepature;
 
@@ -39,5 +38,3 @@ CREATE PROCEDURE sp_biker_hqdepature
     END IF;
   END //
 DELIMITER ;
-
-CALL sp_biker_hqdepature(6,3)

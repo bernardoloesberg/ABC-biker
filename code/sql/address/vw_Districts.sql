@@ -3,7 +3,7 @@
  */
 use abcbiker;
 
-DROP VIEW vw_Districts;
+DROP VIEW IF EXISTS vw_Districts;
 
 CREATE VIEW vw_Districts
 AS

@@ -1,7 +1,6 @@
 /*
  *@Author: Bernardo Loesberg
  */
-use `database`;
 
 DROP procedure IF exists sp_biker_hqarrival;
 

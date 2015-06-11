@@ -3,7 +3,7 @@
  */
 use `abcbiker`;
 
-DROP VIEW vw_getConsignmentList;
+DROP VIEW IF EXISTS vw_getConsignmentList;
 
 CREATE VIEW vw_getConsignmentList
 AS

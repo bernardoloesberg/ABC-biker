@@ -3,6 +3,7 @@
  */
 use abcbiker;
 
+DELIMITER //
 CREATE PROCEDURE  sp_DeleteCustomer (IN id  INT)
   BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -13,4 +14,5 @@ CREATE PROCEDURE  sp_DeleteCustomer (IN id  INT)
     START TRANSACTION;
     DELETE FROM customer WHERE customernumber = id;
     COMMIT;
-  END
+  END //
+DELIMITER ;

@@ -1,7 +1,6 @@
 /*
  *@Author: Bernardo Loesberg
  */
-use `abcbiker`;
 
 DROP procedure IF exists sp_changeConsignment;
 
@@ -78,6 +77,3 @@ CREATE PROCEDURE sp_changeConsignment
     SET FOREIGN_KEY_CHECKS=1;
   END //
 DELIMITER ;
-
-CALL sp_changeConsignment
-(1,1,'Eeshofstraat','6825BV','2','Arnhem','','Bernardo Loesberg',1, NOW(), NOW(), 120, 100, 1, 'De prijs moest verhoogd worden.');
