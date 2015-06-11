@@ -7,6 +7,9 @@
 if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'manager'){
     echo '<div class="row">
                 <div class="col-md-12">
+                <div class="input-group"> <span class="input-group-addon">Filter</span>
+                         <input id="filter" type="text" class="form-control" placeholder="Type here...">
+                    </div>
                     <table class="table">
                         <thead>
                             <th>Klantnummner</th>
@@ -16,7 +19,8 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
                             <th>Bewerken</th>
                             <th>Verwijderen</th>
                         </thead>
-                        <tbody>';
+                        <tbody class="searchable">';
+
 
     foreach($CustomerList as $customer) {
         echo '<tr>
@@ -35,6 +39,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
           </div>';
 
 loadscript('code/js/deleteHandlers.js');
+loadscript('code/js/filter.js');
 }else{
     showMessage('danger', 'U heeft geen toegang tot deze pagina! Neem contact op met de beheerder.');
 }

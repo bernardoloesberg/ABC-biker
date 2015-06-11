@@ -5,8 +5,6 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher' || 
 $employeeController = new EmployeeController();
 $employeeList = $employeeController->getEmployeeList();
 
-//print_r($employeeList);
-
 echo '<div class="row">
                 <div class="col-md-12">
                     <a class="btn btn-info" href="'.$_SESSION['rooturl'].'/employeecreate">Nieuwe werknemer</a></td>
