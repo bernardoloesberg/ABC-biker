@@ -156,7 +156,8 @@ create table employee
    birthday             date not null,
    sex                  char(1) not null,
    password             varchar(24) not null,
-   primary key (employeenumber)
+   primary key (employeenumber),
+   UNIQUE (bsn)
 );
 
 /*==============================================================*/
