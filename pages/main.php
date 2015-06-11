@@ -93,7 +93,7 @@ function getMenu(){
                                                                                                           <ul class="dropdown-menu">
                                                                                                             <li><a href="'.$_SESSION['rooturl'].'/account">Mijn profiel</a></li>
                                                                                                             <li class="divider"></li>
-                                                                                                            <li><a href="#">Uitloggen</a></li>
+                                                                                                            <li><a href="'.$_SESSION['rooturl'].'/login/1">Uitloggen</a></li>
                                                                                                           </ul>
                                                                                                         </li>').'
                       </ul>

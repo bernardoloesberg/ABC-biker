@@ -4,7 +4,7 @@
  */
 $('#loginButton').on('click', function(){
     $.ajax({
-        url: 'http://sandbox-api.authy.com/protected/json/verify/' + $('#token').val() + '/6805549?api_key=41f3fe0a27e1c9cba05c30933811a2b8',
+        url: 'http://api.authy.com/protected/json/verify/' + $('#token').val() + '/6805549?api_key=TAVynpvxam12wcdM6oBNFAQ2HuBL28EF',
         type: 'GET',
         crossDomain:true,
         dataType: 'jsonp',

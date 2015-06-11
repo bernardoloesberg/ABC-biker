@@ -200,9 +200,9 @@
                 }else{
                     return 'success';
                 }
-            }else{
-                return $this->connection->error;
             }
+
+            return $this->connection->error;
         }
 
         /**

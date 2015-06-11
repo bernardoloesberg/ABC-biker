@@ -22,22 +22,20 @@ CREATE PROCEDURE sp_biker_deliver
       SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er is al een datum ingevuld voor het ophalen.';
       ROLLBACK;
-    END IF;
     /* There is already a date for the pickup. Cant set a new one */
-    IF((SELECT delivery FROM parcel WHERE parcelnumber = p_parcelnumber AND  deliveremployeenumber = p_employeenumber) IS NOT NULL)
+    ELSEIF((SELECT delivery FROM parcel WHERE parcelnumber = p_parcelnumber AND  deliveremployeenumber = p_employeenumber) IS NOT NULL)
       THEN
         SIGNAL SQLSTATE '45012'
         SET MESSAGE_TEXT = 'Je bent niet gekozen om dit pakket te leveren.';
         ROLLBACK;
+    ELSE
+      /* Update Parcel */
+      UPDATE parcel
+      SET delivery = NOW()
+      WHERE parcelnumber = p_parcelnumber
+      AND deliveremployeenumber = p_employeenumber;
+      COMMIT;
     END IF;
-
-    /* Update Parcel */
-    UPDATE parcel
-    SET delivery = NOW()
-    WHERE parcelnumber = p_parcelnumber
-    AND deliveremployeenumber = p_employeenumber;
-
-    COMMIT;
   END //
 DELIMITER ;
 

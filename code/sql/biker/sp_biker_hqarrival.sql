@@ -22,15 +22,13 @@ CREATE PROCEDURE sp_biker_hqarrival
       SIGNAL SQLSTATE '45012'
       SET MESSAGE_TEXT = 'Er is al een datum ingevuld voor het ophalen.';
       ROLLBACK;
-    END IF;
     /* There is already a date for the pickup. Cant set a new one */
-    IF((SELECT hqarrival FROM parcel WHERE parcelnumber = p_parcelnumber AND  pickupemployeenumber = p_employeenumber) IS NOT NULL)
+    ELSEIF((SELECT hqarrival FROM parcel WHERE parcelnumber = p_parcelnumber AND  pickupemployeenumber = p_employeenumber) IS NOT NULL)
       THEN
         SIGNAL SQLSTATE '45012'
         SET MESSAGE_TEXT = 'Je mag dit pakket niet ophalen!';
         ROLLBACK;
-    END IF;
-
+    ELSE
     /* Update Parcel */
     UPDATE parcel
     SET hqarrival = NOW()
@@ -38,6 +36,7 @@ CREATE PROCEDURE sp_biker_hqarrival
     AND pickupemployeenumber = p_employeenumber;
 
     COMMIT;
+    END IF;
   END //
 DELIMITER ;
 
