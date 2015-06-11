@@ -52,11 +52,8 @@
 
     if(isset($_GET['logout'])){
         session_destroy();
-        showMessage('warning', 'U bent nu uitgelogd en wordt over 5 seconden terug gestuurd naar de Homepagina');
 
-        sleep(5);
-
-        loadpage($_SESSION['rooturl'] . '/home');
+        loadpage($_SESSION['rooturl'] . '/home/1');
     }else{
         if(isset($_SESSION['user'])){
             loadpage($_SESSION['rooturl'] . '/home');
@@ -65,7 +62,6 @@
         if(isset($_POST['login'])){
             $result = $loginController->authentication($_POST);
 
-            print_r($result);
             if(!empty($result['employeenumber'])){
                 $_SESSION['user'] = $result;
 

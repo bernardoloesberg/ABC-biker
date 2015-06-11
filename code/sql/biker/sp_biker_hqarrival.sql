@@ -19,13 +19,13 @@ CREATE PROCEDURE sp_biker_hqarrival
     IF NOT EXISTS (SELECT 1 FROM parcel WHERE parcelnumber = p_parcelnumber AND pickupemployeenumber = p_employeenumber)
     THEN
       SIGNAL SQLSTATE '45012'
-      SET MESSAGE_TEXT = 'Er is al een datum ingevuld voor het ophalen.';
+      SET MESSAGE_TEXT = 'Je mag dit pakket niet bezorgen bij het hoofdkantoor.';
       ROLLBACK;
     /* There is already a date for the pickup. Cant set a new one */
-    ELSEIF((SELECT hqarrival FROM parcel WHERE parcelnumber = p_parcelnumber AND  pickupemployeenumber = p_employeenumber) IS NOT NULL)
+    ELSEIF((SELECT hqarrival FROM parcel WHERE parcelnumber = p_parcelnumber AND pickupemployeenumber = p_employeenumber) IS NOT NULL)
       THEN
         SIGNAL SQLSTATE '45012'
-        SET MESSAGE_TEXT = 'Je mag dit pakket niet ophalen!';
+        SET MESSAGE_TEXT = 'Er is al een tijd bekend!';
         ROLLBACK;
     ELSE
     /* Update Parcel */

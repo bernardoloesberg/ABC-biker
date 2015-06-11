@@ -1,12 +1,6 @@
-
 <html lang="en">
 
 <head>
-    <?php
-    //print_r($_SESSION['user']);
-    session_destroy();
-    //print_r($_COOKIE["loginCredentials"]);
-    ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,6 +25,11 @@
 </head>
 
 <body>
+<?php
+    if(isset($_GET['logoutmessage'])){
+        showMessage('warning', 'U bent nu uitgelogd en wordt over 5 seconden terug gestuurd naar de Homepagina');
+    }
+?>
     <!-- Image Background Page Header -->
     <!-- Note: The background image is set within the business-casual.css file. -->
     <header class="business-header">
