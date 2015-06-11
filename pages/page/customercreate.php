@@ -9,8 +9,9 @@
 
     if(isset($_POST['submit'])){
         $result = $customerController->createCustomer($_POST);
-
-        if($result == 'success') {
+        if($result == 'success' && $_POST['city'] != 'Arnhem') {
+            showMessage('warning', 'Uw woonplaats is niet in Arnhem. De klant is wel aangemaakt, maar normaliter bezorgen wij alleen in Arnhem!');
+        } elseif($result == 'success') {
             showMessage('success','De klant is succesvol aangemaakt! Een email met het wachtwoord is gestuurd! ');
         } else {
             showMessage('danger',$result);

@@ -54,15 +54,15 @@
                     Uw inlognaam is: '.$customer['email'].'
                     Uw wachtwoord is: '.$pw.'
 
-                    Wij hopen hiermee u genoeg geinformeerd te hebben.
+                    Wij hopen hiermee u voldoende geinformeerd te hebben.
 
                     ABCBiker Team';
 
 
-                    if(!$this->mail->send()) {
-                        return 'Message could not be sent. '.'Mailer Error: ' . $this->mail->ErrorInfo;
-                    } else {
+                    if($this->mail->send()) {
                         return 'success';
+                    } else {
+                        return 'De mail kon niet verstuurd worden '.'Mailer Error: ' . $this->mail->ErrorInfo;
                     }
                 }
             }
