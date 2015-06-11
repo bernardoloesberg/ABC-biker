@@ -29,7 +29,7 @@ CREATE PROCEDURE sp_ChangeEmployee(
       ROLLBACK;
     END;
     START TRANSACTION;
-    IF (p_street REGEXP '[^a-zA-Z ]')
+    IF (p_street REGEXP '[^a-zA-Z]')
     THEN
      SIGNAL SQLSTATE '45101'
      SET MESSAGE_TEXT = 'De straatnaam mag alleen uit letters bestaan';
@@ -44,7 +44,7 @@ CREATE PROCEDURE sp_ChangeEmployee(
      SIGNAL SQLSTATE '45102'
      SET MESSAGE_TEXT = 'De postcode moet bestaan uit 4 cijfers en 2 letters aan elkaar.';
   ROLLBACK;
-  ELSEIF (p_city REGEXP '[^a-zA-Z ]')
+  ELSEIF (p_city REGEXP '[^a-zA-Z]')
     THEN
      SIGNAL SQLSTATE '45103'
      SET MESSAGE_TEXT = 'De plaats mag alleen uit letters bestaan';
@@ -60,7 +60,7 @@ CREATE PROCEDURE sp_ChangeEmployee(
      SET MESSAGE_TEXT = 'De toevoeging voor het huisnummer mag alleen uit een kleine letter bestaan';
   ROLLBACK;
     /* Name businessRule  if special characters are used */
-    ELSEIF (p_employeelastname REGEXP '[^a-zA-Z ]' || p_employeefirstname REGEXP '[^a-zA-Z ]')
+    ELSEIF (p_employeelastname REGEXP '[^a-zA-Z]' || p_employeefirstname REGEXP '[^a-zA-Z]')
     THEN
      SIGNAL SQLSTATE '45105'
      SET MESSAGE_TEXT = 'De naam mag alleen uit letters bestaan';
