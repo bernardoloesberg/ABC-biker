@@ -1,0 +1,20 @@
+/*
+ *@Author: Christiaan ten Voorde
+ */
+use `abcbiker`;
+
+DROP procedure IF exists sp_DeleteDistrict;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeleteDistrict(
+  IN p_districtnumber int
+)
+  BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+      RESIGNAL SQLSTATE '45000';
+      ROLLBACK;
+    END;
+      DELETE FROM district WHERE districtnumber = p_districtnumber;
+  END //
+DELIMITER ;

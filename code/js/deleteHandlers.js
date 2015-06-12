@@ -108,3 +108,18 @@ $('.deleteCustomerAddress').on('click', function(){
         $(this).closest('tr').remove();
     }
 });
+
+$('.deleteDistrict').on('click', function(){
+    if (confirm("Weet u zeker dat u dit district wilt verwijderen?") == true) {
+        $.ajax({
+            url: '/ABC-biker/ajaxdelete',
+            type: 'POST',
+            data: {districtnumber: $(this).val()},
+            success: function(data){
+                // Success eventueel een message weergeven
+            }
+        });
+
+        $(this).closest('tr').remove();
+    }
+});

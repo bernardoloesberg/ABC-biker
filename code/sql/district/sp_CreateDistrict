@@ -1,0 +1,30 @@
+/*
+ *@Author: Christiaan ten Voorde
+ */
+use `abcbiker`;
+
+DROP procedure IF exists sp_CreateDistrict;
+
+DELIMITER //
+CREATE PROCEDURE sp_CreateDistrict(
+  IN p_districtname varchar(40)
+)
+  BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+      RESIGNAL SQLSTATE '45000';
+      ROLLBACK;
+    END;
+    START TRANSACTION;
+        IF (p_districtname REGEXP '[^a-zA-Z ]')
+        THEN
+         SIGNAL SQLSTATE '45121'
+         SET MESSAGE_TEXT = 'De naam van het district mag alleen uit letters bestaan';
+      ROLLBACK;
+      ELSE
+      INSERT INTO district(districtname)
+      VALUES (p_districtname);
+      COMMIT;
+      END IF;
+  END //
+DELIMITER ;

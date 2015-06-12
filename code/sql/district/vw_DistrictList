@@ -1,0 +1,10 @@
+/*
+ *@Author: Christiaan ten Voorde
+ */
+use `abcbiker`;
+
+DROP VIEW vw_DistrictList
+
+CREATE VIEW vw_DistrictList
+AS
+SELECT * FROM District
