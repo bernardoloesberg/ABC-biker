@@ -139,7 +139,8 @@ create table district
 (
    districtnumber       int not null AUTO_INCREMENT,
    districtname         varchar(40) not null,
-   primary key (districtnumber)
+   primary key (districtnumber),
+  UNIQUE (districtname)
 );
 
 /*==============================================================*/
