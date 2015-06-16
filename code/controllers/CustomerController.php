@@ -63,22 +63,19 @@
 
           if ($result = $this->connection->query($query1)) {
               if ($result) {
-
-                  $query3 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "'";
-                  if($result3 = $this->connection->query($query3)) {
-                      if ($result3) {
-                          $result4 = $mailController->sendPasswordForNewCostumer($result3->fetch_array(),$customer['pw']);
-
-                          if($result4 != 'success') {
-                              return $result4;
-                          }
-                      }
-                  }
-
                   $result2 = $AddressForCustomerController->addAddressToCustomer($customer);
 
                   if($result2 == 'success') {
+                      $query3 = "SELECT customernumber FROM customer WHERE customerlastname = '" . mysqli_real_escape_string($this->connection, $customer['customerlastname']) . "' AND customerfirstname = '" . mysqli_real_escape_string($this->connection, $customer['customerfirstname']) . "' AND phonenumber = '" . mysqli_real_escape_string($this->connection, $customer['phonenumber']) . "'";
+                      if($result3 = $this->connection->query($query3)) {
+                          if ($result3) {
+                              $result4 = $mailController->sendPasswordForNewCostumer($result3->fetch_array(),$customer['pw']);
 
+                              if($result4 != 'success') {
+                                  return $result4;
+                              }
+                          }
+                      }
                       return 'success';
                   }
               }
@@ -88,7 +85,6 @@
 
        function deleteCustomer($id) {
            $query = "CALL sp_deleteCustomer(".mysqli_real_escape_string($this->connection,$id).")";
-            echo $query;
 
            if($result = $this->connection->query($query)){
                return $result;

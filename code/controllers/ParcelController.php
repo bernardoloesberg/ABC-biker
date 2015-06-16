@@ -92,7 +92,7 @@
                                             '".(!empty($parcel['comment'])? mysqli_real_escape_string($this->connection,$parcel['comment']) : 'null')."',
                                             '".mysqli_real_escape_string($this->connection,$parcel['price'])."',
                                             ".(isset($parcel['express']) ? mysqli_real_escape_string($this->connection,$parcel['express']) : 0 ).")";
-            echo $query;
+            //echo $query;
 
             if($result = $this->connection->query($query)){
                 return 'success';
@@ -124,7 +124,7 @@
                                             ".(!empty($parcel['comment'])? mysqli_real_escape_string($this->connection,$parcel['comment']) : 'null').",
                                             '".mysqli_real_escape_string($this->connection,$parcel['price'])."',
                                             ".(isset($parcel['express']) ? mysqli_real_escape_string($this->connection,$parcel['express']) : 0 ).")";
-            echo $query;
+            //echo $query;
 
             if($result = $this->connection->query($query)){
                 return 'success';
