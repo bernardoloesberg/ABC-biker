@@ -77,11 +77,6 @@
            return $this->connection->error;
        }
 
-       /**
-        * Get a address of a customer
-        * @param $id
-        * @return mixed
-        */
 
        function __destruct(){
            $this->connection->close();
