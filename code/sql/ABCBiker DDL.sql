@@ -139,7 +139,8 @@ create table district
 (
    districtnumber       int not null AUTO_INCREMENT,
    districtname         varchar(40) not null,
-   primary key (districtnumber)
+   primary key (districtnumber),
+  UNIQUE (districtname)
 );
 
 /*==============================================================*/
@@ -276,3 +277,4 @@ alter table workingdistrict add constraint fk_covers_a foreign key (districtnumb
 alter table workingdistrict add constraint fk_number_of foreign key (employeenumber)
       references employee (employeenumber) on delete cascade on update cascade;
 
+CREATE INDEX bsn_employee ON employee (bsn);

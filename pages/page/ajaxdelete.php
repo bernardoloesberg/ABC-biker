@@ -6,6 +6,7 @@
     require_once('code/controllers/ParcelController.php');
     require_once('code/controllers/AddressForCustomerController.php');
     require_once('code/controllers/CustomerContactController.php');
+    require_once('code/controllers/DistrictController');
 
     $consignmentController = new ConsignmentController();
     $customerController = new CustomerController();
@@ -14,6 +15,7 @@
     $parcelController = new ParcelController();
     $addressForCustomerController = new AddressForCustomerController();
     $customerContactController = new CustomerContactController();
+    $districtController = new DistrictController();
 
     if(isset($_POST['contactnumber'])){
         echo $customerContactController->deleteCustomerContact($_POST['contactnumber']);
@@ -50,6 +52,12 @@
     } else {
         echo 'There is no addressnumber to delete.';
     }
+
+    if(isset($_POST['districtnumber'])) {
+        echo $result = $districtController->deleteDistrict($_POST['districtnumber']);
+    } else {
+        echo 'There is no districtnumber to delete.';
+}
 
     if(isset($_POST['address']) && isset($_POST['customer'])) {
         echo json_encode($addressForCustomerController->deleteAddressFromCustomer($_POST['address'],$_POST['customer']));
