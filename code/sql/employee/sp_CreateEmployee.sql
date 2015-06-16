@@ -61,7 +61,7 @@ CREATE PROCEDURE sp_CreateEmployee(
      SET MESSAGE_TEXT = 'De toevoeging voor het huisnummer mag alleen uit een kleine letter bestaan';
   ROLLBACK;
     /* Name businessRule  if special characters are used */
-    ELSEIF (p_employeelastname REGEXP '[^a-zA-Z]' || p_employeefirstname REGEXP '[^a-zA-Z]')
+    ELSEIF (p_employeelastname REGEXP '[^a-zA-Z ]' || p_employeefirstname REGEXP '[^a-zA-Z ]')
     THEN
      SIGNAL SQLSTATE '45105'
      SET MESSAGE_TEXT = 'De naam mag alleen uit letters bestaan';
