@@ -32,7 +32,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                         <input type="hidden" id="customernumber" name="customernumber" value="'.$_GET['id'].'">
                             <div class="form-group">
                                 <div class="col-md-6">
-                                <label for="districtnumber">Districtname</label>
+                                <label for="districtnumber">District</label>
                                 <select class="form-control" id="districtnumber" name="districtnumber">';
 
                     foreach($districts as $district){

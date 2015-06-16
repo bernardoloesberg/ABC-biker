@@ -33,7 +33,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                     <form action="#" method="post">
                         <div class="form-group">
                             <div class="col-md-6">
-                            <label for="districtname">Districtname</label>
+                            <label for="districtname">District</label>
                             <select class="form-control" id= "districtname" name="districtname">
                             <option>'.$address['districtname'].'</option>';
 
