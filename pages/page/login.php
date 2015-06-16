@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" name="login" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                                    <input type="submit" name="login" id="login-submit" tabindex="4" class="form-control btn btn-primary" value="Log In">
                                                 </div>
                                             </div>
                                         </div>
@@ -55,14 +55,22 @@
 
         loadpage($_SESSION['rooturl'] . '/home/1');
     }else{
-        if(isset($_SESSION['user'])){
-            loadpage($_SESSION['rooturl'] . '/home');
-        }
-
         if(isset($_POST['login'])){
             $result = $loginController->authentication($_POST);
 
-            if(!empty($result['employeenumber'])){
+
+            if(!empty($result['customernumber'])){
+                $_SESSION['user'] = $result;
+
+                /*TODO : FIX COOKIE*/
+                if(isset($_POST['remember'])){
+                    setcookie("loginCredentials", $result, time() * 7200); // Expiring after 2 hours
+                }else{
+                    setcookie("loginCredentials", "", time() - 3600); // "Expires" 1 hour ago
+                }
+
+                loadpage($_SESSION['rooturl'] . '/account/'. $result['customernumber']);
+            }elseif(!empty($result['employeenumber'])){
                 $_SESSION['user'] = $result;
 
                 /*TODO : FIX COOKIE*/

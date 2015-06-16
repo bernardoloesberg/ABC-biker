@@ -10,10 +10,22 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
     $consignmentController = new ConsignmentController();
     $customerController = new CustomerController();
 
+    if(isset($_POST['createConsignment'])){
+        $consignmentID = $consignmentController->createConsignment($_POST);
+
+        if($consignmentID){
+            showMessage('success', 'U heeft een nieuwe consignment toegevoegd!');
+
+            echo '<input type="hidden" name="consignmentnumber" id="consignmentnumber" value="'.$consignmentID.'" />';
+        }else{
+            showMessage('danger', 'Het toevoegen van een nieuwe consignment is mislukt!');
+        }
+    }
+
     $customers = $customerController->getCustomerList();
     echo '<div class="row">
                 <div class="col-md-12">
-                        <form action="'.$_SESSION['rooturl'].'/parcelcreate" method="post">
+                        <form action="#" method="post">
                               <div class="form-group">
                               <div class="col-md-12">
                                 <label for="customer">Klant</label>

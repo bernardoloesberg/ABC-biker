@@ -15,12 +15,10 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher') {
     if(isset($_POST['changeConsignment'])){
         $result = $consignmentController->changeConsignment($_POST);
 
-        print_r($result);
-
-        if($result){
+        if($result == 'success'){
             showMessage('success', 'De consignment is bijgewerkt!');
         }else{
-            showMessage('danger', 'De consignment kon niet worden bijgewerkt!');
+            showMessage('danger', $result);
         }
     }
 

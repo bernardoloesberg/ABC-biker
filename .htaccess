@@ -34,5 +34,6 @@ RewriteRule ^contactchange/([-a-zA-Z0-9]+)/?$ index.php?page=contactchange&id=$1
 RewriteRule ^contactcreate/([-a-zA-Z0-9]+)/?$ index.php?page=contactcreate&id=$1 [L]
 RewriteRule ^account/([-a-zA-Z0-9]+)/?$ index.php?page=account&id=$1 [L]
 RewriteRule ^login/([-a-zA-Z0-9]+)/?$ index.php?page=login&logout=$1 [L]
+RewriteRule ^home/([-a-zA-Z0-9]+)/?$ index.php?page=home&logoutmessage=$1 [L]
 RewriteRule ^districtchange/([-a-zA-Z0-9]+)/?$ index.php?page=districtchange&id=$1 [L]
 RewriteRule ^districtdelete/([-a-zA-Z0-9]+)/?$ index.php?page=districtdelete&id=$1 [L]

@@ -25,10 +25,21 @@
         function authentication($user){
             $query = "SELECT * FROM vw_authenticateUser WHERE email = '". mysqli_real_escape_string($this->connection,$user['email']) . "' AND password = '".mysqli_real_escape_string($this->connection,$this->hashPassword($user['password'])) . "'";
             $account = array();
-
-            if($result = $this->connection->query($query)){
+            if($result = $this->connection->query($query)) {
                 $account = $result->fetch_assoc();
 
+                if (empty($account)) {
+                    $query = "SELECT * FROM vw_customerlogin WHERE email = '" . mysqli_real_escape_string($this->connection, $user['email']) . "' AND password = '" . mysqli_real_escape_string($this->connection, $this->hashPassword($user['password'])) . "'";
+
+                    if ($result = $this->connection->query($query)) {
+                        $account = $result->fetch_assoc();
+                        return $account;
+                    } else {
+                        return $this->connection->error;
+                    }
+                }else{
+                    return $account;
+                }
             }else{
                 return $this->connection->error;
             }

@@ -86,16 +86,16 @@ function getMenu(){
                       </ul>
 
                       <ul class="nav navbar-nav navbar-right">
-                        '.(empty($_SESSION['user']['employeenumber'])  ? '<li><a href="'.$_SESSION['rooturl'].'/customercreate">Registreren</a></li>
-                                                                                                      <li><a href="'.$_SESSION['rooturl'].'/login">Inloggen</a></li>'
-                                                                                                   : '<li class="dropdown">
+                        '.(!empty($_SESSION['user']['employeenumber']) || !empty($_SESSION['user']['customernumber'])  ? '<li class="dropdown">
                                                                                                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
                                                                                                           <ul class="dropdown-menu">
                                                                                                             <li><a href="'.$_SESSION['rooturl'].'/account">Mijn profiel</a></li>
                                                                                                             <li class="divider"></li>
                                                                                                             <li><a href="'.$_SESSION['rooturl'].'/login/1">Uitloggen</a></li>
                                                                                                           </ul>
-                                                                                                        </li>').'
+                                                                                                        </li>'
+                                                                                                   : '<li><a href="'.$_SESSION['rooturl'].'/customercreate">Registreren</a></li>
+                                                                                                      <li><a href="'.$_SESSION['rooturl'].'/login">Inloggen</a></li>').'
                       </ul>
                     </div><!-- /.navbar-collapse -->
                   </div><!-- /.container-fluid -->

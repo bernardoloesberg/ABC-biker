@@ -15,21 +15,6 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
         echo '<form action="'.$_SESSION['rooturl'].'/consignmentoverview/" method="post">';
     }
 
-    /**
-     * TODO: NEXT STEP ON CONSIGNMENT
-     */
-    if(isset($_POST['createConsignment'])){
-        $consignmentID = $consignmentController->createConsignment($_POST);
-
-        if($consignmentID){
-            showMessage('success', 'U heeft een nieuwe consignment toegevoegd!'. $consignmentID);
-
-            echo '<input type="hidden" name="consignmentnumber" id="consignmentnumber" value="'.$consignmentID.'" />';
-        }else{
-            showMessage('danger', 'Het toevoegen van een nieuwe consignment is mislukt!');
-        }
-    }
-
     echo '<div class="row">
             <div class="col-md-12">
                     <div class="form-group">
@@ -126,9 +111,9 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                                   </span>
                             </div>
                         </div>
-                    <div class="form-group">
+                        <div class="form-group">
                             <div class="col-md-12">
-                        <button type="submit" name="createParcel" class="btn btn-primary">Toevoegen</button>
+                            <button type="submit" name="createParcel" class="btn btn-primary">Toevoegen</button>
                         </div>
                     </div>
                 </form>

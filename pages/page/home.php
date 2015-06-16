@@ -27,7 +27,7 @@
 <body>
 <?php
     if(isset($_GET['logoutmessage'])){
-        showMessage('warning', 'U bent nu uitgelogd en wordt over 5 seconden terug gestuurd naar de Homepagina');
+        showMessage('warning', 'U bent nu uitgelogd!');
     }
 ?>
     <!-- Image Background Page Header -->
