@@ -110,6 +110,9 @@
            if($result = $this->connection->query($query)){
                return $result;
            }
+           else{
+               return $this->connection->error;
+           }
        }
 
       function __destruct(){

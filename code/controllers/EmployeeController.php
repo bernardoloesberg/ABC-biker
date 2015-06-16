@@ -177,6 +177,17 @@ class EmployeeController{
         return $this->connection->error;
     }
 
+    function checkActiveEmployee($employee){
+        $query = "SELECT * FROM vw_getEmployeeWithParcel WHERE employeenumber = ".mysqli_real_escape_string($this->connection,$employee);
+        if($result = $this->connection->query($query)){
+            foreach($result as $employee){
+                $employeeList[] = $employee;
+            }
+        }
+
+        return $employeeList;
+    }
+
     function zetNullWaardesOm($employee){
         if(!isset($employee['biker'])) {
             $employee['biker'] = '0';

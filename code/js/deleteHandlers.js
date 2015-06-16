@@ -33,16 +33,16 @@ $('.deleteCustomer').on('click', function(){
 });
 
 $('.deleteEmployee').on('click', function(){
-    if (confirm("Weet u zeker dat u een werknemer wilt verwijderen?") == true) {
-        $.ajax({
-            url: '/ABC-biker/ajaxdelete',
-            type: 'POST',
-            data: {employeenumber: $(this).val()},
-            success: function(data){
-            }
-        });
-        $(this).closest('tr').remove();
-    }
+        if (confirm("Weet u zeker dat u een werknemer wilt verwijderen?") == true) {
+            $.ajax({
+                url: '/ABC-biker/ajaxdelete',
+                type: 'POST',
+                data: {employeenumber: $(this).val()},
+                success: function (data) {
+                }
+            });
+            $(this).closest('tr').remove();
+        }
 });
 
 $('.deleteAddress').on('click', function(){
@@ -53,6 +53,7 @@ $('.deleteAddress').on('click', function(){
             type: 'POST',
             data: {addressnumber: $(this).val()},
             success: function(data){
+                alert(data);
                 console.log(data);
             }
         });
