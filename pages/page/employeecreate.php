@@ -120,7 +120,7 @@ echo '<div class="row">
                           <div class="form-group">
                             Velden met een * zijn verplicht
                           </div>
-                          <button type="submit" name="createEmployee" class="btn btn-primary">Create</button>
+                          <button type="submit" name="createEmployee" class="btn btn-primary">Opslaan</button>
                         </form>
                 </div>
           </div>';
