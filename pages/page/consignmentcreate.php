@@ -17,7 +17,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                               <div class="form-group">
                               <div class="col-md-12">
                                 <label for="customer">Klant</label>
-                                <select class="form-control" name="customernumber" id="customerChange">
+                                <select class="form-control" name="customernumber" id="customerChange" required>
                                     <option value=""></option>';
 
 
@@ -30,11 +30,11 @@ foreach($customers as $customer){
                               <div class="form-group">
                                 <div class="col-md-4">
                                     <label for="pickupstreet">Straat</label>
-                                    <input type="text" class="form-control" id="pickupstreet" name="pickupstreet" value="">
+                                    <input type="text" class="form-control" id="pickupstreet" name="pickupstreet" value="" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="pickuphousenumber">Huisnummer</label>
-                                    <input type="text" class="form-control" id="pickuphousenumber" name="pickuphousenumber" value="">
+                                    <input type="text" class="form-control" id="pickuphousenumber" name="pickuphousenumber" value="" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="pickuphousenumberaddon">Huisnummer toevoeging</label>
@@ -44,11 +44,11 @@ foreach($customers as $customer){
                               <div class="form-group">
                                 <div class="col-md-4">
                                     <label for="pickupzipcode">Postcode</label>
-                                    <input type="text" class="form-control" id="pickupzipcode" name="pickupzipcode" value="">
+                                    <input type="text" class="form-control" id="pickupzipcode" name="pickupzipcode" value="" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="pickupcity">Woonplaats</label>
-                                    <input type="text" class="form-control" id="pickupcity" name="pickupcity" value="">
+                                    <input type="text" class="form-control" id="pickupcity" name="pickupcity" value="" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="consignorname">Totaal prijs</label>
