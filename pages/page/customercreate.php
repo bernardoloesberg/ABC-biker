@@ -58,7 +58,7 @@
                               </div>
 
                               <div class="form-group">
-                                <label for="districtnumber">Districtname</label>
+                                <label for="districtnumber">District</label>
                                     <select class="form-control" id="districtnumber" name="districtnumber">';
 
                                 foreach($districts as $district){
