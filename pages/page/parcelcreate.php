@@ -35,7 +35,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                     <div class="form-group">
                         <div class="col-md-6">
                             <label for="customer">Opgehaald door:</label>
-                            <select class="form-control" name="pickupemployeenumber" id="pickupemployeenumber">';
+                            <select class="form-control" name="pickupemployeenumber" id="pickupemployeenumber" required>';
     foreach($employees as $employee){
         echo '<option value="'.$employee['employeenumber'].'">'.$employee['employeefirstname'].' '. $employee['employeelastname'] .'</option>';
     }
@@ -56,11 +56,11 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                     <div class="form-group">
                         <div class="col-md-4">
                             <label for="pickupstreet">Straat</label>
-                            <input type="text" class="form-control" id="pickupstreet" name="pickupstreet" value="">
+                            <input type="text" class="form-control" id="pickupstreet" name="pickupstreet" value="" required>
                         </div>
                         <div class="col-md-4">
                             <label for="pickuphousenumber">Huisnummer</label>
-                            <input type="text" class="form-control" id="pickuphousenumber" name="pickuphousenumber" value="">
+                            <input type="text" class="form-control" id="pickuphousenumber" name="pickuphousenumber" value="" required>
                         </div>
                         <div class="col-md-4">
                             <label for="pickuphousenumberaddon">Huisnummer toevoeging</label>
@@ -71,19 +71,19 @@ if(isset($_SESSION['user']) && $_SESSION['user']['rolename'] == 'dispatcher'){
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="pickupzipcode">Postcode</label>
-                                <input type="text" class="form-control" id="pickupzipcode" name="pickupzipcode" value="">
+                                <input type="text" class="form-control" id="pickupzipcode" name="pickupzipcode" value="" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="pickupcity">Woonplaats</label>
-                                <input type="text" class="form-control" id="pickupcity" name="pickupcity" value="">
+                                <input type="text" class="form-control" id="pickupcity" name="pickupcity" value="" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="weigthingrams">Gewicht</label>
-                                <input type="text" class="form-control" id="weigthingrams" name="weigthingrams" value="" />
+                                <input type="text" class="form-control" id="weigthingrams" name="weigthingrams" value="" required>
                             </div>
                         </div>
                     </div>
