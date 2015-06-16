@@ -7,8 +7,13 @@
     $parcelController = new ParcelController();
 
     /*When a user logged in a id comes with it. Then it says hello user*/
-    if(isset($_GET['id']) && !empty($_GET['id']) && !empty($_SESSION['user']['employeenumber']) && !isset($_SESSION['abc-biker-token'])){
+    if(isset($_GET['id']) && !empty($_GET['id']) && !empty($_SESSION['user']['employeenumber']) && $_SESSION['user']['rolename'] == 'dispatcher'  && !isset($_SESSION['abc-biker-token']) || isset($_GET['id']) && !empty($_GET['id']) && !empty($_SESSION['user']['employeenumber']) && $_SESSION['user']['rolename'] == 'manager'  && !isset($_SESSION['abc-biker-token'])){
         loadpage($_SESSION['rooturl']. '/authenticate');
+    }
+
+    /*When a user logged in a id comes with it. Then it says hello user*/
+    if(isset($_GET['id']) && !empty($_GET['id']) && !empty($_SESSION['user']['employeenumber'])){
+        showMessage('success', 'Welkom: '. $_SESSION['user']['employeefirstname'] . ' ' . $_SESSION['user']['employeelastname']);
     }
 
     /*When a user logged in a id comes with it. Then it says hello user*/

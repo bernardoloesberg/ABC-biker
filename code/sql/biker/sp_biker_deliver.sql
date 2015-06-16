@@ -20,7 +20,7 @@ CREATE PROCEDURE sp_biker_deliver
     IF NOT EXISTS (SELECT 1 FROM parcel WHERE parcelnumber = p_parcelnumber AND deliveremployeenumber = p_employeenumber)
     THEN
       SIGNAL SQLSTATE '45012'
-      SET MESSAGE_TEXT = 'Je mag dit pakket niet bezorgen.';
+      SET MESSAGE_TEXT = 'Je mag dit pakket niet bezorgen bij een klant.';
       ROLLBACK;
     /* There is already a date for the pickup. Cant set a new one */
     ELSEIF((SELECT delivery FROM parcel WHERE parcelnumber = p_parcelnumber AND  deliveremployeenumber = p_employeenumber) IS NOT NULL)

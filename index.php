@@ -3,7 +3,7 @@
     error_reporting(E_ALL);
     // Start session
     session_start();
-
+    //session_destroy();
     // Security
     include_once('code/controllers/security.php');
 
