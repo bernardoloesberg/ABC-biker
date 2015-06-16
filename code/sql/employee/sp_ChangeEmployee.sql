@@ -29,7 +29,7 @@ CREATE PROCEDURE sp_ChangeEmployee(
       ROLLBACK;
     END;
     START TRANSACTION;
-    IF (p_street REGEXP '[^a-zA-Z]')
+    IF (p_street REGEXP '[^a-zA-Z ]')
     THEN
      SIGNAL SQLSTATE '45101'
      SET MESSAGE_TEXT = 'De straatnaam mag alleen uit letters bestaan';
