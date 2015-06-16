@@ -69,6 +69,27 @@
             return $this->connection->error;
         }
 
+        function sendToken($email, $token){
+            $this->mail->addAddress($email);
+
+            $this->mail->Subject = 'Welkom bij ABCBiker : Uw inlogegevens';
+            $this->mail->Body = 'Uw logintoken voor ABC-Biker,
+
+                    Welkom bij ABCbiker.
+                    Hierbij sturen we je de logintoken.
+                    Uw inlognaam is: '.$token.'
+
+                    Wij hopen hiermee u voldoende geinformeerd te hebben.
+
+                    ABCBiker Team';
+
+            if($this->mail->send()) {
+                return 'success';
+            } else {
+                return 'De mail kon niet verstuurd worden '.'Mailer Error: ' . $this->mail->ErrorInfo;
+            }
+        }
+
         function getConnection(){
             return $this->connection;
         }

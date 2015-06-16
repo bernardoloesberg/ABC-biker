@@ -17,16 +17,16 @@
     $customerContactController = new CustomerContactController();
     $districtController = new DistrictController();
 
+    if(isset($_POST['consignmentnumber'])) {
+        echo $result = $consignmentController->deleteConsignment($_POST['consignmentnumber']);
+    }
+
     if(isset($_POST['contactnumber'])){
         echo $customerContactController->deleteCustomerContact($_POST['contactnumber']);
     }
 
     if(isset($_POST['parcelnumber'])) {
         echo $parcelController->deleteParcel($_POST['parcelnumber']);
-    }
-
-    if(isset($_POST['consignmentnumber'])) {
-        echo $result = $consignmentController->deleteConsignment($_POST['consignmentnumber']);
     }
 
     if(isset($_POST['customernumber'])) {

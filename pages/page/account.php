@@ -7,8 +7,8 @@
     $parcelController = new ParcelController();
 
     /*When a user logged in a id comes with it. Then it says hello user*/
-    if(isset($_GET['id']) && !empty($_GET['id']) && !empty($_SESSION['user']['employeenumber'])){
-        showMessage('success', 'Welkom: '. $_SESSION['user']['employeefirstname'] . ' ' . $_SESSION['user']['employeelastname']);
+    if(isset($_GET['id']) && !empty($_GET['id']) && !empty($_SESSION['user']['employeenumber']) && !isset($_SESSION['abc-biker-token'])){
+        loadpage($_SESSION['rooturl']. '/authenticate');
     }
 
     /*When a user logged in a id comes with it. Then it says hello user*/
@@ -53,7 +53,7 @@
                         </table>
                     </div>
               </div>';
-    }elseif(isset($_SESSION['user']['employeenumber'])){
+    }elseif(isset($_SESSION['user']['customernumber'])){
         $consignmentController = new ConsignmentController();
         $consignmentList = $consignmentController->getCustomerConsignmentList($_SESSION['user']['employeenumber']);
 
